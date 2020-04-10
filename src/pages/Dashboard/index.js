@@ -4,9 +4,8 @@ import { slide as Menu } from 'react-burger-menu';
 import { HomeOutlined as HomeIcon, WechatOutlined as ChatIcon, 
     UserOutlined as UserIcon, StarOutlined as StarIcon}  from '@ant-design/icons';
 import { Avatar, Modal, Button } from 'antd';
-import banner1 from './../../img/homem_feliz_carro_novo.jpg';
-import banner2 from './../../img/homem_feliz_carro_novo.jpg';
-import banner3 from './../../img/homem_feliz_carro_novo.jpg';
+import {Slide} from 'react-slideshow-image';
+
 
 export default class Dashboard extends Component {
     constructor(props){
@@ -15,9 +14,13 @@ export default class Dashboard extends Component {
         ModalText: 'Entre em sua conta ou faca um cadastro!',
         visible: false,
         confirmLoading: false,
+        banner1css: {
+          align: "center",
+        }
     };
     }
 
+    
       showModal = () => {
             this.setState({
             visible: true,
@@ -42,33 +45,29 @@ export default class Dashboard extends Component {
           visible: false,
         });
       };
-    
 
-    /*function rollBanner(){
-        if()
-    }
-    function banner1() {
-        document.getElementById('banner1').src={banner1};
-        setTimeout(() => {
-            banner2();
-        }, 5000);
-    }    
-
-    function banner2() {
-        document.getElementById('banner2').src={banner2};
-        setTimeout(() => {
-            banner3();
-        }, 5000);
-    }    
-
-    function banner3() {
-        document.getElementById('banner3').src={banner3};
-        setTimeout(() => {
-            banner1();
-        }, 5000);
-    }    */
     render(){
     const { visible, confirmLoading, ModalText } = this.state;
+
+    const properties = {
+      duration: 5000,
+      transitionDuration: 500,
+      infinite: true,
+      indicators: true,
+      pauseOnHover: true,
+      onChange: (oldIndex, newIndex) => {
+        console.log(
+          `Slide transition finished from ${oldIndex} to ${newIndex}`
+        );
+      }
+    };
+
+    const slideImages = [
+      './../../img/homem_feliz_carro_novo.jpg',
+      './../../img/homem_feliz_carro_novo.jpg',
+      './../../img/homem_feliz_carro_novo.jpg'
+    ];
+
     return(
     <div className="div1"> 
     <header className="dashboard-header">
@@ -101,15 +100,35 @@ export default class Dashboard extends Component {
             </Modal>
         </div>
     </header>
+   
     <body>
         <div className="header-menu">
         </div>
         <div className='dashboard-banner-1' /*onLoad={this.banner1()}*/>
+          <div className = "slide-container">
+            <Slide {...properties}>
+            <div className = "each-slide">
+            <div style = {{'backgroundImage': `url(${slideImages[0]})`}}>
+            <span > Slide 1 </span> 
+            </div>
+            </div> 
+            <div className = "each-slide" >
+            <div style = {{'backgroundImage': `url(${slideImages[1]})`}}>
+            <span > Slide 2 </span> 
+            </div> 
+            </div> 
+            <div className = "each-slide" >
+            <div style = {{'backgroundImage': `url(${slideImages[2]})`}}>
+            <span > Slide 3 </span>
+            </div> 
+            </div> 
+            </Slide>
+            </div>
         </div>
     </body>
     </div>
-    );
-    }
+     );
+     }
 }
 
 
