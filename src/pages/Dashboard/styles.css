@@ -102,10 +102,7 @@
     font-size: 30px;
 }
 
-.button{
-    position: fixed;
-    width: 36px;
-    height: 30px;
-    left: 90%;
-    top: 36px;
+.search-box{
+    right: 40px;
+    left: 100px;
 }
