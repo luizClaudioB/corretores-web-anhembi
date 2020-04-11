@@ -5,6 +5,9 @@ import { HomeOutlined as HomeIcon, WechatOutlined as ChatIcon,
     UserOutlined as UserIcon, StarOutlined as StarIcon}  from '@ant-design/icons';
 import { Avatar, Modal, Button } from 'antd';
 import {Slide} from 'react-slideshow-image';
+import banner1 from './../../img/dog_google.png';
+import banner2 from './../../img/mar.png';
+import banner3 from './../../img/pessoas.jpg';
 
 
 export default class Dashboard extends Component {
@@ -63,9 +66,9 @@ export default class Dashboard extends Component {
     };
 
     const slideImages = [
-      './../../img/homem_feliz_carro_novo.jpg',
-      './../../img/homem_feliz_carro_novo.jpg',
-      './../../img/homem_feliz_carro_novo.jpg'
+      banner1,
+      banner2,
+      banner3
     ];
 
     return(
@@ -102,7 +105,7 @@ export default class Dashboard extends Component {
     </header>
    
     <body>
-        <div className="header-menu">
+        < div className = "dashboard-banner-1" >
         </div>
         <div className='dashboard-banner-1' /*onLoad={this.banner1()}*/>
           <div className = "slide-container">

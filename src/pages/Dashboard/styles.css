@@ -26,12 +26,24 @@
     position: center;
 }
 
-.dashboard-banner-2 {
-    
+.each-slide span {
+  padding: -px;
+  font-size: 20px;
+  background: #efefef;
+  text-align: center;
 }
 
-.dashboard-banner-3 {
-    
+.each-slide>div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 400px;
+}
+
+.slide-container {
+  width: 1752px;
+  margin: auto;
 }
 
 .bm-burger-button {
