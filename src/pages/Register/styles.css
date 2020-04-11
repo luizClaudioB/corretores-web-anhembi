@@ -1,24 +1,122 @@
 .register-container{
     width: 100%;
-    max-width: 1120px;
-    height: 100vh;
-    margin: 0 auto;
+    max-width: 1300px;
+    height: 890px;
+    margin: -20px;
+
 
     display: flex;
-    align-items: center;
+    align-items: initial;
     justify-content: center; 
+    background-color:#E3DEDE ;
+    
 }
 
-.register-container .content{
-    width: 100%;
-    padding: 96px;
-    background: #f0f0f5;
-    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    };
 
+
+.register-container-initial{
+    width: 1189px;
+    height: 280px;
+    background-color: #c4c4c4;
+    align-items: center;
+    justify-content: left ;
+    display: flex;
+}
+
+
+.register-container-initial .left-form{
+    float: left;
+    margin-left: 50px;
+}
+
+.register-container-initial .left-form input{
+    margin-bottom: 10px;
+}
+
+.register-container-initial .right-form{
+    float: right;
+    margin-left: 25px;
+}
+.register-container-initial .right-form input{
+    margin-bottom: 10px;
+}
+
+.register-container-initial .checkBoxes input{
+    margin-top: 28px;
+
+}
+
+.register-container-buyer{
+    margin-top: 50px;
+    width: 1189px;
+    height: 280px;
+    background-color: #c4c4c4;
+    align-items: center;
+    justify-content: left ;
+    display: flex;
+}
+
+.register-container-buyer .left-form-2{
+    float: left;
+    margin-left: 50px;
+}
+
+.register-container-buyer .middle-form-2{
+    margin-top: 82px;
+    margin-left: 20px;
+}
+
+.register-container-buyer .right-form-2{
+    margin-top: 82px;
+    margin-left: 20px;
+}
+
+.register-container-seller{
+    margin-top: 50px;
+    width: 1189px;
+    height: 280px;
+    background-color: #c4c4c4;
+    align-items: center;
+    justify-content: left ;
+    display: flex;
     
+}
+
+.register-container-seller .left-form-3{
+    float: left;
+    margin-left: 50px;
+}
+
+.register-container-seller .middle-form-3{
+    margin-top: 122px;
+    margin-left: 20px;
+}
+
+.register-container-seller .right-form-3{
+    margin-top: 122px;
+    margin-left: 20px;
+}
+
+.buttonRegister{
+    position: absolute;
+    width: 138px;
+    height: 28px;
+    left: 1032px;
+    top: 822px;
+}
+
+.buttonSearchCEPB{
+    width: 116px;
+    height: 22px;
+    left: 350px;
+    top: 562px;
+    background-color: #8D8D8D;
+}
+
+.buttonSearchCEPS{
+    width: 116px;
+    height: 22px;
+    left: 350px;
+    top: 562px;
+    background-color: #8D8D8D;
+}
