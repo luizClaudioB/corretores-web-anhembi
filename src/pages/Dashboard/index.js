@@ -153,6 +153,31 @@ export default class Dashboard extends Component {
     render(){
     const loggedIn = this.state.loggedIn
     const isLoading = this.state.loading;
+    const useStyles = makeStyles({
+      root: {
+        maxWidth: 350,
+      },
+      media: {
+      },
+    });
+    const properties = {
+      duration: 5000,
+     transitionDuration: 500,
+     infinite: true,
+     indicators: true,
+     pauseOnHover: true,
+     onChange: (oldIndex, newIndex) => {
+       console.log(
+         `Slide transition finished from ${oldIndex} to ${newIndex}`
+       );
+     }
+   };
+   const slideImages = [
+    banner1,
+    banner2,
+    banner3,
+  ];
+
     return(
     <div className="div1"> 
     <header className="dashboard-header">
