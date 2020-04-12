@@ -284,7 +284,8 @@ export default class Dashboard extends Component {
     <div>
         <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10}>
         {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
-            <Tab marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}>
+            <Tab marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
+            onSelect={() => this.props.history.push('/search')}>
             {tab}
             </Tab>
         ))}

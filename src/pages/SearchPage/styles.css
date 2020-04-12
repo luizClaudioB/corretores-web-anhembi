@@ -5,6 +5,7 @@
 .dashboard-header {
     min-width: 1080px;
     margin-top: -25px;
+    margin-left: -10px;
     width: 1920px; 
     height: 106px;
     background-color: #F37F2B;

@@ -295,18 +295,18 @@ export default class SearchPage extends Component {
       </div>
     </header>
     <div>
-        <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginTop={0}>
+        <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10}>
         {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
-            <Tab marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}>
+            <Tab marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
+            onSelect={() => this.props.history.push('/search')}>
             {tab}
             </Tab>
         ))}
         </TabNavigation>
     </div>
     <div>
-    <body style={{position: 'fixed'}}>
+    <body style={{marginTop: 100, position: 'fixed'}}>
     <div>
-    <p><h2><Text> Filtros </Text></h2></p>
     <Combobox
         openOnFocus
         items={['Automoveis', 'Aparelhos eletronicos', 'Residencia', 'Motocicletas']}
@@ -322,7 +322,7 @@ export default class SearchPage extends Component {
         marginBottom={40}
     />  
     <FilterRating></FilterRating>
-    <Table marginLeft={500}>
+    <Table style={{marginLeft: 500}}>
     <Table.Head>
         <Table.SearchHeaderCell />
         <Table.TextHeaderCell>
