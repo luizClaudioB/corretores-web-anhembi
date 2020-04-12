@@ -38,7 +38,7 @@ export default class Dashboard extends Component {
     super(props);
     this.state = {
       showModal: false,
-      loggedIn: null,
+      loggedIn: true,
       loading: false,
       error: null,
       initialTab: null,
@@ -203,7 +203,7 @@ export default class Dashboard extends Component {
         </Popover>
         <br />
         <br />
-        <SearchInput marginLeft={360} width={700} height={40} position="fixed" placeholder="Procure um seguro" />
+        <SearchInput top={20} marginLeft={360} width={700} height={40} position="fixed" placeholder="Procure um seguro" />
         {!!loggedIn ? 
         <Popover
           content={
@@ -217,7 +217,7 @@ export default class Dashboard extends Component {
           }
         >
         <Avatar
-          style={{marginLeft: 1320, marginTop: 3, position: 'fixed'}}
+          style={{marginLeft: 1320, marginTop: 15, position: 'fixed'}}
           src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
           name="Alan Turing"
           size={40}
@@ -225,7 +225,7 @@ export default class Dashboard extends Component {
         </Popover>
         : 
         <Button
-          style={{marginLeft: 1210, marginTop: 4, position: 'fixed'}}
+          style={{marginLeft: 1210, marginTop: 15, position: 'fixed'}}
           className="RML-btn"
           onClick={() => this.openModal('login')}
           appearance="minimal"
@@ -322,7 +322,7 @@ export default class Dashboard extends Component {
       </div>
     </header>
     <div>
-        <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10}>
+        <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10} marginBottom={10}>
         {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
             <Tab marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
             onSelect={() => this.props.history.push('/search')}>
@@ -331,7 +331,7 @@ export default class Dashboard extends Component {
         ))}
         </TabNavigation>
     </div>
-    <body>
+    <body style={{marginTop: 28, position: 'fixed'}}>
         <div className='dashboard-banner-1' /*onLoad={this.banner1()}*/>
           <div className = "slide-container">
             <Slide {...properties}>
@@ -353,12 +353,20 @@ export default class Dashboard extends Component {
             </Slide>
             </div>
           </div>
-          <div>
+    </body>
+    </div>
+     );
+     }
+}
+
+/*
+<div>
               <Card className={useStyles.root}>
                 <CardActionArea>
                   <CardMedia
+                    position='fixed'
                     component="img"
-                    height="300"
+                    height="100"
                     //className={useStyles.media}
                     image = './../../img/hb20.png'
                     title= "O carro do ano"
@@ -385,8 +393,4 @@ export default class Dashboard extends Component {
                 </CardActions>
               </Card>
           </div>
-    </body>
-    </div>
-     );
-     }
-}
+          */

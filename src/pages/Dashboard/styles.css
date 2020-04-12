@@ -45,8 +45,9 @@
 }
 
 .slide-container {
-  width: 1752px;
-  margin: auto;
+  width: 1440px;
+  position: fixed;
+  margin-left: 23px;
 }
 .menu-button{
     position: fixed;
