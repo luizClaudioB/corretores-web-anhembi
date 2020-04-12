@@ -1,24 +1,143 @@
-.register-container{
-    width: 100%;
-    max-width: 1120px;
-    height: 100vh;
-    margin: 0 auto;
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
 
-    display: flex;
-    align-items: center;
-    justify-content: center; 
+* {
+    margin: 0;
+    padding: 0;
 }
 
-.register-container .content{
+body, input, select, textarea, button {
+    font-family: sans-serif;
+    font-size: 1em;
+}
+
+.register-container{
     width: 100%;
-    padding: 96px;
-    background: #f0f0f5;
-    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    max-width: 1300px;
+    height: 890px;
     
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    };
-
+    align-items: initial;
+    justify-content: center; 
+    background-color:#E3DEDE ;
+    position: relative;
     
+}
+
+
+.register-container-initial{
+    width: 1189px;
+    height: 280px;
+    background-color: #c4c4c4;
+    align-items: center;
+    justify-content: left ;
+    display: flex;
+    
+
+}
+.input{
+    font: 400 14px Roboto, sans-serif
+}
+
+
+.register-container-initial .left-form{
+    float: left;
+    margin-left: 50px;
+}
+
+.register-container-initial .left-form input{
+    margin-bottom: 10px;
+}
+
+.register-container-initial .right-form{
+    float: right;
+    margin-left: 25px;
+}
+.register-container-initial .right-form .inputs{
+    margin-top: -18px;
+    margin-bottom: 8px;
+}
+
+.register-container-initial .right-form .inputs input{
+    margin-bottom: 10px;
+}
+
+.register-container-initial .right-form .checkBoxes input{
+    margin-top: 20px;
+
+}
+
+.register-container-buyer{
+    margin-top: 50px;
+    width: 1189px;
+    height: 280px;
+    background-color: #c4c4c4;
+    align-items: center;
+    justify-content: left ;
+    display: flex;
+}
+
+.register-container-buyer .left-form-2{
+    float: left;
+    margin-left: 50px;
+}
+
+.register-container-buyer .middle-form-2{
+    margin-top: 82px;
+    margin-left: 20px;
+}
+
+.register-container-buyer .right-form-2{
+    margin-top: 82px;
+    margin-left: 20px;
+}
+
+.register-container-seller{
+    margin-top: 50px;
+    width: 1189px;
+    height: 280px;
+    background-color: #c4c4c4;
+    align-items: center;
+    justify-content: left ;
+    display: flex;
+    
+}
+
+.register-container-seller .left-form-3{
+    float: left;
+    margin-left: 50px;
+}
+
+.register-container-seller .middle-form-3{
+    margin-top: 122px;
+    margin-left: 20px;
+}
+
+.register-container-seller .right-form-3{
+    margin-top: 122px;
+    margin-left: 20px;
+}
+
+.buttonRegister{
+    position: absolute;
+    width: 160px;
+    height: 40px;
+    right: 80px;
+    bottom: 100px;
+    font-size: 27px;
+}
+
+.buttonSearchCEPB{
+    width: 116px;
+    height: 22px;
+    left: 350px;
+    top: 562px;
+    background-color: #8D8D8D;
+}
+
+.buttonSearchCEPS{
+    width: 116px;
+    height: 22px;
+    left: 350px;
+    top: 562px;
+    background-color: #8D8D8D;
+}
