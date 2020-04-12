@@ -9,9 +9,9 @@ import PropTypes from "prop-types"
 import { Input } from 'antd';
 import { SearchInput, IconButton, Button, Popover, Menu, Avatar, Tab, TabNavigation } from 'evergreen-ui';
 import {Slide} from 'react-slideshow-image';
-import banner1 from './../../img/dog_google.png';
-import banner2 from './../../img/mar.png';
-import banner3 from './../../img/pessoas.jpg';
+import banner1 from './../../img/porto_auto.jpg';
+import banner2 from './../../img/seguro_vida.jpg';
+import banner3 from './../../img/seguro_residencia.jpg';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -20,6 +20,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import ButtonUI from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+
 
 const facebook = {
   appId: "YOUR FB APP ID GOES HERE",
@@ -33,12 +34,13 @@ const google = {
   client_id: "YOUR_CLIENT_ID.apps.googleusercontent.com",
   scope: "profile email"
 };
+
 export default class Dashboard extends Component {
     constructor(props){
     super(props);
     this.state = {
       showModal: false,
-      loggedIn: true,
+      loggedIn: null,
       loading: false,
       error: null,
       initialTab: null,
@@ -46,7 +48,7 @@ export default class Dashboard extends Component {
       showSocialMedia: true,
     };
     }
-
+    
     onLogin() {
       console.log('__onLogin__');
       console.log('email: ' + document.querySelector('#email').value);
@@ -154,14 +156,6 @@ export default class Dashboard extends Component {
     const loggedIn = this.state.loggedIn
     const isLoading = this.state.loading;
     
-    const useStyles = makeStyles({
-      root: {
-        maxWidth: 350,
-      },
-      media: {
-      },
-    })
-
     const properties = {
       duration: 5000,
       transitionDuration: 500,
@@ -175,6 +169,21 @@ export default class Dashboard extends Component {
       }
     };
 
+    const useStyles = makeStyles({
+      root: {
+        width: 100,
+      },
+      media: {
+
+      },
+      buttonRoot: {
+        width: 50,
+      },
+      buttonLabel: {
+
+      }
+    });
+
     const slideImages = [
       banner1,
       banner2,
@@ -182,161 +191,162 @@ export default class Dashboard extends Component {
     ];
 
     return(
-    <div className="div1"> 
-    <header className="dashboard-header">
-        <div>
-        <Popover
-          content={
-            <Menu>
-              <Menu.Group>
-                <Menu.Item icon="chat">Meus Chats</Menu.Item>
-                <Menu.Item icon="star-empty">Favoritos</Menu.Item>
-                <Menu.Item icon="history">
-                  Historico
-                </Menu.Item>
-              </Menu.Group>
-              <Menu.Divider />
-            </Menu>
+      <div className="div1"> 
+      <header className="dashboard-header">
+          <div>
+          <Popover
+            content={
+              <Menu>
+                <Menu.Group>
+                  <Menu.Item icon="chat">Meus Chats</Menu.Item>
+                  <Menu.Item icon="star-empty">Favoritos</Menu.Item>
+                  <Menu.Item icon="history">
+                    Historico
+                  </Menu.Item>
+                </Menu.Group>
+                <Menu.Divider />
+              </Menu>
+            }
+          >
+            <IconButton style={{position: 'fixed'}} className="menu-button" appearance="minimal" icon="menu" iconSize={50} />
+          </Popover>
+          <br />
+          <br />
+          <SearchInput top={20} marginLeft={360} width={700} height={40} position="fixed" placeholder="Procure um seguro" />
+          {!!loggedIn ? 
+          <Popover
+            content={
+              <Menu>
+                <Menu.Group>
+                  <Menu.Item icon="person">Meu Perfil</Menu.Item>
+                  <Menu.Item icon="cog">Configuracoes</Menu.Item>
+                </Menu.Group>
+                <Menu.Divider />
+              </Menu>
+            }
+          >
+          <Avatar
+            style={{marginLeft: 1320, marginTop: 15, position: 'fixed'}}
+            src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
+            name="Alan Turing"
+            size={40}
+          />
+          </Popover>
+          : 
+          <Button
+            style={{marginLeft: 1210, marginTop: 15, position: 'fixed'}}
+            className="RML-btn"
+            onClick={() => this.openModal('login')}
+            appearance="minimal"
+          >
+          Entre ou cadastre-se
+          </Button>
           }
-        >
-          <IconButton style={{position: 'fixed'}} className="menu-button" appearance="minimal" icon="menu" iconSize={50} />
-        </Popover>
-        <br />
-        <br />
-        <SearchInput top={20} marginLeft={360} width={700} height={40} position="fixed" placeholder="Procure um seguro" />
-        {!!loggedIn ? 
-        <Popover
-          content={
-            <Menu>
-              <Menu.Group>
-                <Menu.Item icon="person">Meu Perfil</Menu.Item>
-                <Menu.Item icon="cog">Configuracoes</Menu.Item>
-              </Menu.Group>
-              <Menu.Divider />
-            </Menu>
-          }
-        >
-        <Avatar
-          style={{marginLeft: 1320, marginTop: 15, position: 'fixed'}}
-          src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
-          name="Alan Turing"
-          size={40}
-        />
-        </Popover>
-        : 
-        <Button
-          style={{marginLeft: 1210, marginTop: 15, position: 'fixed'}}
-          className="RML-btn"
-          onClick={() => this.openModal('login')}
-          appearance="minimal"
-        >
-        Entre ou cadastre-se
-        </Button>
-        }
-        <ReactModalLogin
-          visible={this.state.showModal}
-          onCloseModal={this.closeModal.bind(this)}
-          loading={isLoading}
-          initialTab={this.state.initialTab}
-          error={this.state.error}
-          tabs={{
-            afterChange: this.afterTabsChange.bind(this)
-          }}
-          startLoading={this.startLoading.bind(this)}
-          finishLoading={this.finishLoading.bind(this)}
-          form={{
-            onLogin: this.onLogin.bind(this),
-            onRegister: this.onRegister.bind(this),
-            onRecoverPassword: this.onRecoverPassword.bind(this),
+          <ReactModalLogin
+            visible={this.state.showModal}
+            onCloseModal={this.closeModal.bind(this)}
+            loading={isLoading}
+            initialTab={this.state.initialTab}
+            error={this.state.error}
+            tabs={{
+              afterChange: this.afterTabsChange.bind(this)
+            }}
+            startLoading={this.startLoading.bind(this)}
+            finishLoading={this.finishLoading.bind(this)}
+            form={{
+              onLogin: this.onLogin.bind(this),
+              onRegister: this.onRegister.bind(this),
+              onRecoverPassword: this.onRecoverPassword.bind(this),
 
-            recoverPasswordSuccessLabel: this.state.recoverPasswordSuccess
-              ? {
-                  label: "Uma nova senha foi enviada para seu e-mail!"
+              recoverPasswordSuccessLabel: this.state.recoverPasswordSuccess
+                ? {
+                    label: "Uma nova senha foi enviada para seu e-mail!"
+                  }
+                : null,
+              recoverPasswordAnchor: {
+                label: "Esqueceu sua senha?"
+              },
+              loginBtn: {
+                label: "Entre"
+              },
+              registerBtn: {
+                label: "Cadastre-se"
+              },
+              recoverPasswordBtn: {
+                label: "Envie uma nova senha"
+              },
+              loginInputs: [
+                {
+                  containerClass: 'RML-form-group',
+                  label: 'Email',
+                  type: 'email',
+                  inputClass: 'RML-form-control',
+                  id: 'email',
+                  name: 'email',
+                  placeholder: 'Email',
+                },
+                {
+                  containerClass: 'RML-form-group',
+                  label: 'Password',
+                  type: 'password',
+                  inputClass: 'RML-form-control',
+                  id: 'password',
+                  name: 'password',
+                  placeholder: 'Password',
                 }
-              : null,
-            recoverPasswordAnchor: {
-              label: "Esqueceu sua senha?"
-            },
-            loginBtn: {
-              label: "Entre"
-            },
-            registerBtn: {
-              label: "Cadastre-se"
-            },
-            recoverPasswordBtn: {
-              label: "Envie uma nova senha"
-            },
-            loginInputs: [
-              {
-                containerClass: 'RML-form-group',
-                label: 'Email',
-                type: 'email',
-                inputClass: 'RML-form-control',
-                id: 'email',
-                name: 'email',
-                placeholder: 'Email',
-              },
-              {
-                containerClass: 'RML-form-group',
-                label: 'Password',
-                type: 'password',
-                inputClass: 'RML-form-control',
-                id: 'password',
-                name: 'password',
-                placeholder: 'Password',
-              }
-            ],
-            recoverPasswordInputs: [
-              {
-                containerClass: 'RML-form-group',
-                label: 'Email',
-                type: 'email',
-                inputClass: 'RML-form-control',
-                id: 'email',
-                name: 'email',
-                placeholder: 'Email',
-              },
-            ],
-          }}
-          separator={{
-            label: this.state.showSocialMedia ? "ou" : "Para se cadastrar, clique no botao abaixo: "
-          }}
-          providers={{
-            facebook: this.state.showSocialMedia ? {
-              config: facebook,
-              onLoginSuccess: this.onLoginSuccess.bind(this),
-              onLoginFail: this.onLoginFail.bind(this),
-              inactive: isLoading,
-              label: "Entre com Facebook"
-            } : null,
-            google: this.state.showSocialMedia ? {
-              config: google,
-              onLoginSuccess: this.onLoginSuccess.bind(this),
-              onLoginFail: this.onLoginFail.bind(this),
-              inactive: isLoading,
-              label: "Entre com Google"
-            } : null
-          }}
-        />
-        {loggedIn}
+              ],
+              recoverPasswordInputs: [
+                {
+                  containerClass: 'RML-form-group',
+                  label: 'Email',
+                  type: 'email',
+                  inputClass: 'RML-form-control',
+                  id: 'email',
+                  name: 'email',
+                  placeholder: 'Email',
+                },
+              ],
+            }}
+            separator={{
+              label: this.state.showSocialMedia ? "ou" : "Para se cadastrar, clique no botao abaixo: "
+            }}
+            providers={{
+              facebook: this.state.showSocialMedia ? {
+                config: facebook,
+                onLoginSuccess: this.onLoginSuccess.bind(this),
+                onLoginFail: this.onLoginFail.bind(this),
+                inactive: isLoading,
+                label: "Entre com Facebook"
+              } : null,
+              google: this.state.showSocialMedia ? {
+                config: google,
+                onLoginSuccess: this.onLoginSuccess.bind(this),
+                onLoginFail: this.onLoginFail.bind(this),
+                inactive: isLoading,
+                label: "Entre com Google"
+              } : null
+            }}
+          />
+          {loggedIn}
+        </div>
+      </header>
+      <div>
+          <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10} marginBottom={10}>
+          {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
+              <Tab marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
+              onSelect={() => this.props.history.push('/search')}>
+              {tab}
+              </Tab>
+          ))}
+          </TabNavigation>
       </div>
-    </header>
-    <div>
-        <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10} marginBottom={10}>
-        {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
-            <Tab marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
-            onSelect={() => this.props.history.push('/search')}>
-            {tab}
-            </Tab>
-        ))}
-        </TabNavigation>
-    </div>
-    <body style={{marginTop: 28, position: 'fixed'}}>
-        <div className='dashboard-banner-1' /*onLoad={this.banner1()}*/>
+
+      <div style={{marginTop: 28, position: 'fixed'}}>
+        <div className='dashboard-banner-1'>
           <div className = "slide-container">
             <Slide {...properties}>
               <div className = "each-slide">
-                <div style = {{'backgroundImage': `url(${slideImages[0]})`}}>
+                <div style = {{scale: -10, 'backgroundImage': `url(${slideImages[0]})`}}>
                   <span></span> 
                 </div>
               </div> 
@@ -351,46 +361,116 @@ export default class Dashboard extends Component {
                 </div> 
               </div> 
             </Slide>
-            </div>
           </div>
-    </body>
-    </div>
+        </div>
+      <div style = {{display: 'inline'}}>
+        <div style={{display: 'inline-block', marginLeft: 45, marginTop: 50, top: 20, width: '22%', float: 'left'}}>
+          <Card className = {useStyles.root}>
+            <CardActionArea>
+              <CardMedia 
+                position = 'fixed'
+                component = "img"
+                height = "200"
+                image = {'https://www.racecomunicacao.com.br/wp-content/uploads/2019/01/Banner-Case-AT.png'}
+                title = "Allianz Travel" />
+                <CardContent>
+                  <Typography gutterbottom variant = "h5"component = "h2" >
+                  Allianz Travel - Viagens 
+                  </Typography> 
+                  <Typography variant = "body2" color = "textSecondary" component = "p" >
+                  Tenha uma viagem tranquila e segura, a allianz garante tudo isso para você.
+                  </Typography> 
+                </CardContent> 
+              </CardActionArea> 
+          <CardActions>
+            <Button 
+              size = "small" 
+              style = {{width: '50%'}}
+            > 
+                Comprar
+            </Button> 
+            <Button 
+              size = "small" 
+              style = {{width: '50%'}}
+            >
+                Mais Informações 
+            </Button> 
+          </CardActions> 
+          </Card> 
+          </div>
+          <div style={{display: 'inline-block', marginLeft: 50, marginTop: 50, top: 20, width: '22%', float: 'left'}}>
+          <Card className = {useStyles.root}>
+            <CardActionArea>
+              <CardMedia 
+                position = 'fixed'
+                component = "img"
+                height = "200" //className={useStyles.media} 
+                image = {'https://www.mapfre.com.br/seguro-br/images/1200x630-logo-mapfre_tcm909-83355.jpg'}
+                title = "Mapfre Seguros" />
+                <CardContent>
+                  <Typography gutterbottom variant = "h5"component = "h2" >
+                  Mapfre - Vida
+                  </Typography> 
+                  <Typography variant = "body2" color = "textSecondary" component = "p" >
+                  Venha para Mapfre e garanta seu seguro de vida, proteja você e sua família o quanto antes.
+                  </Typography> 
+                </CardContent> 
+              </CardActionArea> 
+          <CardActions>
+             <Button 
+              size = "small" 
+              style = {{width: '50%'}}
+            > 
+                Comprar
+            </Button> 
+            <Button 
+              size = "small" 
+              style = {{width: '50%'}}
+            >
+                Mais Informações 
+            </Button>  
+          </CardActions> 
+          </Card> 
+          </div>  
+          <div style={{display: 'inline-block', marginLeft: 50, marginTop: 50, top: 20, width: '22%', float: 'left'}}>
+          <Card className = {useStyles.root}>
+            <CardActionArea>
+              <CardMedia 
+                position = 'fixed'
+                component = "img"
+                height = "200" //className={useStyles.media} 
+                image = {'https://suhaiseguradora.com/wp-content/uploads/featured-image-suhai.png'}
+                title = "Suhai Seguradora" />
+                <CardContent>
+                  <Typography gutterbottom variant = "h5"component = "h2" >
+                  Suhai - Veículos
+                  </Typography> 
+                  <Typography variant = "body2" color = "textSecondary" component = "p" >
+                  Uma das melhores seguradoras e mais confiáveis, adquira já o seguro para seu veículo!
+                  </Typography> 
+                </CardContent> 
+              </CardActionArea> 
+          <CardActions>
+            <Button 
+              size = "small" 
+              style = {{width: '50%'}}
+            > 
+                Comprar
+            </Button> 
+            <Button 
+              size = "small" 
+              style = {{width: '50%'}}
+            >
+                Mais Informações 
+            </Button> 
+          </CardActions> 
+          </Card> 
+          </div> 
+      </div>
+      </div>  
+      </div>  
      );
      }
 }
 
-/*
-<div>
-              <Card className={useStyles.root}>
-                <CardActionArea>
-                  <CardMedia
-                    position='fixed'
-                    component="img"
-                    height="100"
-                    //className={useStyles.media}
-                    image = './../../img/hb20.png'
-                    title= "O carro do ano"
-                  />
-                  <CardContent>
-                    <Typography gutterbottom variant="h5" component="h2">
-                      Hyundai HB20
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                      Um dos carros mais queridinhos do Brasil e o segundo mais vendido no mercado,
-                      o Hyundai HB20 acaba de ganhar uma nova geração.Tanto o hatch como o sedã HB20S
-                      e o aventureiro HB20X foram renovados e agora ostentam um visual e interior mais modernos,
-                      lista de equipamentos mais recheada e a opção de motor turbo com injeção direta.
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button size = "small" color = "primary">
-                    Comprar
-                  </Button>
-                  <Button size = "small" color = "primary">
-                    Mais Informações
-                  </Button>
-                </CardActions>
-              </Card>
-          </div>
-          */
+

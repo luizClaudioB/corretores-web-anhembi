@@ -26,13 +26,14 @@
     "react-burger-menu": "^2.6.13",
     "react-dom": "^16.13.1",
     "react-input-mask": "^2.0.4",
+    "react-js-banner": "^0.4.0",
     "react-modal-login": "^1.4.5",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "react-search-box": "^2.0.2",
     "react-search-field": "^1.0.0",
-    "react-js-banner": "^0.4.0",
-    "react-slideshow-image": "^1.4.0"
+    "react-slideshow-image": "^1.4.0",
+    "rollbar": "^2.15.0"
   },
   "scripts": {
     "start": "react-scripts start",
