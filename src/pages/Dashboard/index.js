@@ -1,39 +1,13 @@
 import './styles.css';
-import React, {Component, useState, useEffect} from 'react';
-import { slide as Menu } from 'react-burger-menu';
+import React, {Component, ReactText} from 'react';
 import { HomeOutlined as HomeIcon, WechatOutlined as ChatIcon, 
     UserOutlined as UserIcon, StarOutlined as StarIcon}  from '@ant-design/icons';
-import { Avatar, Modal, Button } from 'antd';
 import Dialog from '@material-ui/core/Dialog'
 import ReactModalLogin from 'react-modal-login';
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types"
-import SearchField from "react-search-field";
-import ReactSearchBox from 'react-search-box';
 import { Input } from 'antd';
-
-const data = [
-  {
-    key: 'carro',
-    value: 'Seguro de automoveis',
-  },
-  {
-    key: 'celular',
-    value: 'Seguro de aparelhos moveis',
-  },
-  {
-    key: 'casa',
-    value: 'Seguro de residencias',
-  },
-  {
-    key: 'vida',
-    value: 'Seguro de vida',
-  },
-  {
-    key: 'moto',
-    value: 'Seguro de motocicletas',
-  },
-]
+import { SearchInput, IconButton, Button, Popover, Menu, Avatar } from 'evergreen-ui';
 
 const facebook = {
   appId: "YOUR FB APP ID GOES HERE",
@@ -171,37 +145,54 @@ export default class Dashboard extends Component {
     <div className="div1"> 
     <header className="dashboard-header">
         <div>
-        <h1>
-        <Menu>
-            <div>
-            <HomeIcon className="icons"> </HomeIcon>
-            <a id="home" className="menu-item">Home</a> 
-            </div>
-            <div>
-            <StarIcon className="icons"> </StarIcon>
-            <a id="chat" className="menu-item">Favoritos</a>
-            </div>
-            <div>
-            <ChatIcon className="icons"> </ChatIcon>
-            <a id="chat" className="menu-item">Chats</a>
-            </div>
-        </Menu>
-        </h1>
-        </div>
-        <div>
-        
-        </div>
-        <div>
-        <button
-          style={{marginLeft: 1200, marginTop: 40}}
+        <Popover
+          content={
+            <Menu>
+              <Menu.Group>
+                <Menu.Item icon="chat">Meus Chats</Menu.Item>
+                <Menu.Item icon="star-empty">Favoritos</Menu.Item>
+                <Menu.Item icon="history">
+                  Historico
+                </Menu.Item>
+              </Menu.Group>
+              <Menu.Divider />
+            </Menu>
+          }
+        >
+          <IconButton style={{position: 'fixed'}} className="menu-button" appearance="minimal" icon="menu" iconSize={50} />
+        </Popover>
+        <br />
+        <br />
+        <SearchInput marginLeft={360} width={700} height={40} position="fixed" placeholder="Procure um seguro" />
+        {!!loggedIn ? 
+        <Popover
+          content={
+            <Menu>
+              <Menu.Group>
+                <Menu.Item icon="person">Meu Perfil</Menu.Item>
+                <Menu.Item icon="cog">Configuracoes</Menu.Item>
+              </Menu.Group>
+              <Menu.Divider />
+            </Menu>
+          }
+        >
+        <Avatar
+          style={{marginLeft: 1320, marginTop: 3, position: 'fixed'}}
+          src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
+          name="Alan Turing"
+          size={40}
+        />
+        </Popover>
+        : 
+        <Button
+          style={{marginLeft: 1210, marginTop: 4, position: 'fixed'}}
           className="RML-btn"
           onClick={() => this.openModal('login')}
+          appearance="minimal"
         >
-          {!!loggedIn ? 
-          "Seja bem-vindo!" :
-          "Entre ou cadastre-se"}
-        </button>
-
+        Entre ou cadastre-se
+        </Button>
+        }
         <ReactModalLogin
           visible={this.state.showModal}
           onCloseModal={this.closeModal.bind(this)}

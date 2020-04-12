@@ -4,10 +4,8 @@
     margin-top: 0px;
 }
 .dashboard-header {
-  
     min-width: 1080px;
     margin-top: -25px;
-
     width: 1920px; 
     height: 106px;
     background-color: #F37F2B;
@@ -20,6 +18,10 @@
     left: 0px;
     background-color: #E26B15;
 
+}
+
+.avatar-button{
+  background: transparent;
 }
 
 .dashboard-banner-1 {
@@ -37,17 +39,21 @@
 .dashboard-banner-3 {
     
 }
-
+.menu-button{
+    position: fixed;
+    left: 70px;
+    top: 24px;
+}
 .bm-burger-button {
     position: fixed;
     width: 36px;
-    height: 30px;
+    height: 20px;
     left: 36px;
-    top: 36px;
+    top: 50px;
   }
 
 .bm-burger-bars {
-  background: #373a47;
+  background: #a2a2a3;
 }
 
 .bm-burger-bars-hover {
@@ -69,7 +75,7 @@
 }
 
 .bm-menu {
-  background: #373a47;
+  background: #a2a2a3;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
 }
@@ -103,6 +109,5 @@
 }
 
 .search-box{
-    right: 40px;
-    left: 100px;
+    width: 50px;
 }
