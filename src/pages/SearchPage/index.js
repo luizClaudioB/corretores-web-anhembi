@@ -295,38 +295,33 @@ export default class SearchPage extends Component {
       </div>
     </header>
     <div>
-    <body style={{position: 'fixed'}}>
-    <div>
-        <TabNavigation>
+        <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginTop={0}>
         {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
-            <Tab key={tab} is="h" href="#" id={tab} isSelected={index === null}>
+            <Tab marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}>
             {tab}
             </Tab>
         ))}
         </TabNavigation>
     </div>
     <div>
+    <body style={{position: 'fixed'}}>
+    <div>
     <p><h2><Text> Filtros </Text></h2></p>
-    <p>
     <Combobox
         openOnFocus
         items={['Automoveis', 'Aparelhos eletronicos', 'Residencia', 'Motocicletas']}
         onChange={selected => console.log(selected)}
         placeholder="Filtre pelo tipo de seguro"
+        marginBottom={40}
     />
-    </p>
-    <p>
     <Combobox
         openOnFocus
         items={['Sao Paulo', 'Rio de Janeiro', 'Minas Gerais', 'Espirito Santo']}
         onChange={selected => console.log(selected)}
         placeholder="Filtre pelo Estado do corretor"
-    />
-    </p>
-    <p>
-    <Text>Filtre pela avaliacao</Text>    
+        marginBottom={40}
+    />  
     <FilterRating></FilterRating>
-    </p>
     <Table marginLeft={500}>
     <Table.Head>
         <Table.SearchHeaderCell />

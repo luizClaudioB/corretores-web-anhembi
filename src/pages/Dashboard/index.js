@@ -7,7 +7,7 @@ import ReactModalLogin from 'react-modal-login';
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types"
 import { Input } from 'antd';
-import { SearchInput, IconButton, Button, Popover, Menu, Avatar } from 'evergreen-ui';
+import { SearchInput, IconButton, Button, Popover, Menu, Avatar, Tab, TabNavigation } from 'evergreen-ui';
 
 const facebook = {
   appId: "YOUR FB APP ID GOES HERE",
@@ -281,6 +281,15 @@ export default class Dashboard extends Component {
         {loggedIn}
       </div>
     </header>
+    <div>
+        <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10}>
+        {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
+            <Tab marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}>
+            {tab}
+            </Tab>
+        ))}
+        </TabNavigation>
+    </div>
     </div>
     );
     }
