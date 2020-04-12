@@ -19,6 +19,7 @@
     "material-ui-search-bar": "^1.0.0-beta.14",
     "node-gyp": "^6.1.0",
     "prop-types": "^15.7.2",
+    "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-awesome-stars-rating": "^0.2.5",
     "react-burger-menu": "^2.6.13",
@@ -27,7 +28,9 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "react-search-box": "^2.0.2",
-    "react-search-field": "^1.0.0"
+    "react-search-field": "^1.0.0",
+    "react-input-mask": "^2.0.4",
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
