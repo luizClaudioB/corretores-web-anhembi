@@ -355,26 +355,15 @@ export default class Dashboard extends Component {
               <CardMedia 
                 position = 'fixed'
                 component = "img"
-                height = "200"
+                height = "80"
                 image = {'https://www.racecomunicacao.com.br/wp-content/uploads/2019/01/Banner-Case-AT.png'}
                 title = "Allianz Travel" />
                 <CardContent>
-                  <Typography gutterbottom variant = "h5"component = "h2" >
-                  Allianz Travel - Viagens 
-                  </Typography> 
                   <Typography variant = "body2" color = "textSecondary" component = "p" >
-                  Tenha uma viagem tranquila e segura, a allianz garante tudo isso para você.
+                  Tenha uma viagem tranquila e segura, a Allianz garante tudo isso para você.
                   </Typography> 
                 </CardContent> 
               </CardActionArea> 
-          <CardActions>
-            <Button 
-              size = "small" 
-              style = {{width: '100%', justifyContent: 'center'}}
-            > 
-              Comprar
-            </Button> 
-          </CardActions> 
           </Card> 
           </div>
           <div style={{display: 'inline-block', marginLeft: 50, marginTop: 50, top: 20, width: '22%', float: 'left'}}>
@@ -383,26 +372,15 @@ export default class Dashboard extends Component {
               <CardMedia 
                 position = 'fixed'
                 component = "img"
-                height = "200" //className={useStyles.media} 
+                height = "80" //className={useStyles.media} 
                 image = {'https://www.mapfre.com.br/seguro-br/images/1200x630-logo-mapfre_tcm909-83355.jpg'}
                 title = "Mapfre Seguros" />
                 <CardContent>
-                  <Typography gutterbottom variant = "h5"component = "h2" >
-                  Mapfre - Vida
-                  </Typography> 
                   <Typography variant = "body2" color = "textSecondary" component = "p" >
                   Venha para Mapfre e garanta seu seguro de vida, proteja você e sua família o quanto antes.
                   </Typography> 
                 </CardContent> 
-              </CardActionArea> 
-          <CardActions>
-             <Button 
-              size = "small" 
-              style = {{width: '100%', justifyContent: 'center'}}
-              > 
-              Comprar
-            </Button> 
-          </CardActions> 
+              </CardActionArea>  
           </Card> 
           </div>  
           <div style={{display: 'inline-block', marginLeft: 50, marginTop: 50, top: 20, width: '22%', float: 'left'}}>
@@ -411,115 +389,18 @@ export default class Dashboard extends Component {
               <CardMedia 
                 position = 'fixed'
                 component = "img"
-                height = "200" //className={useStyles.media} 
+                height = "80" //className={useStyles.media} 
                 image = {'https://suhaiseguradora.com/wp-content/uploads/featured-image-suhai.png'}
                 title = "Suhai Seguradora" />
-                <CardContent>
-                  <Typography gutterbottom variant = "h5" component = "h2" >
-                  Suhai - Automóveis
-                  </Typography> 
+                <CardContent> 
                   <Typography variant = "body2" color = "textSecondary" component = "p" >
                   Uma das melhores seguradoras e mais confiáveis, adquira já o seguro para seu veículo!
                   </Typography> 
                 </CardContent> 
               </CardActionArea> 
-          <CardActions>
-            <Button 
-              size = "small" 
-              style = {{width: '100%', justifyContent: 'center'}}
-            > 
-              Comprar
-            </Button> 
-          </CardActions> 
           </Card> 
           </div>
         </div>
-          <div style={{display: 'inline-block', top: 20}}>
-            <div style={{display: 'inline-block', marginLeft: 45, marginTop: 50, width: '22%'}}>
-              <Card className = {useStyles.root}>
-                <CardActionArea>
-                  <CardMedia 
-                    position = 'fixed'
-                    component = "img"
-                    height = "200" //className={useStyles.media} 
-                    image={'https://upload.wikimedia.org/wikipedia/commons/0/0e/Logo_Sul_Am%C3%A9rica_2015.jpg'}
-                    title = "Sul América Seguros" />
-                    <CardContent>
-                      <Typography gutterbottom variant = "h5" component = "h2" >
-                      Sul América - Empresariais
-                      </Typography> 
-                      <Typography variant = "body2" color = "textSecondary" component = "p" >
-                      Cuide da sua empresa, contrate sul américa.
-                      </Typography> 
-                    </CardContent> 
-                  </CardActionArea> 
-              <CardActions>
-                <Button 
-                  size = "small" 
-                  style = {{width: '100%', justifyContent: 'center'}}
-                > 
-                  Comprar
-                </Button> 
-              </CardActions> 
-              </Card> 
-            </div>
-            <div style={{display: 'inline-block', marginLeft: 50, width: '22%'}}>
-              <Card className = {useStyles.root}>
-                <CardActionArea>
-                  <CardMedia 
-                    position = 'fixed'
-                    component = "img"
-                    height = "200" //className={useStyles.media} 
-                        image={'https://cotandoseguro.com/blog-seguro-auto/wp-content/uploads/2019/05/Azul-Seguros-Telefone-2.jpg'}
-                    title = "Azul Seguros" />
-                    <CardContent>
-                      <Typography gutterbottom variant = "h5" component = "h2" >
-                      Azul Seguros
-                      </Typography> 
-                      <Typography variant = "body2" color = "textSecondary" component = "p" >
-                      Do grupo Porto Seguros, garanta já o seguro para seu automóvel.
-                      </Typography> 
-                    </CardContent> 
-                  </CardActionArea> 
-              <CardActions>
-                <Button 
-                  size = "small" 
-                  style = {{width: '100%', justifyContent: 'center'}}
-                > 
-                  Comprar
-                </Button> 
-              </CardActions> 
-              </Card> 
-            </div>
-            <div style={{display: 'inline-block', marginLeft: 50, width: '22%'}}>
-              <Card className = {useStyles.root}>
-                <CardActionArea>
-                  <CardMedia 
-                    position = 'fixed'
-                    component = "img"
-                    height = "200" //className={useStyles.media} 
-                    image={'https://starcorretoradeseguros.com.br/wp-content/uploads/2019/04/bradesco-seguros-logo-0-825x510.png'}
-                    title = "Bradesco Seguros" />
-                    <CardContent>
-                      <Typography gutterbottom variant = "h5" component = "h2" >
-                      Bradesco Seguros
-                      </Typography> 
-                      <Typography variant = "body2" color = "textSecondary" component = "p" >
-                      Bradesco seguros é uma das melhores opções do mercado, Top 5 segundo o Sincor (2018/19).
-                      </Typography> 
-                    </CardContent> 
-                  </CardActionArea> 
-              <CardActions>
-                <Button 
-                  size = "small" 
-                  style = {{width: '100%', justifyContent: 'center'}}
-                > 
-                  Comprar
-                </Button> 
-              </CardActions> 
-              </Card> 
-            </div>
-          </div>
       </div>  
       </div>  
      );
