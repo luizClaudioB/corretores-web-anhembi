@@ -12,6 +12,7 @@ import {Slide} from 'react-slideshow-image';
 import banner1 from './../../img/porto_auto.jpg';
 import banner2 from './../../img/seguro_vida.jpg';
 import banner3 from './../../img/seguro_resi.jpg';
+import Logo from './../../img/logo_web_svc.png';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -190,12 +191,11 @@ export default class Dashboard extends Component {
           content={
             <Menu>
               <Menu.Group>
-                <Menu.Item onClick={() => this.props.history.push('/') } icon="home">Pagina Inicial</Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/search') } icon="search">Busque Corretores</Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculo da Equipe</Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/history') } icon="history">
                   Historico
                 </Menu.Item>
+                <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculo da Equipe</Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/enterprise') } icon="info-sign">Sobre Nos</Menu.Item>
               </Menu.Group>
               <Menu.Divider />
@@ -206,6 +206,8 @@ export default class Dashboard extends Component {
         </Popover>
         <br />
         <br />
+        <img onClick={() => this.props.history.push('/') } style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: 195, position: 'fixed'}} src={Logo} alt={Logo} />
         <SearchInput top={20} marginLeft={360} width={700} height={40} position="fixed" placeholder="Procure um seguro" />
         {!!loggedIn ? 
         <Avatar
@@ -315,7 +317,7 @@ export default class Dashboard extends Component {
       <div>
           <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10} marginBottom={10}>
           {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
-              <Tab marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
+              <Tab color='#FFFFFF' marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
               onSelect={() => this.props.history.push('/search')}>
               {tab}
               </Tab>

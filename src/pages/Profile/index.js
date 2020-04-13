@@ -12,6 +12,7 @@ import { SearchInput, IconButton, Button, Popover, Menu, Avatar, Combobox, Text,
     Pane, SideSheet, Heading, Paragraph, Tablist, Tab, Card, Table, TabNavigation, Badge, Label, toaster} from 'evergreen-ui';
 import ReactStarsRating from 'react-awesome-stars-rating';
 import Calendar from 'react-calendar'
+import Logo from './../../img/logo_web_svc.png';
 
 const facebook = {
   appId: "YOUR FB APP ID GOES HERE",
@@ -40,6 +41,7 @@ export default class Profile extends Component {
       sobreLucas: false,
       sobreLuiz: false,
       sobreRaphael: false,
+      defaultState: true,
     };
     }
     
@@ -148,6 +150,7 @@ export default class Profile extends Component {
 
     clearAll(){
         this.setState({
+        defaultState: false,
         sobreLucas: false,
         sobreLuiz: false,
         sobreRaphael: false,
@@ -175,12 +178,11 @@ export default class Profile extends Component {
           content={
             <Menu>
               <Menu.Group>
-                <Menu.Item onClick={() => this.props.history.push('/') } icon="home">Pagina Inicial</Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/search') } icon="search">Busque Corretores</Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculos da Equipe</Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/history') } icon="history">
                   Historico
                 </Menu.Item>
+                <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculos da Equipe</Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/enterprise') } icon="info-sign">Sobre Nos</Menu.Item>
               </Menu.Group>
               <Menu.Divider />
@@ -191,6 +193,8 @@ export default class Profile extends Component {
         </Popover>
         <br />
         <br />
+        <img onClick={() => this.props.history.push('/') } style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: 195, position: 'fixed'}} src={Logo} alt={Logo} />
         <SearchInput top={20} marginLeft={360} width={700} height={40} position="fixed" placeholder="Procure um seguro" />
         {!!loggedIn ? 
         <Avatar
@@ -300,7 +304,7 @@ export default class Profile extends Component {
     <div>
         <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10}>
         {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
-            <Tab marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
+            <Tab color='#FFFFFF' marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
             onSelect={() => this.props.history.push('/search')}>
             {tab}
             </Tab>
@@ -318,6 +322,12 @@ export default class Profile extends Component {
     <p><Button appearance="minimal" onClick={() => {this.clearAll();this.setState({sobreRaphael: true})}} marginBottom={10}>Raphael Henrique</Button></p>
     </div>
     </div>
+    {!!this.state.defaultState ? 
+    <div>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 600, float: 'left'}}>
+    <Heading size={700} marginBottom={10}>Clique nos nomes ao lado e descubra um pouco mais sobre nossos integrantes!</Heading>
+    </div>
+    </div> : null}
     {!!this.state.sobreLucas ? 
     <div>
     <div style={{position: 'absolute', position: 'fixed', marginLeft: 400, marginTop: 100, width: 500, float: 'left'}}>

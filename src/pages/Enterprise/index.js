@@ -12,6 +12,7 @@ import { SearchInput, IconButton, Button, Popover, Menu, Avatar, Combobox, Text,
     Pane, SideSheet, Heading, Paragraph, Tablist, Tab, Card, Table, TabNavigation, Badge, Label, toaster} from 'evergreen-ui';
 import ReactStarsRating from 'react-awesome-stars-rating';
 import Calendar from 'react-calendar'
+import Logo from './../../img/logo_web_svc.png';
 
 const facebook = {
   appId: "YOUR FB APP ID GOES HERE",
@@ -44,6 +45,7 @@ export default class Enterprise extends Component {
       produtos: false,
       servicos: false,
       endereco: false,
+      defaultState: true,
     };
     }
     
@@ -152,6 +154,7 @@ export default class Enterprise extends Component {
 
     clearAll(){
         this.setState({
+            defaultState: false,
             sobreNos: false,
             missao: false,
             visao: false,
@@ -168,12 +171,6 @@ export default class Enterprise extends Component {
     const onChange = (value) => {
         console.log(`React Stars Rating value is ${value}`);
       };
-    const FilterRating = ({ value }) => {
-        return <ReactStarsRating onChange={onChange} value={value} />;
-    };
-    const VendorRating = ({ value }) => {
-        return <ReactStarsRating value={5} isEdit={false} />;
-      };
 
     return(
     <div className="div1"> 
@@ -183,12 +180,11 @@ export default class Enterprise extends Component {
           content={
             <Menu>
               <Menu.Group>
-                <Menu.Item onClick={() => this.props.history.push('/') } icon="home">Pagina Inicial</Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/search') } icon="search">Busque Corretores</Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculos da Equipe</Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/history') } icon="history">
                   Historico
                 </Menu.Item>
+                <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculos da Equipe</Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/enterprise') } icon="info-sign">Sobre Nos</Menu.Item>
               </Menu.Group>
               <Menu.Divider />
@@ -199,6 +195,8 @@ export default class Enterprise extends Component {
         </Popover>
         <br />
         <br />
+        <img onClick={() => this.props.history.push('/') } style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: 195, position: 'fixed'}} src={Logo} alt={Logo} />
         <SearchInput top={20} marginLeft={360} width={700} height={40} position="fixed" placeholder="Procure um seguro" />
         {!!loggedIn ? 
         <Avatar
@@ -308,7 +306,7 @@ export default class Enterprise extends Component {
     <div>
         <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10}>
         {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
-            <Tab marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
+            <Tab color='#FFFFFF' marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
             onSelect={() => this.props.history.push('/search')}>
             {tab}
             </Tab>
@@ -330,6 +328,12 @@ export default class Enterprise extends Component {
     <p><Button appearance="minimal" onClick={() => {this.clearAll();this.setState({endereco: true})}} marginBottom={10}>Endereco </Button></p>
     </div>
     </div>
+    {!!this.state.defaultState ? 
+    <div>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 600, float: 'left'}}>
+    <Heading size={700} marginBottom={10}>Clique nas seções ao lado e descubra um pouco mais sobre nossa empresa!</Heading>
+    </div>
+    </div> : null}
     {!!this.state.sobreNos ? 
     <div>
     <div style={{position: 'absolute', position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
@@ -337,17 +341,17 @@ export default class Enterprise extends Component {
     </div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
     <Heading size={500} marginBottom={10}>Formada a partir de um projeto proposto na faculdade, em 2020, a ____ busca facilitar a busca
-    por corretores de seguros disponiveis no mercado. Com os integrantes localizados em Sao Paulo, nao possui uma sede, sendo entusiasta de novas tecnologias
+    por corretores de seguros disponiveis no mercado. Com os integrantes localizados em São Paulo, não possui uma sede, sendo entusiasta de novas tecnologias
     e defensora de praticas como o Home Office e Desenvolvimento Agil.</Heading>
     </div>
     </div> : null}
     {!!this.state.missao ? 
     <div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
-    <Heading size={700} marginBottom={10}>Missao</Heading>
+    <Heading size={700} marginBottom={10}>Missão</Heading>
     </div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
-    <Heading size={500} marginBottom={10}>Temos como missao a utilizacao de novas tecnologias e praticas para levar ao usuario
+    <Heading size={500} marginBottom={10}>Temos como missão a utilização de novas tecnologias e praticas para levar ao usuario
     a melhor experiencia possivel dentro do nosso site, proporcionando, desta forma, uma boa procura em busca de corretores
     disponiveis em seus Estados.</Heading>
     </div>
@@ -355,10 +359,10 @@ export default class Enterprise extends Component {
     {!!this.state.visao? 
     <div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
-    <Heading size={700} marginBottom={10}>Visao</Heading>
+    <Heading size={700} marginBottom={10}>Visão</Heading>
     </div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
-    <Heading size={500} marginBottom={10}>Com uma visao voltada para o futuro, nos esforcamos para sempre estarmos atualizados
+    <Heading size={500} marginBottom={10}>Com uma visão voltada para o futuro, nos esforçamos para sempre estarmos atualizados
     diante das novas tendencias do mercado.</Heading>
     </div>
     </div> : null}
@@ -385,20 +389,20 @@ export default class Enterprise extends Component {
     {!!this.state.servicos ? 
     <div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
-    <Heading size={700} marginBottom={10}>Servicos</Heading>
+    <Heading size={700} marginBottom={10}>Serviços</Heading>
     </div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
-    <Heading size={500} marginBottom={10}>Como citado na secao de produtos, ofertamos aos usuarios o ____, que procura facilitar
+    <Heading size={500} marginBottom={10}>Como citado na secão de produtos, ofertamos aos usuarios o ____, que procura facilitar
     a busca por corretores de seguro disponiveis no mercado, alem de oferecermos todo suporte em relacao ao produto. </Heading>
     </div>
     </div> : null}
     {!!this.state.endereco ? 
     <div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
-    <Heading size={700} marginBottom={10}>Endereco</Heading>
+    <Heading size={700} marginBottom={10}>Endereço</Heading>
     </div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
-    <Heading size={500} marginBottom={10}>A empresa ainda nao possui uma sede.</Heading>
+    <Heading size={500} marginBottom={10}>A empresa ainda não possui uma sede.</Heading>
     </div>
     </div> : null}
     </body>
