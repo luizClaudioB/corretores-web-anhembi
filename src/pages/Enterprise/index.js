@@ -1,4 +1,5 @@
 import './styles.css';
+import 'react-calendar/dist/Calendar.css';
 import React, {Component, ReactText} from 'react';
 import { HomeOutlined as HomeIcon, WechatOutlined as ChatIcon, 
     UserOutlined as UserIcon, StarOutlined as StarIcon}  from '@ant-design/icons';
@@ -7,9 +8,10 @@ import ReactModalLogin from 'react-modal-login';
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types"
 import { Input, PageHeader, Rate } from 'antd';
-import { SearchInput, IconButton, Button, Popover, Menu, Avatar, Combobox, Text, Textarea, TagInput,
+import { SearchInput, IconButton, Button, Popover, Menu, Avatar, Combobox, Text, Textarea, TagInput, Icon,
     Pane, SideSheet, Heading, Paragraph, Tablist, Tab, Card, Table, TabNavigation, Badge, Label, toaster} from 'evergreen-ui';
 import ReactStarsRating from 'react-awesome-stars-rating';
+import Calendar from 'react-calendar'
 
 const facebook = {
   appId: "YOUR FB APP ID GOES HERE",
@@ -23,7 +25,7 @@ const google = {
   client_id: "YOUR_CLIENT_ID.apps.googleusercontent.com",
   scope: "profile email"
 };
-export default class SearchPage extends Component {
+export default class Enterprise extends Component {
     constructor(props){
     super(props);
     this.state = {
@@ -35,14 +37,16 @@ export default class SearchPage extends Component {
       recoverPasswordSuccess: null,
       showSocialMedia: true,
       selectedIndex: 0,
-      filterList: [],
-      filter: '',
-      value: '',
-      list: [],
-      isaMessage: false,
+      sobreNos: false,
+      missao: false,
+      visao: false,
+      valores: false,
+      produtos: false,
+      servicos: false,
+      endereco: false,
     };
     }
-
+    
     onLogin() {
       console.log('__onLogin__');
       console.log('email: ' + document.querySelector('#email').value);
@@ -146,26 +150,17 @@ export default class SearchPage extends Component {
       });
     }
 
-    onAddMessage = () => {
-      this.setState({isaMessage: true })
-      this.setState(state => {
-        const list = [...state.list, state.value];
-        return {
-          list,
-          value: '',
-        };
+    clearAll(){
+        this.setState({
+            sobreNos: false,
+            missao: false,
+            visao: false,
+            valores: false,
+            produtos: false,
+            servicos: false,
+            endereco: false,
       });
-    };
-
-    onAddFilter = () => {
-      this.setState(state => {
-        const filterList = [...state.filterList, state.filter];
-        return {
-          filterList,
-          filter: '',
-        };
-      });
-    };
+    }
     
     render(){
     const loggedIn = this.state.loggedIn
@@ -321,256 +316,93 @@ export default class SearchPage extends Component {
         </TabNavigation>
     </div>
     <div>
-    <body style={{position: 'fixed'}}>
+    <body>
     <div>
-    <div style={{marginLeft: 30, marginTop: 100, width: 300, float: 'left', borderRight: '1px solid rgb(214, 206, 200)' }}>
-    <Heading size={700} marginBottom={10}>Filtros</Heading>
-    <TagInput
-      inputProps={{ placeholder: 'Adicione filtros...' }}
-      values={this.state.filterList}
-      onChange={values => {
-        this.setState({ filterList: values })
-      }}
-      style={{marginRight: 4, marginBottom: 30}}
-    />
-    <div> 
-    <Text style={{float: 'left'}} FontFamily='display'>
-    Tipo de seguro
-    </Text>
-    <Combobox
-        openOnFocus
-        items={['Automoveis', 'Aparelhos eletronicos', 'Residencia', 'Motocicletas']}
-        onChange={selected => this.setState({ filter: selected })}
-        placeholder="Filtre pelo tipo de seguro"
-        marginBottom={30}
-        style={{float: 'left'}}
-    />
-    <IconButton marginRight={22} style={{float: 'right'}} onClick={() => {this.onAddFilter()}} icon="plus" />
-    </div> 
+    <div style={{position: 'fixed', marginLeft: 30, marginTop: 100, width: 300, float: 'left', 
+    height: 400, borderRight: '1px solid rgb(214, 206, 200)' }}>
+    <Heading size={700} marginBottom={20}>Sobre nós</Heading>
+    <p><Button appearance="minimal" onClick={() => {this.clearAll(); this.setState({sobreNos: true})}} marginBottom={10}>Sobre a empresa </Button></p>
+    <p><Button appearance="minimal" onClick={() => {this.clearAll(); this.setState({missao: true})}} marginBottom={10}>Missao </Button></p>
+    <p><Button appearance="minimal" onClick={() => {this.clearAll();this.setState({visao: true})}} marginBottom={10}>Visao </Button></p>
+    <p><Button appearance="minimal" onClick={() => {this.clearAll();this.setState({valores: true})}} marginBottom={10}>Valores </Button></p>
+    <p><Button appearance="minimal" onClick={() => {this.clearAll();this.setState({produtos: true})}} marginBottom={10}>Produtos </Button></p>
+    <p><Button appearance="minimal" onClick={() => {this.clearAll();this.setState({servicos: true})}} marginBottom={10}>Servicos </Button></p>
+    <p><Button appearance="minimal" onClick={() => {this.clearAll();this.setState({endereco: true})}} marginBottom={10}>Endereco </Button></p>
+    </div>
+    </div>
+    {!!this.state.sobreNos ? 
     <div>
-    <Text style={{float: 'left'}} FontFamily='display'>
-    Estado do corretor
-    </Text>
-    <Combobox
-        openOnFocus
-        items={['Sao Paulo', 'Rio de Janeiro', 'Minas Gerais', 'Espirito Santo']}
-        onChange={selected => this.setState({ filter: selected })}
-        placeholder="Filtre pelo Estado do corretor"
-        marginBottom={30}
-        style={{float: 'left'}}
-    />
-    <IconButton marginRight={22} style={{float: 'right'}} onClick={() => {this.onAddFilter()}} icon="plus" />
+    <div style={{position: 'absolute', position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
+    <Heading size={700} marginBottom={10}>Sobre a empresa</Heading>
     </div>
-    <div style={{float: 'left'}}>
-    <Text style={{float: 'left'}} FontFamily='display'>
-    Empresa
-    </Text>
-    <Combobox
-        openOnFocus
-        items={['Porto Seguro', 'Zurich Seguros', 'Allianz', 'Bradesco Seguros']}
-        onChange={selected => this.setState({ filter: selected })}
-        placeholder="Filtre pelo Estado do corretor"
-        marginBottom={30}
-        style={{float: 'left'}}
-    />
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
+    <Heading size={500} marginBottom={10}>Formada a partir de um projeto proposto na faculdade, em 2020, a ____ busca facilitar a busca
+    por corretores de seguros disponiveis no mercado. Com os integrantes localizados em Sao Paulo, nao possui uma sede, sendo entusiasta de novas tecnologias
+    e defensora de praticas como o Home Office e Desenvolvimento Agil.</Heading>
     </div>
-    <div> 
-    <IconButton marginRight={22} marginTop={20} style={{float: 'right'}} onClick={() => {this.onAddFilter()}} icon="plus" />
-    </div>
-    <div style={{float: 'left'}}>
-    <Text FontFamily='display'>
-    Rating do corretor
-    </Text>  
-    <br />
-    <FilterRating></FilterRating>
-    </div>
-    </div>
-    <div style={{float:'right'}}>
-    <Heading size={700} marginBottom={10} marginLeft={100} marginTop={100}>Lista de corretores</Heading>
-    <Table style={{marginLeft: 100, border: '1px solid rgb(214, 206, 200)'}}>
-    <Table.Head>
-        <Table.TextHeaderCell>
-        Nome
-        </Table.TextHeaderCell>
-        <Table.TextHeaderCell>
-        Tipo
-        </Table.TextHeaderCell>
-        <Table.TextHeaderCell>
-        Avaliacao
-        </Table.TextHeaderCell>
-        <Table.TextHeaderCell>
-        Empresa
-        </Table.TextHeaderCell>
-        <Table.TextHeaderCell>
-        Estado
-        </Table.TextHeaderCell>
-        </Table.Head>
-        <Table.Body height={240} width={800}>
-        <Table.Row isSelectable onSelect={() => this.setState({ isShown: true })}>
-            <Table.TextCell>Carlos Alberto</Table.TextCell>
-            <Table.TextCell>Seguro de Automoveis</Table.TextCell>
-            <Table.TextCell>
-            <VendorRating></VendorRating>
-            </Table.TextCell>
-            <Table.TextCell>Porto Seguro</Table.TextCell>
-            <Table.TextCell>Sao Paulo</Table.TextCell>
-        </Table.Row>
-        <Table.Row isSelectable onSelect={() => this.setState({ isShown: true })}>
-            <Table.TextCell>Silvia Machado</Table.TextCell>
-            <Table.TextCell>Seguro de Residencia</Table.TextCell>
-            <Table.TextCell>
-            <VendorRating></VendorRating>
-            </Table.TextCell>
-            <Table.TextCell>Zurich Seguros</Table.TextCell>
-            <Table.TextCell>Minas Gerais</Table.TextCell>
-        </Table.Row>
-    </Table.Body>
-    </Table>
-    </div>
-    </div>
+    </div> : null}
+    {!!this.state.missao ? 
     <div>
-    <React.Fragment>
-      <SideSheet
-        isShown={this.state.isShown}
-        onCloseComplete={() => this.setState({ isShown: false })}
-        containerProps={{
-          display: 'flex',
-          flex: '1',
-          flexDirection: 'column',
-        }}
-      >
-        <Pane zIndex={1} flexShrink={0} elevation={0} backgroundColor="white">
-          <Pane padding={16} borderBottom="muted">
-            <Heading size={600}>
-            Carlos Alberto
-            <Badge color="neutral" marginBottom={1} marginLeft={2} marginRight={8}>Corretor Premium</Badge>
-            </Heading>
-            <Paragraph size={400} color="muted">
-              Informacoes sobre o(a) corretor(a)
-            </Paragraph>
-          </Pane>
-          <Pane display="flex" padding={8}>
-            <Tablist>
-               {['Perfil', 'Contato'].map(
-                  (tab, index) => (
-                    <Tab
-                      key={tab}
-                      isSelected={this.state.selectedIndex === index}
-                      onSelect={() => this.setState({ selectedIndex: index })}
-                    >
-                      {tab}
-                    </Tab>
-                  )
-                )}
-
-            </Tablist>
-          </Pane>
-        </Pane>
-        {this.state.selectedIndex === 0 ?
-        <Pane flex="1" overflowY="scroll" background="tint1" padding={16}>
-          <Card
-            backgroundColor="white"
-            elevation={0}
-            height={100}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <div>
-            <p>
-            <Text>Tipo:   </Text>
-            <Text>Seguro de Automoveis</Text>
-            </p>
-            <p>
-            <Text>Empresa:   </Text>
-            <Text>Porto Seguro</Text>
-            </p>
-            <p>
-            <Text>Estado:   </Text>
-            <Text>Sao Paulo</Text>
-            </p>
-            </div>
-          </Card>
-          <br />
-          <Label
-            htmlFor="textarea-2"
-            marginBottom={4}
-            display="block"
-          >
-            <br />
-            Ultimos comentarios sobre este corretor:
-          </Label>
-          <Textarea
-            appearance='minimal'
-            value={this.state.list[0]}
-            disabled={true}
-            style={{resize: 'none'}}
-          /> 
-          <br />
-          <br />
-          <Textarea
-            value={this.state.list[1]}
-            disabled={true}
-            style={{resize: 'none'}}
-          />
-          <br />
-          <br />
-          <Textarea
-            value={this.state.list[2]}
-            disabled={true}
-            style={{resize: 'none'}}
-          />
-        </Pane>
-        : <Pane flex="1" overflowY="scroll" background="tint1" padding={16}>
-        <Card
-          backgroundColor="white"
-          elevation={0}
-          height={100}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <div>
-          <p>
-          <Text>Telefone celular: </Text>
-          <Text>(11) 98765-4321</Text>
-          </p>
-          <p>
-          <Text>Correio eletronico: </Text>
-          <Text>carlosalberto@portoseguro.br</Text>
-          </p>
-          <p>
-          <Text>Disponibilidade: </Text>
-          <Text>Segunda a sexta das 10h as 18h</Text>
-          </p>
-          </div>
-          </Card>
-          <Pane>
-          <Label
-            htmlFor="textarea-2"
-            marginBottom={4}
-            display="block"
-          >
-            <br />
-            Deixe uma mensagem para o corretor
-          </Label>
-          <Textarea
-            required
-            onChange={e => this.setState({ value: e.target.value })}
-            value={this.state.value}
-            placeholder="Escreva aqui sua mensagem..."
-            style={{resize: 'none'}}
-          />
-          <Button style={{marginLeft: 520, marginTop: 1}} onClick={() => {this.onAddMessage(); 
-            toaster.success('Sua mensagem foi enviada!', {duration: 4})}}>Enviar</Button>
-        </Pane>
-        </Pane> }
-      </SideSheet>
-    </React.Fragment>   
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
+    <Heading size={700} marginBottom={10}>Missao</Heading>
     </div>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
+    <Heading size={500} marginBottom={10}>Temos como missao a utilizacao de novas tecnologias e praticas para levar ao usuario
+    a melhor experiencia possivel dentro do nosso site, proporcionando, desta forma, uma boa procura em busca de corretores
+    disponiveis em seus Estados.</Heading>
+    </div>
+    </div> : null}
+    {!!this.state.visao? 
+    <div>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
+    <Heading size={700} marginBottom={10}>Visao</Heading>
+    </div>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
+    <Heading size={500} marginBottom={10}>Com uma visao voltada para o futuro, nos esforcamos para sempre estarmos atualizados
+    diante das novas tendencias do mercado.</Heading>
+    </div>
+    </div> : null}
+    {!!this.state.valores ? 
+    <div>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
+    <Heading size={700} marginBottom={10}>Valores</Heading>
+    </div>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
+    <Heading size={500} marginBottom={10}>Aqui, prezamos pela etica e respeito acima de tudo. Cada membro da equipe e responsavel
+    pelo outro, buscando sempre o crescimento conjunto e continuo.</Heading>
+    </div>
+    </div> : null}
+    {!!this.state.produtos ? 
+    <div>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
+    <Heading size={700} marginBottom={10}>Produtos</Heading>
+    </div>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
+    <Heading size={500} marginBottom={10}>Ofertamos aos usuarios apenas um produto no momento: o ____, com foco na busca 
+    facilitada por corretores de seguro disponiveis no mercado.</Heading>
+    </div>
+    </div> : null}
+    {!!this.state.servicos ? 
+    <div>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
+    <Heading size={700} marginBottom={10}>Servicos</Heading>
+    </div>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
+    <Heading size={500} marginBottom={10}>Como citado na secao de produtos, ofertamos aos usuarios o ____, que procura facilitar
+    a busca por corretores de seguro disponiveis no mercado, alem de oferecermos todo suporte em relacao ao produto. </Heading>
+    </div>
+    </div> : null}
+    {!!this.state.endereco ? 
+    <div>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
+    <Heading size={700} marginBottom={10}>Endereco</Heading>
+    </div>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
+    <Heading size={500} marginBottom={10}>A empresa ainda nao possui uma sede.</Heading>
+    </div>
+    </div> : null}
     </body>
     </div>
     </div>
-    );
+    )}
     }
-}
