@@ -188,8 +188,8 @@ export default class SearchPage extends Component {
           content={
             <Menu>
               <Menu.Group>
-                <Menu.Item icon="chat">Meus Chats</Menu.Item>
-                <Menu.Item icon="star-empty">Favoritos</Menu.Item>
+                <Menu.Item onClick={() => this.props.history.push('/') } icon="home">Pagina Inicial</Menu.Item>
+                <Menu.Item icon="star-empty">Curriculos da Equipe</Menu.Item>
                 <Menu.Item icon="history">
                   Historico
                 </Menu.Item>
@@ -204,24 +204,12 @@ export default class SearchPage extends Component {
         <br />
         <SearchInput top={20} marginLeft={360} width={700} height={40} position="fixed" placeholder="Procure um seguro" />
         {!!loggedIn ? 
-        <Popover
-          content={
-            <Menu>
-              <Menu.Group>
-                <Menu.Item icon="person">Meu Perfil</Menu.Item>
-                <Menu.Item icon="cog">Configuracoes</Menu.Item>
-              </Menu.Group>
-              <Menu.Divider />
-            </Menu>
-          }
-        >
         <Avatar
           style={{marginLeft: 1320, marginTop: 15, position: 'fixed'}}
           src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
           name="Alan Turing"
           size={40}
         />
-        </Popover>
         : 
         <Button
           style={{marginLeft: 1210, marginTop: 15, position: 'fixed'}}
