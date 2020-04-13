@@ -1,17 +1,9 @@
 import './styles.css';
 import 'react-calendar/dist/Calendar.css';
-import React, {Component, ReactText} from 'react';
-import { HomeOutlined as HomeIcon, WechatOutlined as ChatIcon, 
-    UserOutlined as UserIcon, StarOutlined as StarIcon}  from '@ant-design/icons';
-import Dialog from '@material-ui/core/Dialog'
+import React, {Component} from 'react';
 import ReactModalLogin from 'react-modal-login';
-import { useHistory } from "react-router-dom";
-import PropTypes from "prop-types"
-import { Input, PageHeader, Rate } from 'antd';
 import { SearchInput, IconButton, Button, Popover, Menu, Avatar, Combobox, Text, Textarea, TagInput, Icon,
-    Pane, SideSheet, Heading, Paragraph, Tablist, Tab, Card, Table, TabNavigation, Badge, Label, toaster} from 'evergreen-ui';
-import ReactStarsRating from 'react-awesome-stars-rating';
-import Calendar from 'react-calendar'
+     Heading, Paragraph, Tablist, Tab, Card, Table, TabNavigation, Badge, Label, toaster} from 'evergreen-ui';
 import Logo from './../../img/logo_web_svc.png';
 
 const facebook = {
@@ -332,6 +324,10 @@ export default class Enterprise extends Component {
     <div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 600, float: 'left'}}>
     <Heading size={700} marginBottom={10}>Clique nas seções ao lado e descubra um pouco mais sobre nossa empresa!</Heading>
+    <br />
+    <hr />
+    <br />
+    <a href="https://github.com/luizClaudioB/corretores-web-anhembi"><Heading size={500} marginBottom={10}> Clique aqui e acesse o nosso GitHub!</Heading>  </a>
     </div>
     </div> : null}
     {!!this.state.sobreNos ? 
@@ -340,7 +336,7 @@ export default class Enterprise extends Component {
     <Heading size={700} marginBottom={10}>Sobre a empresa</Heading>
     </div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
-    <Heading size={500} marginBottom={10}>Formada a partir de um projeto proposto na faculdade, em 2020, a ____ busca facilitar a busca
+    <Heading size={500} marginBottom={10}>Formada a partir de um projeto proposto na faculdade, em 2020, a Só Seguros busca facilitar a busca
     por corretores de seguros disponiveis no mercado. Com os integrantes localizados em São Paulo, não possui uma sede, sendo entusiasta de novas tecnologias
     e defensora de praticas como o Home Office e Desenvolvimento Agil.</Heading>
     </div>
@@ -382,7 +378,7 @@ export default class Enterprise extends Component {
     <Heading size={700} marginBottom={10}>Produtos</Heading>
     </div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
-    <Heading size={500} marginBottom={10}>Ofertamos aos usuarios apenas um produto no momento: o ____, com foco na busca 
+    <Heading size={500} marginBottom={10}>Ofertamos aos usuarios o Só Seguros, com foco na busca 
     facilitada por corretores de seguro disponiveis no mercado.</Heading>
     </div>
     </div> : null}
@@ -392,8 +388,8 @@ export default class Enterprise extends Component {
     <Heading size={700} marginBottom={10}>Serviços</Heading>
     </div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
-    <Heading size={500} marginBottom={10}>Como citado na secão de produtos, ofertamos aos usuarios o ____, que procura facilitar
-    a busca por corretores de seguro disponiveis no mercado, alem de oferecermos todo suporte em relacao ao produto. </Heading>
+    <Heading size={500} marginBottom={10}>Como citado na seção de produtos, ofertamos aos usuarios o Só Seguros, que procura facilitar
+    a busca por corretores de seguro disponiveis no mercado, alem de oferecermos todo suporte em relação ao produto. </Heading>
     </div>
     </div> : null}
     {!!this.state.endereco ? 
