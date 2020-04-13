@@ -414,7 +414,7 @@ export default class Dashboard extends Component {
                 title = "Suhai Seguradora" />
                 <CardContent>
                   <Typography gutterbottom variant = "h5" component = "h2" >
-                  Suhai - Veículos
+                  Suhai - Automóveis
                   </Typography> 
                   <Typography variant = "body2" color = "textSecondary" component = "p" >
                   Uma das melhores seguradoras e mais confiáveis, adquira já o seguro para seu veículo!
@@ -431,11 +431,95 @@ export default class Dashboard extends Component {
           </CardActions> 
           </Card> 
           </div>
-      </div>
+        </div>
+          <div style={{display: 'inline-block', top: 20}}>
+            <div style={{display: 'inline-block', marginLeft: 45, marginTop: 50, width: '22%'}}>
+              <Card className = {useStyles.root}>
+                <CardActionArea>
+                  <CardMedia 
+                    position = 'fixed'
+                    component = "img"
+                    height = "200" //className={useStyles.media} 
+                    image={'https://upload.wikimedia.org/wikipedia/commons/0/0e/Logo_Sul_Am%C3%A9rica_2015.jpg'}
+                    title = "Sul América Seguros" />
+                    <CardContent>
+                      <Typography gutterbottom variant = "h5" component = "h2" >
+                      Sul América - Empresariais
+                      </Typography> 
+                      <Typography variant = "body2" color = "textSecondary" component = "p" >
+                      Cuide da sua empresa, contrate sul américa.
+                      </Typography> 
+                    </CardContent> 
+                  </CardActionArea> 
+              <CardActions>
+                <Button 
+                  size = "small" 
+                  style = {{width: '100%', justifyContent: 'center'}}
+                > 
+                  Comprar
+                </Button> 
+              </CardActions> 
+              </Card> 
+            </div>
+            <div style={{display: 'inline-block', marginLeft: 50, width: '22%'}}>
+              <Card className = {useStyles.root}>
+                <CardActionArea>
+                  <CardMedia 
+                    position = 'fixed'
+                    component = "img"
+                    height = "200" //className={useStyles.media} 
+                        image={'https://cotandoseguro.com/blog-seguro-auto/wp-content/uploads/2019/05/Azul-Seguros-Telefone-2.jpg'}
+                    title = "Azul Seguros" />
+                    <CardContent>
+                      <Typography gutterbottom variant = "h5" component = "h2" >
+                      Azul Seguros
+                      </Typography> 
+                      <Typography variant = "body2" color = "textSecondary" component = "p" >
+                      Do grupo Porto Seguros, garanta já o seguro para seu automóvel.
+                      </Typography> 
+                    </CardContent> 
+                  </CardActionArea> 
+              <CardActions>
+                <Button 
+                  size = "small" 
+                  style = {{width: '100%', justifyContent: 'center'}}
+                > 
+                  Comprar
+                </Button> 
+              </CardActions> 
+              </Card> 
+            </div>
+            <div style={{display: 'inline-block', marginLeft: 50, width: '22%'}}>
+              <Card className = {useStyles.root}>
+                <CardActionArea>
+                  <CardMedia 
+                    position = 'fixed'
+                    component = "img"
+                    height = "200" //className={useStyles.media} 
+                    image={'https://starcorretoradeseguros.com.br/wp-content/uploads/2019/04/bradesco-seguros-logo-0-825x510.png'}
+                    title = "Bradesco Seguros" />
+                    <CardContent>
+                      <Typography gutterbottom variant = "h5" component = "h2" >
+                      Bradesco Seguros
+                      </Typography> 
+                      <Typography variant = "body2" color = "textSecondary" component = "p" >
+                      Bradesco seguros é uma das melhores opções do mercado, Top 5 segundo o Sincor (2018/19).
+                      </Typography> 
+                    </CardContent> 
+                  </CardActionArea> 
+              <CardActions>
+                <Button 
+                  size = "small" 
+                  style = {{width: '100%', justifyContent: 'center'}}
+                > 
+                  Comprar
+                </Button> 
+              </CardActions> 
+              </Card> 
+            </div>
+          </div>
       </div>  
       </div>  
      );
      }
 }
-
-
