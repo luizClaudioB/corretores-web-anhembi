@@ -11,7 +11,7 @@ import { SearchInput, IconButton, Button, Popover, Menu, Avatar, Tab, TabNavigat
 import {Slide} from 'react-slideshow-image';
 import banner1 from './../../img/porto_auto.jpg';
 import banner2 from './../../img/seguro_vida.jpg';
-import banner3 from './../../img/seguro_residencia.jpg';
+import banner3 from './../../img/seguro_resi.jpg';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -20,7 +20,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import ButtonUI from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
 
 const facebook = {
   appId: "YOUR FB APP ID GOES HERE",
@@ -155,7 +154,7 @@ export default class Dashboard extends Component {
     render(){
     const loggedIn = this.state.loggedIn
     const isLoading = this.state.loading;
-    
+
     const properties = {
       duration: 5000,
       transitionDuration: 500,
@@ -172,16 +171,9 @@ export default class Dashboard extends Component {
     const useStyles = makeStyles({
       root: {
         width: 100,
+        textAlign: 'justify',
       },
-      media: {
 
-      },
-      buttonRoot: {
-        width: 50,
-      },
-      buttonLabel: {
-
-      }
     });
 
     const slideImages = [
@@ -191,7 +183,7 @@ export default class Dashboard extends Component {
     ];
 
     return(
-      <div className="div1"> 
+      <div className="div1">
       <header className="dashboard-header">
           <div>
           <Popover
@@ -363,9 +355,10 @@ export default class Dashboard extends Component {
             </Slide>
           </div>
         </div>
+        
       <div style = {{display: 'inline'}}>
         <div style={{display: 'inline-block', marginLeft: 45, marginTop: 50, top: 20, width: '22%', float: 'left'}}>
-          <Card className = {useStyles.root}>
+          <Card>
             <CardActionArea>
               <CardMedia 
                 position = 'fixed'
@@ -385,15 +378,9 @@ export default class Dashboard extends Component {
           <CardActions>
             <Button 
               size = "small" 
-              style = {{width: '50%'}}
+              style = {{width: '100%', justifyContent: 'center'}}
             > 
-                Comprar
-            </Button> 
-            <Button 
-              size = "small" 
-              style = {{width: '50%'}}
-            >
-                Mais Informações 
+              Comprar
             </Button> 
           </CardActions> 
           </Card> 
@@ -419,16 +406,10 @@ export default class Dashboard extends Component {
           <CardActions>
              <Button 
               size = "small" 
-              style = {{width: '50%'}}
-            > 
-                Comprar
+              style = {{width: '100%', justifyContent: 'center'}}
+              > 
+              Comprar
             </Button> 
-            <Button 
-              size = "small" 
-              style = {{width: '50%'}}
-            >
-                Mais Informações 
-            </Button>  
           </CardActions> 
           </Card> 
           </div>  
@@ -442,7 +423,7 @@ export default class Dashboard extends Component {
                 image = {'https://suhaiseguradora.com/wp-content/uploads/featured-image-suhai.png'}
                 title = "Suhai Seguradora" />
                 <CardContent>
-                  <Typography gutterbottom variant = "h5"component = "h2" >
+                  <Typography gutterbottom variant = "h5" component = "h2" >
                   Suhai - Veículos
                   </Typography> 
                   <Typography variant = "body2" color = "textSecondary" component = "p" >
@@ -453,19 +434,13 @@ export default class Dashboard extends Component {
           <CardActions>
             <Button 
               size = "small" 
-              style = {{width: '50%'}}
+              style = {{width: '100%', justifyContent: 'center'}}
             > 
-                Comprar
-            </Button> 
-            <Button 
-              size = "small" 
-              style = {{width: '50%'}}
-            >
-                Mais Informações 
+              Comprar
             </Button> 
           </CardActions> 
           </Card> 
-          </div> 
+          </div>
       </div>
       </div>  
       </div>  

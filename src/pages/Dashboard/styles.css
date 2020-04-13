@@ -21,17 +21,6 @@
     background-color: #E26B15;
 
 }
-
-.button1 {
-    text-align: center;
-    background: #E26B15;
-}
-
-.button2 {
-    text-align: center;
-    background: #E26B15;
-}
-
 .header {
   display: flex;
   justify-content: center;

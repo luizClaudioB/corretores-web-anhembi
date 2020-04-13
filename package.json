@@ -23,6 +23,7 @@
     "rc": "^1.2.8",
     "react": "^16.13.1",
     "react-awesome-stars-rating": "^0.2.5",
+    "react-bootstrap": "^1.0.0",
     "react-burger-menu": "^2.6.13",
     "react-dom": "^16.13.1",
     "react-input-mask": "^2.0.4",
