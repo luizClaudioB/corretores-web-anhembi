@@ -334,11 +334,13 @@ export default class Profile extends Component {
     <Heading size={700} marginBottom={10}>Lucas Henrique Bonfim Romero</Heading>
     </div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
-    <Heading size={500} marginBottom={10}>Idade: 20</Heading>
-    <Heading size={500} marginBottom={10}>Faculdade: Universidade Anhembi Morumbi</Heading>
-    <Heading size={500} marginBottom={10}>Curso: Sistemas de Informacao</Heading>
-    <Heading size={500} marginBottom={10}>Empresa atual: Tenbu</Heading>
-    <Heading size={500} marginBottom={10}>Conhecimento em linguagens de programacao: Java, PHP e JavaScript (React.js)</Heading>
+    <ul>
+    <li><Heading size={500} marginBottom={10}>Idade: 20</Heading></li>
+    <li><Heading size={500} marginBottom={10}>Faculdade: Universidade Anhembi Morumbi</Heading></li>
+    <li><Heading size={500} marginBottom={10}>Curso: Sistemas de Informacao</Heading></li>
+    <li><Heading size={500} marginBottom={10}>Empresa atual: Tenbu</Heading></li>
+    <li><Heading size={500} marginBottom={10}>Conhecimento em linguagens de programacao:  <ol><li>Java</li><li>PHP</li><li>JavaScript (React.js)</li></ol></Heading></li>
+    </ul>
     <br />
     <br />
     <a href="https://www.linkedin.com/in/lucas-bonfim-romero/"><Heading size={500} marginBottom={10}> Clique aqui e acesse o LinkedIn de Lucas Henrique </Heading>  </a>
@@ -350,11 +352,13 @@ export default class Profile extends Component {
     <Heading size={700} marginBottom={10}>Luiz Claudio Bosco Massarollo Filho</Heading>
     </div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
-    <Heading size={500} marginBottom={10}>Idade: 20</Heading>
-    <Heading size={500} marginBottom={10}>Faculdade: Universidade Anhembi Morumbi</Heading>
-    <Heading size={500} marginBottom={10}>Curso: Sistemas de Informacao</Heading>
-    <Heading size={500} marginBottom={10}>Empresa atual: IBM</Heading>
-    <Heading size={500} marginBottom={10}>Conhecimento em linguagens de programacao: Java (SpringBoot) e JavaScript (React.js e React Native)</Heading>
+    <ul>
+    <li><Heading size={500} marginBottom={10}>Idade: 20</Heading></li>
+    <li><Heading size={500} marginBottom={10}>Faculdade: Universidade Anhembi Morumbi</Heading></li>
+    <li><Heading size={500} marginBottom={10}>Curso: Sistemas de Informacao</Heading></li>
+    <li><Heading size={500} marginBottom={10}>Empresa atual: IBM</Heading></li>
+    <li><Heading size={500} marginBottom={10}>Conhecimento em linguagens de programacao: <ol><li>Java (SpringBoot)</li><li>JavaScript (React.js)</li></ol></Heading></li>
+    </ul>
     <br />
     <br />
     <a href="https://www.linkedin.com/in/luizclaudiofilho99/"><Heading size={500} marginBottom={10}> Clique aqui e acesse o LinkedIn de Luiz Claudio</Heading>  </a>
@@ -366,16 +370,25 @@ export default class Profile extends Component {
     <Heading size={700} marginBottom={10}>Raphael Henrique Cardoso Chimello</Heading>
     </div>
     <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
-    <Heading size={500} marginBottom={10}>Idade: 19</Heading>
-    <Heading size={500} marginBottom={10}>Faculdade: Universidade Anhembi Morumbi</Heading>
-    <Heading size={500} marginBottom={10}>Curso: Sistemas de Informacao</Heading>
-    <Heading size={500} marginBottom={10}>Empresa atual: Intel</Heading>
-    <Heading size={500} marginBottom={10}>Conhecimento em linguagens de programacao: Java e JavaScript (React.js)</Heading>
+    <ul>
+    <li><Heading size={500} marginBottom={10}>Idade: 19</Heading></li>
+    <li><Heading size={500} marginBottom={10}>Faculdade: Universidade Anhembi Morumbi</Heading></li>
+    <li><Heading size={500} marginBottom={10}>Curso: Sistemas de Informacao</Heading></li>
+    <li><Heading size={500} marginBottom={10}>Empresa atual: Intel</Heading></li>
+    <li><Heading size={500} marginBottom={10}>Conhecimento em linguagens de programacao: <ol><li>Java</li><li>Python</li><li>JavaScript (React.js)</li></ol></Heading></li>
+    </ul>
     <br />
     <br />
     <a href="https://www.linkedin.com/in/raphaelchimello/"><Heading size={500} marginBottom={10}> Clique aqui e acesse o LinkedIn de Raphael Henrique</Heading> </a> 
     </div>
     </div> : null}
+    <img style={{width: 50, marginTop: 602,  marginLeft: 1000, position: 'fixed'}} src={Logo} alt={Logo} />
+    <div style={{position: 'fixed', marginLeft: 1060, marginTop: 600, width: 500, float: 'left'}}>
+    <dl>
+      <dt style={{fontSize: 12}}>Só Seguros</dt>
+      <dd style={{fontSize: 12}}>Busque e encontre os melhores corretores de seguros do mercado.</dd>
+    </dl>
+    </div>
     </body>
     </div>
     </div>

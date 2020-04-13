@@ -570,6 +570,13 @@ export default class SearchPage extends Component {
       </SideSheet>
     </React.Fragment>   
     </div>
+    <img style={{width: 50, marginTop: 602,  marginLeft: 669, position: 'fixed'}} src={Logo} alt={Logo} />
+    <div style={{position: 'fixed', marginLeft: 1060, marginTop: 600, width: 500, float: 'left'}}>
+    <dl>
+      <dt style={{fontSize: 12}}>Só Seguros</dt>
+      <dd style={{fontSize: 12}}>Busque e encontre os melhores corretores de seguros do mercado.</dd>
+    </dl>
+    </div>
     </body>
     </div>
     </div>

@@ -160,10 +160,7 @@ export default class Enterprise extends Component {
     render(){
     const loggedIn = this.state.loggedIn
     const isLoading = this.state.loading;
-    const onChange = (value) => {
-        console.log(`React Stars Rating value is ${value}`);
-      };
-
+    
     return(
     <div className="div1"> 
     <header className="dashboard-header">
@@ -327,7 +324,7 @@ export default class Enterprise extends Component {
     <br />
     <hr />
     <br />
-    <a href="https://github.com/luizClaudioB/corretores-web-anhembi"><Heading size={500} marginBottom={10}> Clique aqui e acesse o nosso GitHub!</Heading>  </a>
+    <a href="https://github.com/luizClaudioB/corretores-web-anhembi"><Heading size={500} marginBottom={10}> Clique aqui e acesse o nosso <b><u>GitHub!</u></b> </Heading> </a>
     </div>
     </div> : null}
     {!!this.state.sobreNos ? 
@@ -401,6 +398,13 @@ export default class Enterprise extends Component {
     <Heading size={500} marginBottom={10}>A empresa ainda não possui uma sede.</Heading>
     </div>
     </div> : null}
+    <img style={{width: 50, marginTop: 602,  marginLeft: 1000, position: 'fixed'}} src={Logo} alt={Logo} />
+    <div style={{position: 'fixed', marginLeft: 1060, marginTop: 600, width: 500, float: 'left'}}>
+    <dl>
+      <dt style={{fontSize: 12}}>Só Seguros</dt>
+      <dd style={{fontSize: 12}}>Busque e encontre os melhores corretores de seguros do mercado.</dd>
+    </dl>
+    </div>
     </body>
     </div>
     </div>
