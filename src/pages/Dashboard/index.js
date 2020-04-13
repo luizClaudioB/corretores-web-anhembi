@@ -194,6 +194,7 @@ export default class Dashboard extends Component {
                 <Menu.Item onClick={() => this.props.history.push('/history') } icon="history">
                   Historico
                 </Menu.Item>
+                <Menu.Item onClick={() => this.props.history.push('/enterprise') } icon="info-sign">Sobre Nos</Menu.Item>
               </Menu.Group>
               <Menu.Divider />
             </Menu>

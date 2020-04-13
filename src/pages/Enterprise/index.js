@@ -188,6 +188,7 @@ export default class Enterprise extends Component {
                 <Menu.Item onClick={() => this.props.history.push('/history') } icon="history">
                   Historico
                 </Menu.Item>
+                <Menu.Item onClick={() => this.props.history.push('/enterprise') } icon="info-sign">Sobre Nos</Menu.Item>
               </Menu.Group>
               <Menu.Divider />
             </Menu>
@@ -316,79 +317,87 @@ export default class Enterprise extends Component {
     <div>
     <body>
     <div>
-    <div style={{position: 'fixed', marginLeft: 30, marginTop: 100, width: 400, float: 'left', 
+    <div style={{position: 'fixed', marginLeft: 30, marginTop: 100, width: 300, float: 'left', 
     height: 400, borderRight: '1px solid rgb(214, 206, 200)' }}>
     <Heading size={700} marginBottom={20}>Sobre nós</Heading>
-    <Button appearance="minimal" onClick={() => {this.clearAll(); this.setState({sobreNos: true})}} marginBottom={10}>Sobre a empresa </Button>
-    <Button appearance="minimal" onClick={() => {this.clearAll(); this.setState({missao: true})}} marginBottom={10}>Missao </Button>
-    <Button appearance="minimal" onClick={() => {this.clearAll();this.setState({visao: true})}} marginBottom={10}>Visao </Button>
-    <Button appearance="minimal" onClick={() => {this.clearAll();this.setState({valores: true})}} marginBottom={10}>Valores </Button>
-    <Button appearance="minimal" onClick={() => {this.clearAll();this.setState({produtos: true})}} marginBottom={10}>Produtos </Button>
-    <Button appearance="minimal" onClick={() => {this.clearAll();this.setState({servicos: true})}} marginBottom={10}>Servicos: </Button>
-    <Button appearance="minimal" onClick={() => {this.clearAll();this.setState({endereco: true})}} marginBottom={10}>Endereco: </Button>
+    <p><Button appearance="minimal" onClick={() => {this.clearAll(); this.setState({sobreNos: true})}} marginBottom={10}>Sobre a empresa </Button></p>
+    <p><Button appearance="minimal" onClick={() => {this.clearAll(); this.setState({missao: true})}} marginBottom={10}>Missao </Button></p>
+    <p><Button appearance="minimal" onClick={() => {this.clearAll();this.setState({visao: true})}} marginBottom={10}>Visao </Button></p>
+    <p><Button appearance="minimal" onClick={() => {this.clearAll();this.setState({valores: true})}} marginBottom={10}>Valores </Button></p>
+    <p><Button appearance="minimal" onClick={() => {this.clearAll();this.setState({produtos: true})}} marginBottom={10}>Produtos </Button></p>
+    <p><Button appearance="minimal" onClick={() => {this.clearAll();this.setState({servicos: true})}} marginBottom={10}>Servicos </Button></p>
+    <p><Button appearance="minimal" onClick={() => {this.clearAll();this.setState({endereco: true})}} marginBottom={10}>Endereco </Button></p>
     </div>
     </div>
     {!!this.state.sobreNos ? 
     <div>
-    <div style={{position: 'absolute', position: 'fixed', marginLeft: 500, marginTop: 100, width: 300, float: 'left'}}>
-    <Heading size={700} marginBottom={10}>Sobre nós</Heading>
+    <div style={{position: 'absolute', position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
+    <Heading size={700} marginBottom={10}>Sobre a empresa</Heading>
     </div>
-    <div style={{position: 'fixed', marginLeft: 500, marginTop: 150, width: 300, float: 'left'}}>
-    <Heading size={200} marginBottom={10}>adoletalepetipetipola</Heading>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
+    <Heading size={500} marginBottom={10}>Formada a partir de um projeto proposto na faculdade, em 2020, a ____ busca facilitar a busca
+    por corretores de seguros disponiveis no mercado. Com os integrantes localizados em Sao Paulo, nao possui uma sede, sendo entusiasta de novas tecnologias
+    e defensora de praticas como o Home Office e Desenvolvimento Agil.</Heading>
     </div>
     </div> : null}
     {!!this.state.missao ? 
     <div>
-    <div style={{position: 'fixed', marginLeft: 500, marginTop: 100, width: 300, float: 'left'}}>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
     <Heading size={700} marginBottom={10}>Missao</Heading>
     </div>
-    <div style={{position: 'fixed', marginLeft: 500, marginTop: 150, width: 300, float: 'left'}}>
-    <Heading size={200} marginBottom={10}>adoletalepetipetipola</Heading>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
+    <Heading size={500} marginBottom={10}>Temos como missao a utilizacao de novas tecnologias e praticas para levar ao usuario
+    a melhor experiencia possivel dentro do nosso site, proporcionando, desta forma, uma boa procura em busca de corretores
+    disponiveis em seus Estados.</Heading>
     </div>
     </div> : null}
     {!!this.state.visao? 
     <div>
-    <div style={{position: 'fixed', marginLeft: 500, marginTop: 100, width: 300, float: 'left'}}>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
     <Heading size={700} marginBottom={10}>Visao</Heading>
     </div>
-    <div style={{position: 'fixed', marginLeft: 500, marginTop: 150, width: 300, float: 'left'}}>
-    <Heading size={200} marginBottom={10}>adoletalepetipetipola</Heading>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
+    <Heading size={500} marginBottom={10}>Com uma visao voltada para o futuro, nos esforcamos para sempre estarmos atualizados
+    diante das novas tendencias do mercado.</Heading>
     </div>
     </div> : null}
     {!!this.state.valores ? 
     <div>
-    <div style={{position: 'fixed', marginLeft: 500, marginTop: 100, width: 300, float: 'left'}}>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
     <Heading size={700} marginBottom={10}>Valores</Heading>
     </div>
-    <div style={{position: 'fixed', marginLeft: 500, marginTop: 150, width: 300, float: 'left'}}>
-    <Heading size={200} marginBottom={10}>adoletalepetipetipola</Heading>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
+    <Heading size={500} marginBottom={10}>Aqui, prezamos pela etica e respeito acima de tudo. Cada membro da equipe e responsavel
+    pelo outro, buscando sempre o crescimento conjunto e continuo.</Heading>
     </div>
     </div> : null}
     {!!this.state.produtos ? 
     <div>
-    <div style={{position: 'fixed', marginLeft: 500, marginTop: 100, width: 300, float: 'left'}}>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
     <Heading size={700} marginBottom={10}>Produtos</Heading>
     </div>
-    <div style={{position: 'fixed', marginLeft: 500, marginTop: 150, width: 300, float: 'left'}}>
-    <Heading size={200} marginBottom={10}>adoletalepetipetipola</Heading>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
+    <Heading size={500} marginBottom={10}>Ofertamos aos usuarios apenas um produto no momento: o ____, com foco na busca 
+    facilitada por corretores de seguro disponiveis no mercado.</Heading>
     </div>
     </div> : null}
     {!!this.state.servicos ? 
     <div>
-    <div style={{position: 'fixed', marginLeft: 500, marginTop: 100, width: 300, float: 'left'}}>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
     <Heading size={700} marginBottom={10}>Servicos</Heading>
     </div>
-    <div style={{position: 'fixed', marginLeft: 500, marginTop: 150, width: 300, float: 'left'}}>
-    <Heading size={200} marginBottom={10}>adoletalepetipetipola</Heading>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
+    <Heading size={500} marginBottom={10}>Como citado na secao de produtos, ofertamos aos usuarios o ____, que procura facilitar
+    a busca por corretores de seguro disponiveis no mercado, alem de oferecermos todo suporte em relacao ao produto. </Heading>
     </div>
     </div> : null}
     {!!this.state.endereco ? 
     <div>
-    <div style={{position: 'fixed', marginLeft: 500, marginTop: 100, width: 300, float: 'left'}}>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 100, width: 300, float: 'left'}}>
     <Heading size={700} marginBottom={10}>Endereco</Heading>
     </div>
-    <div style={{position: 'fixed', marginLeft: 500, marginTop: 150, width: 300, float: 'left'}}>
-    <Heading size={200} marginBottom={10}>adoletalepetipetipola</Heading>
+    <div style={{position: 'fixed', marginLeft: 400, marginTop: 150, width: 700, float: 'left'}}>
+    <Heading size={500} marginBottom={10}>A empresa ainda nao possui uma sede.</Heading>
     </div>
     </div> : null}
     </body>
