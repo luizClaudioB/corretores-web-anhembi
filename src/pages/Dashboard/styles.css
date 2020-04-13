@@ -4,17 +4,17 @@
 }
 .divLogin{
   float: right;
-  margin-top: -30px;
+  margin-top: 10px;
   margin-right: 480px;
-  margin-left: 1200px;
+  margin-left: 1160px;
 position:fixed}
 
 .btLogin{
-  margin-left:200px;
-  margin-top: -40px;
+  margin-left:188px;
+  margin-top: -48px;
 }
 .btnVoltar{
-  margin-left: 1120px;
+  margin-left: 1090px;
 }
 
 

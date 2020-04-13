@@ -325,14 +325,14 @@ export default class Dashboard extends Component {
       </Button>
       </div>
         :<div>
-          <div className="btnVoltar">
+          <div style={{marginTop: 15, position: 'fixed'}}className="btnVoltar">
           <Button  onClick={this.handlePressed}> voltar </Button>
             </div>
         <div className="divLogin">
           <icon icon="arrow-left"/>
           <div>
           <icon />
-          <Input className="inputLogin" width={50} value={this.state.email} onChange={this.handleChange} name="email" placeholder="Email" color="primary"/>
+          <Input marginTop={15} width={50} value={this.state.email} onChange={this.handleChange} name="email" placeholder="Email" color="primary"/>
           </div>
           <div>
           <Input color="primary"value={this.state.password} onChange={this.handleChange} type="password" name="password" placeholder="Password" />
