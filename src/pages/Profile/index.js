@@ -176,6 +176,7 @@ export default class Profile extends Component {
             <Menu>
               <Menu.Group>
                 <Menu.Item onClick={() => this.props.history.push('/') } icon="home">Pagina Inicial</Menu.Item>
+                <Menu.Item onClick={() => this.props.history.push('/search') } icon="search">Busque Corretores</Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculos da Equipe</Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/history') } icon="history">
                   Historico
@@ -328,7 +329,9 @@ export default class Profile extends Component {
     <Heading size={500} marginBottom={10}>Curso: Sistemas de Informacao</Heading>
     <Heading size={500} marginBottom={10}>Empresa atual: Tenbu</Heading>
     <Heading size={500} marginBottom={10}>Conhecimento em linguagens de programacao: Java, PHP e JavaScript (React.js)</Heading>
-    <Heading size={500} marginBottom={10}>LinkedIn: </Heading>
+    <br />
+    <br />
+    <a href="https://www.linkedin.com/in/lucas-bonfim-romero/"><Heading size={500} marginBottom={10}> Clique aqui e acesse o LinkedIn de Lucas Henrique </Heading>  </a>
     </div>
     </div> : null}
     {!!this.state.sobreLuiz ? 
@@ -342,7 +345,9 @@ export default class Profile extends Component {
     <Heading size={500} marginBottom={10}>Curso: Sistemas de Informacao</Heading>
     <Heading size={500} marginBottom={10}>Empresa atual: IBM</Heading>
     <Heading size={500} marginBottom={10}>Conhecimento em linguagens de programacao: Java (SpringBoot) e JavaScript (React.js e React Native)</Heading>
-    <Heading size={500} marginBottom={10}>LinkedIn: </Heading>
+    <br />
+    <br />
+    <a href="https://www.linkedin.com/in/luizclaudiofilho99/"><Heading size={500} marginBottom={10}> Clique aqui e acesse o LinkedIn de Luiz Claudio</Heading>  </a>
     </div>
     </div> : null}
     {!!this.state.sobreRaphael ? 
@@ -356,7 +361,9 @@ export default class Profile extends Component {
     <Heading size={500} marginBottom={10}>Curso: Sistemas de Informacao</Heading>
     <Heading size={500} marginBottom={10}>Empresa atual: Intel</Heading>
     <Heading size={500} marginBottom={10}>Conhecimento em linguagens de programacao: Java e JavaScript (React.js)</Heading>
-    <Heading size={500} marginBottom={10}>LinkedIn: </Heading>
+    <br />
+    <br />
+    <a href="https://www.linkedin.com/in/raphaelchimello/"><Heading size={500} marginBottom={10}> Clique aqui e acesse o LinkedIn de Raphael Henrique</Heading> </a> 
     </div>
     </div> : null}
     </body>
