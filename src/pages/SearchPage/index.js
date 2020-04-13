@@ -323,9 +323,9 @@ export default class SearchPage extends Component {
         </TabNavigation>
     </div>
     <div>
-    <body style={{position: 'fixed'}}>
+    <body style={{marginTop: 100, position: 'fixed'}}>
     <div>
-    <div style={{marginLeft: 30, marginTop: 100, width: 300, float: 'left', borderRight: '1px solid rgb(214, 206, 200)' }}>
+    <div style={{marginLeft: 30, width: 300, float: 'left', borderRight: '1px solid rgb(214, 206, 200)' }}>
     <Heading size={700} marginBottom={10}>Filtros</Heading>
     <TagInput
       inputProps={{ placeholder: 'Adicione filtros...' }}
@@ -388,7 +388,7 @@ export default class SearchPage extends Component {
     </div>
     </div>
     <div style={{float:'right'}}>
-    <Heading size={700} marginBottom={10} marginLeft={100} marginTop={100}>Lista de corretores</Heading>
+    <Heading size={700} marginBottom={10} marginLeft={100}>Lista de corretores</Heading>
     <Table style={{marginLeft: 100, border: '1px solid rgb(214, 206, 200)'}}>
     <Table.Head>
         <Table.TextHeaderCell>
