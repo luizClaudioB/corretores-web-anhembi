@@ -1,13 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-}
-
-body, input, select, textarea, button {
-    font-family: sans-serif;
-    font-size: 1em;
+.label{
+    color: white;
 }
 
 .register-container{
@@ -22,122 +15,136 @@ body, input, select, textarea, button {
     position: relative;
     
 }
+.register-container .content{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.register-container .content .register-forms{
+    width: 600px;
+    height: 700px;
+    align-items: center;
+    margin-right: 80px;
+
+}
+
+.register-container .content .register-text{
+    width: 450px;
+    margin-left:80px;
+    margin-top:-500px;
+    margin-right:40px;
+}
+
+.register-container .content .register-text h1{
+    font-size: 50px;
+    margin-bottom: 80px;
+}
+
+.register-container .content .register-text p{
+    font-size: 25px;
+}
+
+
+
 
 
 .register-container-initial{
-    width: 1189px;
-    height: 280px;
-    background-color: #c4c4c4;
+    width: 600px;
+    height: 230px;
+    background-color: #a996ad;
     align-items: center;
     justify-content: left ;
     display: flex;
     
 
-}
-.input{
-    font: 400 14px Roboto, sans-serif
 }
 
 
 .register-container-initial .left-form{
     float: left;
-    margin-left: 50px;
+    margin-top: -20px;
+    margin-left: 75px;
 }
 
-.register-container-initial .left-form input{
-    margin-bottom: 10px;
+.register-container-initial .left-form Input{
+    margin-top: 20px;
 }
 
 .register-container-initial .right-form{
     float: right;
-    margin-left: 25px;
+    margin-left: 50px;
+    margin-top: -10px;
 }
 .register-container-initial .right-form .inputs{
-    margin-top: -18px;
-    margin-bottom: 8px;
+    margin-top: 0px;
+    margin-bottom: 26px;
 }
 
-.register-container-initial .right-form .inputs input{
-    margin-bottom: 10px;
-}
-
-.register-container-initial .right-form .checkBoxes input{
+.register-container-initial .right-form .inputs Input{
     margin-top: 20px;
+}
+
+.register-container-initial .right-form .checkBoxes {
+    margin-top: 14px;
 
 }
 
 .register-container-buyer{
-    margin-top: 50px;
-    width: 1189px;
-    height: 280px;
+    margin-top: 30px;
+    width: 600px;
+    height: 320px;
     background-color: #c4c4c4;
     align-items: center;
     justify-content: left ;
     display: flex;
 }
 
-.register-container-buyer .left-form-2{
+.register-container-buyer Input{
+    margin-top: 15px;
+}
+
+
+.register-container-buyer .form-buyer{
     float: left;
-    margin-left: 50px;
+    margin-left: 75px;
+    margin-top: -30px;    
 }
 
-.register-container-buyer .middle-form-2{
-    margin-top: 82px;
-    margin-left: 20px;
-}
 
-.register-container-buyer .right-form-2{
-    margin-top: 82px;
-    margin-left: 20px;
+.left-form-adress{
+    float: left;
+}
+.right-form-adress{
+    float: left;
+    margin-left: 15px;
 }
 
 .register-container-seller{
-    margin-top: 50px;
-    width: 1189px;
-    height: 280px;
+    margin-top: 30px;
+    width: 600px;
+    height: 340px;
     background-color: #c4c4c4;
     align-items: center;
     justify-content: left ;
     display: flex;
     
 }
+.register-container-seller Input{
+    margin-top: 13px;
+}
 
-.register-container-seller .left-form-3{
+.register-container-seller .form-seller{
     float: left;
-    margin-left: 50px;
+    margin-left: 75px;
+    margin-top: -15px;
 }
 
-.register-container-seller .middle-form-3{
-    margin-top: 122px;
-    margin-left: 20px;
-}
-
-.register-container-seller .right-form-3{
-    margin-top: 122px;
-    margin-left: 20px;
-}
 
 .buttonRegister{
-    position: absolute;
-    width: 160px;
-    height: 40px;
-    right: 80px;
-    bottom: 100px;
-    font-size: 27px;
-}
-
-.buttonSearchCEPB{
-    width: 116px;
-    height: 22px;
-    left: 350px;
-    top: 562px;
-    background-color: #8D8D8D;
-}
-
-.buttonSearchCEPS{
-    width: 116px;
-    height: 22px;
-    left: 350px;
-    top: 562px;
-    background-color: #8D8D8D;
+    position: relative;
+    left: 20px;
+    top: 200px;
 }
