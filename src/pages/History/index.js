@@ -1,4 +1,5 @@
 import './styles.css';
+import 'react-calendar/dist/Calendar.css';
 import React, {Component, ReactText} from 'react';
 import { HomeOutlined as HomeIcon, WechatOutlined as ChatIcon, 
     UserOutlined as UserIcon, StarOutlined as StarIcon}  from '@ant-design/icons';
@@ -10,6 +11,7 @@ import { Input, PageHeader, Rate } from 'antd';
 import { SearchInput, IconButton, Button, Popover, Menu, Avatar, Combobox, Text, Textarea, TagInput, Icon,
     Pane, SideSheet, Heading, Paragraph, Tablist, Tab, Card, Table, TabNavigation, Badge, Label, toaster} from 'evergreen-ui';
 import ReactStarsRating from 'react-awesome-stars-rating';
+import Calendar from 'react-calendar'
 
 const facebook = {
   appId: "YOUR FB APP ID GOES HERE",
@@ -35,11 +37,7 @@ export default class History extends Component {
       recoverPasswordSuccess: null,
       showSocialMedia: true,
       selectedIndex: 0,
-      filterList: [],
-      filter: '',
-      value: '',
-      list: [],
-      isaMessage: false,
+      date: new Date(),
     };
     }
 
@@ -146,26 +144,7 @@ export default class History extends Component {
       });
     }
 
-    onAddMessage = () => {
-      this.setState({isaMessage: true })
-      this.setState(state => {
-        const list = [...state.list, state.value];
-        return {
-          list,
-          value: '',
-        };
-      });
-    };
-
-    onAddFilter = () => {
-      this.setState(state => {
-        const filterList = [...state.filterList, state.filter];
-        return {
-          filterList,
-          filter: '',
-        };
-      });
-    };
+    onChange = date => this.setState({ date })
     
     render(){
     const loggedIn = this.state.loggedIn
@@ -190,7 +169,7 @@ export default class History extends Component {
               <Menu.Group>
                 <Menu.Item onClick={() => this.props.history.push('/') } icon="home">Pagina Inicial</Menu.Item>
                 <Menu.Item icon="star-empty">Curriculos da Equipe</Menu.Item>
-                <Menu.Item icon="history">
+                <Menu.Item onClick={() => this.props.history.push('/history') } icon="history">
                   Historico
                 </Menu.Item>
               </Menu.Group>
@@ -320,15 +299,19 @@ export default class History extends Component {
     </div>
     <div>
     <body>
-    <div style={{position: 'fixed', marginLeft: 30, marginTop: 100, width: 300, float: 'left', 
-    height: 300, borderRight: '1px solid rgb(214, 206, 200)' }}>
-    <Heading size={700} marginBottom={10}>Historico</Heading>
+    <div>
+    <div style={{position: 'fixed', marginLeft: 30, marginTop: 100, width: 400, float: 'left', 
+    height: 400, borderRight: '1px solid rgb(214, 206, 200)' }}>
+    <Heading size={700} marginBottom={20}>Histórico</Heading>
+    <Heading size={400} marginBottom={10}>Filtre o histórico entre duas datas: </Heading>
+    <Calendar onChange={this.onChange} value={this.state.date} />
+    </div>
     </div>
     <div>
-    <div style={{position: 'fixed', marginLeft: 700, marginTop: 210, width: 300, float: 'left'}}>
-    <Heading size={200} marginBottom={10}>Ops! Parece que seu historico esta vazio...</Heading>
+    <div style={{position: 'fixed', marginLeft: 800, marginTop: 210, width: 300, float: 'left'}}>
+    <Heading size={200} marginBottom={10}>Ops! Parece que seu histórico está vazio...</Heading>
     </div>
-    <div style={{position: 'fixed', marginLeft: 800, marginTop: 240, width: 300, float: 'left'}}>
+    <div style={{position: 'fixed', marginLeft: 900, marginTop: 240, width: 300, float: 'left'}}>
     <Icon color='disabled' size={40} icon="history"> </Icon>
     </div>
     </div>
