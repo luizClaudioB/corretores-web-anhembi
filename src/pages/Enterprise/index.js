@@ -184,7 +184,7 @@ export default class Enterprise extends Component {
             <Menu>
               <Menu.Group>
                 <Menu.Item onClick={() => this.props.history.push('/') } icon="home">Pagina Inicial</Menu.Item>
-                <Menu.Item icon="star-empty">Curriculos da Equipe</Menu.Item>
+                <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculos da Equipe</Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/history') } icon="history">
                   Historico
                 </Menu.Item>
