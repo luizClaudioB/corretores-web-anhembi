@@ -3,6 +3,7 @@
     padding: 0px;
     margin-top: 0px;
 }
+
 .dashboard-header {
     min-width: 1080px;
     margin-top: -25px;
@@ -19,6 +20,13 @@
     left: 0px;
     background-color: #E26B15;
 
+}
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 .avatar-button{
