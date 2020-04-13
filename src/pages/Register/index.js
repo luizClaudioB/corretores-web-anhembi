@@ -3,12 +3,17 @@ import './styles.css';
 import { render } from '@testing-library/react';
 import ApiCep from '../../services/ApiCep';
 import InputMask from 'react-input-mask';
+import fire from './../../config/Fire';
+import {TextField, Input, Checkbox, Button} from '@material-ui/core'
+
 
 
 
 export default class Register extends Component {
     constructor(props) {
         super(props);
+          this.handleChange = this.handleChange.bind(this);
+          this.signup = this.signup.bind(this);
         this.state = {
             ischeckedS:false,
             ischeckedB:false,
@@ -18,8 +23,29 @@ export default class Register extends Component {
             bairro: "",
             localidade: "",
             estado: "",
+            user:false,
+            email: "",
+            password: "",
+            success: false
+        };
+    }
+
+    signup(e){
+        e.preventDefault();
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+        }).then((u)=>{alert("Usuário criado, volte para a tela inicial")})
+        .catch((error) => {
+            console.log(error);
+            alert("erro: revise seus dados e tente novamente")
+          })
+          
         }
-    };
+
+
+      handleChange(e){
+        this.setState({ [e.target.name ]: e.target.value });
+      }
+  
 
     handleCPFB(e) {
         const CPFB=e.target.value
@@ -37,7 +63,7 @@ export default class Register extends Component {
         if(document.getElementById("idCPFB").value!=""){
             return alert("digite um CPFB válido"), document.getElementById("idCPFB").value=""}
        
-      Soma = 0;
+         Soma = 0;
         for (let i = 1; i <= 10; i++) Soma = Soma + parseInt(CPFB.substring(i-1, i)) * (12 - i);
         Resto = (Soma * 10) % 11;
        
@@ -130,39 +156,40 @@ export default class Register extends Component {
         return (
             
             <div>
+                
+                
                
 
                 <div className="register-container">
                     <div className="content">
-                        <section>
+                    
+                        <div className= "register-text">
+                            <Button onClick={() => this.props.history.push('/') }>Retornar a tela inicial</Button>
                             <h1>Cadastro</h1>
                             <p>
-                                Faça seu cadastro para poder adquirir nossos benefícios
+                                Faça seu cadastro para poder conversar com corretores e adquirir seus serviços!
                             
                             </p>
-                        </section>
+                        </div>
+                    <div className="register-forms">
 
                         <form className="register-form">
                             <div className="register-container-initial">
                                 <div className="left-form">
                                     <div>
-                                        <label>Nome</label> <br />
-                                        <input type="text"  placeholder="Nome" required={true} />
+                                        <Input type="text"  placeholder="Nome" required={true} />
                                     </div>
 
                                     <div>
-                                        <label>E-mail</label> <br />
-                                        <input placeholder="Email" type="email" required={true} />
+                                       <Input value={this.state.email} onChange={this.handleChange} name="email" placeholder="Email" />
                                     </div>
 
                                     <div>
-                                        <label>Senha</label> <br />
-                                        <input placeholder="Senha" type="password" required={true} />
+                                      <Input value={this.state.password} onChange={this.handleChange} type="password" name="password" placeholder="Password" />
                                     </div>
 
                                     <div>
-                                        <label>Confirme sua Senha</label> <br />
-                                        <input placeholder="Senha" type="password" required={true} />
+                                        <Input placeholder="Confirme sua senha" type="password" required={true} />
                                     </div>
 
 
@@ -171,22 +198,21 @@ export default class Register extends Component {
                                 <div className="right-form">
                                     <div className="inputs">
                                     <div>
-                                        <label>Sobrenome</label> <br />
-                                        <input placeholder="Sobrenome"  required={true}/>
+                                        <Input placeholder="Sobrenome"  required={true}/>
                                     </div>
  
-                                    <div>
-                                        <label>celular</label> <br />
-                                        <InputMask mask="(99)99999-9999"  required={true}/>
+                                    <div><Input placeholder = "número celular">
+                                        {/* <InputMask mask="(99)99999-9999"  required={true}/> */}
+                                        </Input>
                                     </div>
                                     </div>
                                     <div className="checkBoxes">
                                         <div>
-                                            <input disabled={this.state.isdisableB} type="checkbox" onClick={this.handleCheckBuyer} />
+                                            <Checkbox disabled={this.state.isdisableB} onClick={this.handleCheckBuyer} />
                                             <label>Quero comprar</label>
                                         </div>
                                         <div>
-                                            <input disabled={this.state.isdisableS} type="checkbox" onClick={this.handleCheckSeller}/>
+                                            <Checkbox disabled={this.state.isdisableS} onClick={this.handleCheckSeller}/>
                                             <label> Quero vender</label>
                                         </div>
                                     </div>
@@ -199,58 +225,51 @@ export default class Register extends Component {
 
                            <form>
                             <div id="form2" className="register-container-buyer">
-                                <div className="left-form-2">
+                                <div className="form-buyer">
                                     <div>
-                                        <label>CPF</label> <br />
-                                        <input id="idCPFB" placeholder="xxx-xxx-xxx-xx"  value={this.state.value} onBlur={this.handleCPFB} required={true}/>
+                                        <Input id="idCPFB" placeholder="CPF"  value={this.state.value} onBlur={this.handleCPFB} />
                                     </div>
 
                                     <div>
-                                        <label>CEP</label> <br />
                                         
-                                        <InputMask mask="99999-999"  type="text" onBlur={this.handleCEP.bind(this)} required={true}/>
-                                        
-                                        <button className="buttonSearchCEPB" onClick={this.handleCEP}>
-                                            Buscar
-                                        </button>
+                                        {/* <InputMask mask="99999-999"  type="text" onBlur={this.handleCEP.bind(this)} required={true}/> */}
+                                        <Input placeholder="CEP" type="text" onBlur={this.handleCEP.bind(this)} />
+
+                                    
                                     </div>
 
                                     <div>
-                                        <label>Logradouro</label> <br />
-                                        <input placeholder="Logradouro" style={{ width: '350px' }} value={this.state.rua} disabled required={true}/>
+                                        <Input placeholder="Logradouro" style={{ width: '375px' }} value={this.state.rua} disabled/>
                                     </div>
 
+                                    
+                                <div>
+                                <div className="left-form-adress">
+
                                     <div>
-                                        <label>Complemento</label> <br />
-                                        <input placeholder="Complemento" style={{ width: '350px' }} />
+                                        <Input placeholder="Cidade" value={this.state.localidade} disabled />
+                                    </div>
+                                    <div>
+                                        <Input placeholder="Número" required={true} />
                                     </div>
                                 </div>
-
-                                <div className="middle-form-2">
+                                    <div className="right-form-adress">
                                     <div>
-                                        <label>Cidade</label> <br />
-                                        <input placeholder="Cidade" value={this.state.localidade} disabled required={true}/>
+                                        <Input placeholder="Ex:Bairro" value={this.state.bairro} disabled />
                                     </div>
+
                                     <div>
-                                        <label>Número</label> <br />
-                                        <input placeholder="Número" required={true} />
+                                        <Input placeholder="UF" style={{ width: '50px' }} value={this.state.estado} disabled  />
+                                    </div>
                                     </div>
                                 </div>
-
-                                <div className="right-form-2">
-                                    <div>
-                                        <label>Bairro</label> <br />
-                                        <input placeholder="Ex:Bairro" value={this.state.bairro} disabled required={true}/>
-                                    </div>
-
-                                    <div>
-                                        <label>Estado</label> <br />
-                                        <input placeholder="UF" style={{ width: '50px' }} value={this.state.estado} disabled  />
+                                <div>
+                                        <Input placeholder="Complemento" style={{ width: '375px' }} />
                                     </div>
                                 </div>
-                                <button onClick={this.handleRegister} className="buttonRegister" type="submit">
+                                <Button variant="contained"  onClick={this.handleRegister} className="buttonRegister">
                             Cadastrar
-                        </button>
+                        </Button>
                             </div>
 
                         </form>
@@ -260,68 +279,61 @@ export default class Register extends Component {
                         <form>
 
                         <div id="form2" className="register-container-seller">
-                            <div className="left-form-3">
+                            <div className="form-seller">
                                 <div>
-                                    <label>CPF</label> <br />
-                                    <input id="idCPFS" placeholder="xxx-xxx-xxx-xx"  value={this.state.value} onBlur={this.handleCPFS} required={true}/>
+                                    <Input id="idCPFS" placeholder="CPF"  value={this.state.value} onBlur={this.handleCPFS} required={true}/>
                                 </div>
 
                                 <div>
-                                    <label>Registro SUSEP</label> <br />
-                                    <input placeholder="xxxxxx-xxx" />
+                                    <Input placeholder="Registro SUSEP" />
                                 </div>
 
                                 <div>
-                                    <label>CEP</label> <br />
-                                    <InputMask mask="99999-999"  type="text" onBlur={this.handleCEP.bind(this)} required={true}/>
-                                
-                                    <button className="buttonSearchCEPS" onClick={this.handleCEP}>
-                                        Buscar
-                                    </button>
+                                    {/* <InputMask mask="99999-999"  type="text" onBlur={this.handleCEP.bind(this)} required={true}/> */}
+                                    <Input placeholder="CEP"onBlur={this.handleCEP.bind(this)} required={true}/>
                                 </div>
 
                                 <div>
-                                    <label>Logradouro</label> <br />
-                                    <input placeholder="Logradouro" type="text" style={{ width: '350px' }}  value={this.state.rua} disabled />
+                                    <Input placeholder="Logradouro" style={{ width: '375px' }} value={this.state.rua} disabled />
                                 </div>
 
                                 <div>
-                                    <label>Complemento</label> <br />
-                                    <input placeholder="Complemento" type="text" style={{ width: '350px' }} />
+                                    <div className="left-form-adress">
+
+                                        <div>
+                                            <Input placeholder="Cidade" value={this.state.localidade} disabled />
+                                        </div>
+                                        <div>
+                                            <Input placeholder="Número" required={true} />
+                                        </div>
+
+                                    </div>
+
+                                    <div className="right-form-adress">
+
+                                        <div>
+                                            <Input placeholder="Ex:Bairro" value={this.state.bairro} disabled />
+                                        </div>
+
+                                        <div>
+                                            <Input placeholder="UF" style={{ width: '50px' }} value={this.state.estado} disabled  />
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div>
+                                    <Input placeholder="Complemento" style={{ width: '375px' }} />
                                 </div>
                             </div>
-
-                            <div className="middle-form-3">
-                                <div>
-                                    <label>Número</label> <br />
-                                    <input placeholder="Número" type="number" />
-                                </div>
-
-                                <div>
-                                    <label>Cidade</label> <br />
-                                    <input placeholder="Cidade"  value={this.state.cidade} disabled/>
-                                </div>
-                            </div>
-
-                            <div className="right-form-3">
-                                <div>
-                                    <label>Bairro</label> <br />
-                                    <input placeholder="Bairro"  value={this.state.bairro} disabled />
-                                </div>
-
-                                <div>
-                                    <label>Estado</label> <br />
-                                    <input placeholder="UF" style={{ width: '50px' }}  value={this.state.estado} disabled />
-                                </div>
-                            </div>
-                            <button onClick={this.handleRegister} className="buttonRegister" type="submit">
-                            Cadastrar
-                        </button>
+                            <Button variant="contained" onClick={this.signup} type="submit" className="buttonRegister">
+                                Cadastrar
+                            </Button>
                         </div>
 
                         
                         </form>
                         :null}
+                    </div>
                     </div>
                     
                 </div>

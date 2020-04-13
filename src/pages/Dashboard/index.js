@@ -6,8 +6,8 @@ import Dialog from '@material-ui/core/Dialog'
 import ReactModalLogin from 'react-modal-login';
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types"
-import { Input } from 'antd';
-import { SearchInput, IconButton, Button, Popover, Menu, Avatar, Tab, TabNavigation } from 'evergreen-ui';
+//import { Input } from 'antd';
+import { SearchInput, IconButton, Popover, Menu, Button, Avatar, Tab, TabNavigation } from 'evergreen-ui';
 import {Slide} from 'react-slideshow-image';
 import banner1 from './../../img/porto_auto.jpg';
 import banner2 from './../../img/seguro_vida.jpg';
@@ -21,6 +21,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import ButtonUI from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {Input} from '@material-ui/core'
+import fire from './../../config/Fire';
 
 const facebook = {
   appId: "YOUR FB APP ID GOES HERE",
@@ -38,17 +40,86 @@ const google = {
 export default class Dashboard extends Component {
     constructor(props){
     super(props);
+    this.login = this.login.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.logout = this.logout.bind(this);
+    this.signup = this.signup.bind(this);
     this.state = {
       showModal: false,
-      loggedIn: null,
+      loggedIn: false,
       loading: false,
       error: null,
       initialTab: null,
       recoverPasswordSuccess: null,
       showSocialMedia: true,
+      logged: false,
+      email:"",
+      password: "",
+      isPressed:false
     };
+    this.authListener = this.authListener.bind(this);
     }
+
+    handlePressed = () => {
+      this.setState({isPressed: true})
+
+      if(!this.state.isPressed){
+        this.setState({isPressed: true});
+        }else{
+        this.setState({isPressed: false});
+        }
+    }
+
+
+    signup(e){
+      e.preventDefault();
+      fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+      }).then((u)=>{console.log(u)})
+      .catch((error) => {
+          console.log(error);
+        })
+    }
+
+    handleChange(e){
+      this.setState({ [e.target.name ]: e.target.value });
+    }
+
     
+
+    logout(){
+      fire.auth().signOut();
+    }
+
+    componentDidMount(){
+      this.authListener();
+    }
+
+    authListener(){
+      fire.auth().onAuthStateChanged((logged) => {
+        console.log(logged);
+        if(logged) console.log("logged");
+        if(logged){
+          this.setState({ logged });
+          localStorage.setItem('logged', logged.uid);
+        } else {
+          this.setState({ logged: null });
+          localStorage.removeItem('logged');
+        }
+      });
+    }
+    login(e) {
+      e.preventDefault();
+      fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+      }).catch((error) => {
+          console.log(error);
+          alert("erro: revise seus dados e tente novamente")
+        });
+    }
+
+    handleRegister = () => {
+      this.props.history.push('/register');
+  }
+
     onLogin() {
       console.log('__onLogin__');
       console.log('email: ' + document.querySelector('#email').value);
@@ -155,7 +226,8 @@ export default class Dashboard extends Component {
     render(){
     const loggedIn = this.state.loggedIn
     const isLoading = this.state.loading;
-
+    const logged = this.state.logged;
+    
     const properties = {
       duration: 5000,
       transitionDuration: 500,
@@ -209,109 +281,70 @@ export default class Dashboard extends Component {
         <img onClick={() => this.props.history.push('/') } style={{width: 80, marginTop: 21, 
           cursor: 'pointer', marginLeft: 195, position: 'fixed'}} src={Logo} alt={Logo} />
         <SearchInput top={20} marginLeft={360} width={700} height={40} position="fixed" placeholder="Procure um seguro" />
-        {!!loggedIn ? 
+        {!!logged ? 
+        <Popover
+          content={
+            <Menu>
+              <Menu.Group>
+                <Menu.Item icon="person">Meu Perfil</Menu.Item>
+                <Menu.Item icon="cog">Configuracoes</Menu.Item>
+
+
+                <Menu.Item icon="log-out" color="danger-." onClick={this.logout}>Logout</Menu.Item>
+              </Menu.Group>
+              <Menu.Divider />
+            </Menu>
+          }
+        >
         <Avatar
           style={{marginLeft: 1320, marginTop: 15, position: 'fixed'}}
           src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
           name="Alan Turing"
           size={40}
         />
-        : 
+        </Popover>
+        : !this.state.isPressed ?
+        <div>
         <Button
-          style={{marginLeft: 1210, marginTop: 15, position: 'fixed'}}
+          style={{marginLeft: 1190, marginTop: 15, position: 'fixed'}}
           className="RML-btn"
-          onClick={() => this.openModal('login')}
+          //onClick={() => this.openModal('login')}
+          onClick={this.handlePressed}
           appearance="minimal"
         >
-        Entre ou cadastre-se
+        Entre ou
         </Button>
-        }
-        <ReactModalLogin
-          visible={this.state.showModal}
-          onCloseModal={this.closeModal.bind(this)}
-          loading={isLoading}
-          initialTab={this.state.initialTab}
-          error={this.state.error}
-          tabs={{
-            afterChange: this.afterTabsChange.bind(this)
-          }}
-          startLoading={this.startLoading.bind(this)}
-          finishLoading={this.finishLoading.bind(this)}
-          form={{
-            onLogin: this.onLogin.bind(this),
-            onRegister: this.onRegister.bind(this),
-            onRecoverPassword: this.onRecoverPassword.bind(this),
+        <Button
+        style={{marginLeft: 1240, marginTop: 15, position: 'fixed'}}
+        className="RML-btn"
+        //onClick={() => this.openModal('login')}
+        onClick={this.handleRegister}
+        appearance="minimal"
+      >
+      Cadastre-se
+      </Button>
+      </div>
+        :<div>
+          <div className="btnVoltar">
+          <Button  onClick={this.handlePressed}> voltar </Button>
+            </div>
+        <div className="divLogin">
+          <icon icon="arrow-left"/>
+          <div>
+          <icon />
+          <Input className="inputLogin" width={50} value={this.state.email} onChange={this.handleChange} name="email" placeholder="Email" color="primary"/>
+          </div>
+          <div>
+          <Input color="primary"value={this.state.password} onChange={this.handleChange} type="password" name="password" placeholder="Password" />
+          <div className="btLogin">
+          <Button onClick={this.login} type="submit">Entrar</Button>
+          </div>
+          </div>
 
-              recoverPasswordSuccessLabel: this.state.recoverPasswordSuccess
-                ? {
-                    label: "Uma nova senha foi enviada para seu e-mail!"
-                  }
-                : null,
-              recoverPasswordAnchor: {
-                label: "Esqueceu sua senha?"
-              },
-              loginBtn: {
-                label: "Entre"
-              },
-              registerBtn: {
-                label: "Cadastre-se"
-              },
-              recoverPasswordBtn: {
-                label: "Envie uma nova senha"
-              },
-              loginInputs: [
-                {
-                  containerClass: 'RML-form-group',
-                  label: 'Email',
-                  type: 'email',
-                  inputClass: 'RML-form-control',
-                  id: 'email',
-                  name: 'email',
-                  placeholder: 'Email',
-                },
-                {
-                  containerClass: 'RML-form-group',
-                  label: 'Password',
-                  type: 'password',
-                  inputClass: 'RML-form-control',
-                  id: 'password',
-                  name: 'password',
-                  placeholder: 'Password',
-                }
-              ],
-              recoverPasswordInputs: [
-                {
-                  containerClass: 'RML-form-group',
-                  label: 'Email',
-                  type: 'email',
-                  inputClass: 'RML-form-control',
-                  id: 'email',
-                  name: 'email',
-                  placeholder: 'Email',
-                },
-              ],
-            }}
-            separator={{
-              label: this.state.showSocialMedia ? "ou" : "Para se cadastrar, clique no botao abaixo: "
-            }}
-            providers={{
-              facebook: this.state.showSocialMedia ? {
-                config: facebook,
-                onLoginSuccess: this.onLoginSuccess.bind(this),
-                onLoginFail: this.onLoginFail.bind(this),
-                inactive: isLoading,
-                label: "Entre com Facebook"
-              } : null,
-              google: this.state.showSocialMedia ? {
-                config: google,
-                onLoginSuccess: this.onLoginSuccess.bind(this),
-                onLoginFail: this.onLoginFail.bind(this),
-                inactive: isLoading,
-                label: "Entre com Google"
-              } : null
-            }}
-          />
-          {loggedIn}
+                 
+        </div>
+        </div>
+        }
         </div>
       </header>
       <div>
@@ -327,6 +360,7 @@ export default class Dashboard extends Component {
 
       <div style={{marginTop: 28, position: 'fixed'}}>
         <div className='dashboard-banner-1'>
+
           <div className = "slide-container">
             <Slide {...properties}>
               <div className = "each-slide">
