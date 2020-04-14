@@ -267,7 +267,7 @@ export default class Register extends Component {
                                         <Input placeholder="Complemento" style={{ width: '375px' }} />
                                     </div>
                                 </div>
-                                <Button variant="contained"  onClick={this.handleRegister} className="buttonRegister">
+                                <Button variant="contained"  onClick={this.signup} className="buttonRegister">
                             Cadastrar
                         </Button>
                             </div>
