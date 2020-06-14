@@ -20,7 +20,9 @@ export default class SearchPage extends Component {
       showSocialMedia: true,
       selectedIndex: 0,
       filterList: [],
-      filter: '',
+      filterEstado: '',
+      filterEmpresa: '',
+      filterTipo: '',
       value: '',
       list: [],
       isaMessage: false,
@@ -30,13 +32,13 @@ export default class SearchPage extends Component {
     }
 
     componentDidMount(){
+      this.getCorretor();
       };
 
       getCorretor() {
             getCorretores.SearchCorretores().then((res) =>{
                 console.log("resposta", res.data.body)
                 let corretores = res.data.body;
-                console.log('estado: ', corretores[1].estado);
                 //mudando estado
                 this.setState({
                     corretores: corretores,
@@ -46,15 +48,50 @@ export default class SearchPage extends Component {
             })
       }
       
-      getCorretorByCidade(estado){
-        getCorretores.SearchCorretores().then((res) =>{
-          let corretores = res.data.body;
-          console.log('estado: ',corretores.estado);
+      getCorretorByEstado(estado){
+        /*getCorretores.SearchCorretores().then((res) =>{
+          let corretores = res.data.body.filter(corretores => corretores.estado === estado);
+          console.log('teste', corretores);
           this.setState({
-            corretores: (corretores.filter(corretores => corretores.estado === estado))
+            corretores: corretores,
+            showTable: true,
           })
+        })*/
+        this.setState({
+          corretores: this.state.corretores.filter(corretores => corretores.estado === estado),
+          showTable: true,
         })
       }
+
+      getCorretorByEmpresa(empresa){
+        /*getCorretores.SearchCorretores().then((res) =>{
+          let corretores = res.data.body.filter(corretores => corretores.empresa === empresa);
+          console.log('teste', corretores);
+          this.setState({
+            corretores: corretores,
+            showTable: true,
+          })
+        })*/
+        this.setState({
+          corretores: this.state.corretores.filter(corretores => corretores.empresa === empresa),
+          showTable: true,
+        })
+      }
+
+      getCorretorByTipo(tipo_seg){
+        /*getCorretores.SearchCorretores().then((res) => {
+          let corretores = res.data.body.filter(corretores => corretores.tipo_seg === tipo_seg);
+          console.log('teste', corretores);
+          this.setState({
+            corretores: corretores,
+            showTable: true,
+          })
+        })*/
+          this.setState({
+            corretores: this.state.corretores.filter(corretores => corretores.tipo_seg === tipo_seg),
+            showTable: true,
+          })
+      }      
 
     onAddMessage = () => {
       this.setState({isaMessage: true })
@@ -86,27 +123,20 @@ export default class SearchPage extends Component {
       <div>
       <div style={{marginLeft: 30, width: 300, float: 'left', borderRight: '1px solid rgb(214, 206, 200)' }}>
       <Heading size={700} marginBottom={10}>Filtros</Heading>
-      <TagInput
-        inputProps={{ placeholder: 'Adicione filtros...' }}
-        values={this.state.filterList}
-        onChange={values => {
-          this.setState({ filterList: values })
-        }}
-        style={{marginRight: 4, marginBottom: 30}}
-      />
       <div> 
       <Text style={{float: 'left'}} FontFamily='display'>
       Tipo de seguro
       </Text>
       <Combobox
           openOnFocus
-          items={['Automoveis', 'Aparelhos eletronicos', 'Residencia', 'Motocicletas']}
-          onChange={selected => this.setState({ filter: selected })}
+          items={['Automoveis', 'Vida', 'Residencia', 'Equipamentos Eletronicos', 'Viagens', 'Empresarial']}
+          onChange={selected => this.setState({ filterTipo: selected })}
           placeholder="Filtre pelo tipo de seguro"
           marginBottom={30}
           style={{float: 'left'}}
       />
-      <IconButton marginRight={22} style={{float: 'right'}} onClick={() => {this.getCorretor()}} icon="plus" />
+      <IconButton marginRight={22} style={{float: 'right'}} 
+        onClick={() => {this.getCorretorByTipo(this.state.filterTipo)}} icon="plus" />
       </div> 
       <div>
       <Text style={{float: 'left'}} FontFamily='display'>
@@ -114,13 +144,14 @@ export default class SearchPage extends Component {
       </Text>
       <Combobox
           openOnFocus
-          items={['Sao Paulo', 'Rio de Janeiro', 'Minas Gerais', 'Espirito Santo']}
-          onChange={selected => this.setState({ filter: selected })}
+          items={['SP', 'RJ', 'MG', 'ES']}
+          onChange={selected => this.setState({ filterEstado: selected })}
           placeholder="Filtre pelo Estado do corretor"
           marginBottom={30}
           style={{float: 'left'}}
       />
-      <IconButton marginRight={22} style={{float: 'right'}} onClick={() => {this.onAddFilter()}} icon="plus" />
+      <IconButton marginRight={22} style={{float: 'right'}} 
+        onClick={() => {this.getCorretorByEstado(this.state.filterEstado)}} icon="plus" />
       </div>
       <div style={{float: 'left'}}>
       <Text style={{float: 'left'}} FontFamily='display'>
@@ -129,15 +160,16 @@ export default class SearchPage extends Component {
       <Combobox
           openOnFocus
           items={['Porto Seguro', 'Zurich Seguros', 'Allianz', 'Bradesco Seguros']}
-          onChange={selected => this.setState({ filter: selected })}
+          onChange={selected => this.setState({ filterEmpresa: selected })}
           placeholder="Filtre pelo Estado do corretor"
           marginBottom={30}
           style={{float: 'left'}}
       />
-      <Button onClick={() => {this.getCorretor()}}>Buscar Corretor!</Button>
+      <Button onClick={() => {this.getCorretor()}}>Resetar filtros</Button>
       </div>
       <div> 
-      <IconButton marginRight={22} marginTop={20} style={{float: 'right'}} onClick={() => {this.onAddFilter()}} icon="plus" />
+      <IconButton marginRight={22} marginTop={20} style={{float: 'right'}} 
+        onClick={() => {this.getCorretorByEmpresa(this.state.filterEmpresa)}} icon="plus" />
       </div>
       </div>
       <div style={{float:'right'}}>
