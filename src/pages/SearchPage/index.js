@@ -29,6 +29,7 @@ export default class SearchPage extends Component {
       isaMessage: false,
       corretores: [],
       showTable: false,
+      isLoading: false,
     };
     }
 
@@ -37,6 +38,7 @@ export default class SearchPage extends Component {
       };
 
       getCorretor() {
+            this.setState({isLoading: true});
             getCorretores.SearchCorretores().then((res) =>{
                 console.log("resposta", res.data.body)
                 let corretores = res.data.body;
@@ -44,6 +46,7 @@ export default class SearchPage extends Component {
                 this.setState({
                     corretores: corretores,
                     showTable: true,
+                    isLoading: false,
                 })
                 console.log(this.state.corretores);
             })
@@ -119,7 +122,7 @@ export default class SearchPage extends Component {
           cursor: 'pointer', marginLeft: '35%', position: 'fixed'}} href="https://www.linkedin.com/in/lucas-bonfim-romero/"><h2>Administração
             </h2>
           </a>
-        <label onClick={() => this.props.history.push('/register')} style={{width: 80, marginTop: 21, 
+        <label onClick={() => this.props.history.push('/register')} style={{color: '#7030a0', width: 80, marginTop: 21, 
           cursor: 'pointer', marginLeft: '85%', position: 'fixed'}}> Cadastre-se! </label>
         <a href="search" style={{textDecoration: 'none', width: 80, marginTop: 21, 
           cursor: 'pointer', marginLeft: '58%', position: 'fixed'}}> <h2>Busca</h2> </a>
@@ -127,7 +130,7 @@ export default class SearchPage extends Component {
         </div>
       </header>
       <div>
-          <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10} marginBottom={10}>
+          <TabNavigation position='fixed' backgroundColor='#7030a0' width={1500} marginLeft={-10} marginBottom={10}>
           {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
               <Tab color='#FFFFFF' marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
               onSelect={() => this.props.history.push('/search')}>
@@ -195,151 +198,17 @@ export default class SearchPage extends Component {
       <Heading size={700} marginBottom={10} marginLeft={100}>Lista de corretores</Heading>
       {this.state.showTable === true ?
       <div>
-
       <Table data={this.state.corretores}/>
       </div>
       : null }
+      {this.state.isLoading === true ?
+      <div style={{marginTop: '10%', marginLeft: '20%'}}>
+      <h2>Carregando a tabela, por favor aguarde.</h2>
+      <h3>O retorno de nossa API pode demorar um pouco...</h3>
+      <h4>Caso esteja demorando mais que trinta segundos, por favor atualize a página.</h4>
       </div>
+      : null}
       </div>
-      <div>
-      <React.Fragment>
-        <SideSheet
-          isShown={this.state.isShown}
-          onCloseComplete={() => this.setState({ isShown: false })}
-          containerProps={{
-            display: 'flex',
-            flex: '1',
-            flexDirection: 'column',
-          }}
-        >
-          <Pane zIndex={1} flexShrink={0} elevation={0} backgroundColor="white">
-            <Pane padding={16} borderBottom="muted">
-              <Heading size={600}>
-              Carlos Alberto
-              <Badge color="neutral" marginBottom={1} marginLeft={2} marginRight={8}>Corretor Premium</Badge>
-              </Heading>
-              <Paragraph size={400} color="muted">
-                Informacoes sobre o(a) corretor(a)
-              </Paragraph>
-            </Pane>
-            <Pane display="flex" padding={8}>
-              <Tablist>
-                {['Perfil', 'Contato'].map(
-                    (tab, index) => (
-                      <Tab
-                        key={tab}
-                        isSelected={this.state.selectedIndex === index}
-                        onSelect={() => this.setState({ selectedIndex: index })}
-                      >
-                        {tab}
-                      </Tab>
-                    )
-                  )}
-
-              </Tablist>
-            </Pane>
-          </Pane>
-          {this.state.selectedIndex === 0 ?
-          <Pane flex="1" overflowY="scroll" background="tint1" padding={16}>
-            <Card
-              backgroundColor="white"
-              elevation={0}
-              height={100}
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <div>
-              <p>
-              <Text>Tipo:   </Text>
-              <Text>Seguro de Automoveis</Text>
-              </p>
-              <p>
-              <Text>Empresa:   </Text>
-              <Text>Porto Seguro</Text>
-              </p>
-              <p>
-              <Text>Estado:   </Text>
-              <Text>Sao Paulo</Text>
-              </p>
-              </div>
-            </Card>
-            <br />
-            <Label
-              htmlFor="textarea-2"
-              marginBottom={4}
-              display="block"
-            >
-              <br />
-              Ultimos comentarios sobre este corretor:
-            </Label>
-            <Textarea
-              appearance='minimal'
-              value={this.state.list[0]}
-              disabled={true}
-              style={{resize: 'none'}}
-            /> 
-            <br />
-            <br />
-            <Textarea
-              value={this.state.list[1]}
-              disabled={true}
-              style={{resize: 'none'}}
-            />
-            <br />
-            <br />
-            <Textarea
-              value={this.state.list[2]}
-              disabled={true}
-              style={{resize: 'none'}}
-            />
-          </Pane>
-          : <Pane flex="1" overflowY="scroll" background="tint1" padding={16}>
-          <Card
-            backgroundColor="white"
-            elevation={0}
-            height={100}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <div>
-            <p>
-            <Text>Telefone celular: </Text>
-            <Text>(11) 98765-4321</Text>
-            </p>
-            <p>
-            <Text>Correio eletronico: </Text>
-            <Text>carlosalberto@portoseguro.br</Text>
-            </p>
-            <p>
-            <Text>Disponibilidade: </Text>
-            <Text>Segunda a sexta das 10h as 18h</Text>
-            </p>
-            </div>
-            </Card>
-            <Pane>
-            <Label
-              htmlFor="textarea-2"
-              marginBottom={4}
-              display="block"
-            >
-              <br />
-              Deixe uma mensagem para o corretor
-            </Label>
-            <Textarea
-              required
-              onChange={e => this.setState({ value: e.target.value })}
-              value={this.state.value}
-              placeholder="Escreva aqui sua mensagem..."
-              style={{resize: 'none'}}
-            />
-            <Button style={{marginLeft: 520, marginTop: 1}} onClick={() => {this.onAddMessage(); 
-              toaster.success('Sua mensagem foi enviada!', {duration: 4})}}>Enviar</Button>
-          </Pane>
-          </Pane> }
-        </SideSheet>
-      </React.Fragment>   
       </div>
       <img style={{width: 50, marginTop: 602,  marginLeft: 669, position: 'fixed'}} src={Logo} alt={Logo} />
       <div style={{position: 'fixed', marginLeft: 1060, marginTop: 600, width: 500, float: 'left'}}>

@@ -206,20 +206,18 @@ export default class Register extends Component {
                                     </div>
 
                                     <div>
-                                       <Input value={this.state.email} onChange={this.handleChange} name="email" placeholder="Email" />
-                                    </div>
-
-                                    <div>
-                                      <Input value={this.state.password} onChange={this.handleChange} type="password" name="password" placeholder="Password" />
+                                    <Input  value={this.state.celular} onChange={this.handleChange} placeholder = "Número celular" type="celular" name="celular"/>
                                     </div>
                                 </div>
 
                                 <div className="right-form">
-
-                                    <div>
-                                    <Input  value={this.state.celular} onChange={this.handleChange} placeholder = "Número celular" type="celular" name="celular"/>
+                                <div style={{marginTop: 20}}>
+                                       <Input value={this.state.email} onChange={this.handleChange} name="email" placeholder="Email" />
                                     </div>
-                                    
+
+                                    <div style={{marginTop: 20}}>
+                                      <Input value={this.state.password} onChange={this.handleChange} type="password" name="password" placeholder="Password" />
+                                    </div>
                                 </div>
 
                             </div>
@@ -229,7 +227,19 @@ export default class Register extends Component {
                         <div id="form2" className="register-container-seller">
                             <div className="form-seller">
                                 <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center',
-                                    alignItems: 'center'}}>
+                                    alignItems: 'center', marginLeft: 15}}>
+                                    <label>Tipo selecionado: {this.state.tipo}</label>
+                                    <div style={{marginBottom: 20}}>
+                                    <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
+                                    <Button onClick={() => this.handleChangeTipo('Automoveis')}>Automoveis</Button>
+                                    <Button onClick={() => this.handleChangeTipo('Vida')}>Vida</Button>
+                                    <Button onClick={() => this.handleChangeTipo('Residencia')}>Residencia</Button>
+                                    <Button onClick={() => this.handleChangeTipo('Viagens')}>Viagens</Button>
+                                    <Button onClick={() => this.handleChangeTipo('Equipamentos Eletronicos')}>Eletrônicos</Button>
+                                    <Button onClick={() => this.handleChangeTipo('Empresarial')}>Empresarial</Button>
+                                    </ButtonGroup>
+                                    </div>
+
                                     <label>Estado selecionado: {this.state.estado}</label>
                                     <div style={{marginBottom: 20}}>
                                     <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
@@ -250,17 +260,6 @@ export default class Register extends Component {
                                     </ButtonGroup>
                                     </div>
 
-                                    <label>Tipo selecionado: {this.state.tipo}</label>
-                                    <div style={{marginBottom: 20}}>
-                                    <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
-                                    <Button onClick={() => this.handleChangeTipo('Automoveis')}>Automoveis</Button>
-                                    <Button onClick={() => this.handleChangeTipo('Vida')}>Vida</Button>
-                                    <Button onClick={() => this.handleChangeTipo('Residencia')}>Residencia</Button>
-                                    <Button onClick={() => this.handleChangeTipo('Viagens')}>Viagens</Button>
-                                    <Button onClick={() => this.handleChangeTipo('Equipamentos Eletronicos')}>Eletrônicos</Button>
-                                    <Button onClick={() => this.handleChangeTipo('Empresarial')}>Empresarial</Button>
-                                    </ButtonGroup>
-                                </div>
                                 </div>
 
                             </div>

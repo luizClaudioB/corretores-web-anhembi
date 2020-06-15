@@ -46,6 +46,7 @@ export default class Table extends React.Component {
     render() {
         return (
           <div>
+            <div>
             <table style={styles}>
             <thead>
               <tr>{this.getHeader()}</tr>
@@ -54,8 +55,8 @@ export default class Table extends React.Component {
               {this.getRowsData()}
             </tbody>
             </table>
+            </div>
           </div>
-          
         );
     }
 }

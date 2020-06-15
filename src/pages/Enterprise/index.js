@@ -187,7 +187,7 @@ export default class Enterprise extends Component {
           cursor: 'pointer', marginLeft: '35%', position: 'fixed'}} href="https://www.linkedin.com/in/lucas-bonfim-romero/"><h2>Administração
             </h2>
           </a>
-        <label onClick={() => this.props.history.push('/register')} style={{width: 80, marginTop: 21, 
+        <label onClick={() => this.props.history.push('/register')} style={{color: '#7030a0', width: 80, marginTop: 21, 
           cursor: 'pointer', marginLeft: '85%', position: 'fixed'}}> Cadastre-se! </label>
         <a href="search" style={{textDecoration: 'none', width: 80, marginTop: 21, 
           cursor: 'pointer', marginLeft: '58%', position: 'fixed'}}> <h2>Busca</h2> </a>
@@ -195,7 +195,7 @@ export default class Enterprise extends Component {
         </div>
       </header>
     <div>
-        <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10}>
+        <TabNavigation position='fixed' backgroundColor='#7030a0' width={1500} marginLeft={-10}>
         {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
             <Tab color='#FFFFFF' marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
             onSelect={() => this.props.history.push('/search')}>

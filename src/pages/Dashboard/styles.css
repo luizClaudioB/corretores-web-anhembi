@@ -30,7 +30,7 @@ position:fixed}
   margin-left: -10px;
   width: 1920px; 
   height: 106px;
-  background-color: #F37F2B;
+  background-color: #7030a0;
 }
 .header-menu{
   position: absolute;
@@ -38,7 +38,7 @@ position:fixed}
   height: 50px;
   top: 100px;
   left: 0px;
-  background-color: #E26B15;
+  background-color: #7030a0;
 
 }
 .header {
@@ -81,6 +81,7 @@ margin-left: 23px;
   position: fixed;
   left: 70px;
   top: 24px;
+  background-color: #E6A800;
 }
 .bm-burger-button {
   position: fixed;

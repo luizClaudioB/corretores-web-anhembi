@@ -4,7 +4,7 @@
     margin-left: -10px;
     width: 1920px; 
     height: 106px;
-    background-color: #F37F2B;
+    background-color: #E6A800;
   }
   
 
@@ -13,3 +13,13 @@
     left: 70px;
     top: 24px;
   }
+
+.header-menu{
+    position: absolute;
+    width: 1920px;
+    height: 50px;
+    top: 100px;
+    left: 0px;
+    background-color: #E6A800;
+
+}
