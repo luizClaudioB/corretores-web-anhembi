@@ -219,7 +219,6 @@ export default class Register extends Component {
                                       <Input value={this.state.password} onChange={this.handleChange} type="password" name="password" placeholder="Password" />
                                     </div>
                                 </div>
-
                             </div>
                         </form>
                         <form>

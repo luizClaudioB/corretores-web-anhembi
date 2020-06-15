@@ -1,9 +1,6 @@
 import './styles.css';
 import React, { Component } from 'react';
 import {Slide} from 'react-slideshow-image';
-import banner1 from './../../img/porto_auto.jpg';
-import banner2 from './../../img/seguro_vida.jpg';
-import banner3 from './../../img/seguro_resi.jpg';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -55,12 +52,6 @@ export default class Dashboard extends Component {
 
     });
 
-    const slideImages = [
-      banner1,
-      banner2,
-      banner3,
-    ];
-
     return(
     <div className="div1"> 
     <header className="dashboard-header">
@@ -110,17 +101,17 @@ export default class Dashboard extends Component {
           <div className = "slide-container">
             <Slide {...properties}>
               <div className = "each-slide">
-                <div style = {{scale: -10, 'backgroundImage': `url(${slideImages[0]})`}}>
+                <div style = {{scale: -10, 'backgroundImage': `url(https://navarroconsultoriaecorretora.com/wp-content/uploads/2019/08/Banner-20AutoIndeniza-C3-A7-C3-A3o-201150x350.jpg)`}}>
                   <span></span> 
                 </div>
               </div> 
               <div className = "each-slide" >
-                <div style = {{'backgroundImage': `url(${slideImages[1]})`}}>
+                <div style = {{'backgroundImage': `url(https://navarroconsultoriaecorretora.com/wp-content/uploads/2019/08/Banner-20Resid-C3-AAncia-20Habitual-2021150x350.jpg)`}}>
                   <span></span> 
                 </div> 
               </div> 
               <div className = "each-slide" >
-                <div style = {{'backgroundImage': `url(${slideImages[2]})`}}>
+                <div style = {{'backgroundImage': `url(https://navarroconsultoriaecorretora.com/wp-content/uploads/2019/08/Banner-20VIDA1-201150X350-1.jpg)`}}>
                   <span></span>
                 </div> 
               </div> 
