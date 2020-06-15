@@ -184,7 +184,7 @@ export default class Enterprise extends Component {
         <img onClick={() => this.props.history.push('/') } style={{width: 80, marginTop: 21, 
           cursor: 'pointer', marginLeft: '48%', position: 'fixed'}} src={Logo} alt={Logo} />
         <a style={{textDecoration: 'none', width: 80, marginTop: 21, 
-          cursor: 'pointer', marginLeft: '35%', position: 'fixed'}} href="https://www.linkedin.com/in/lucas-bonfim-romero/"><h2>Administração
+          cursor: 'pointer', marginLeft: '35%', position: 'fixed'}} href="https://admin-soseguros.000webhostapp.com/index.php"><h2>Administração
             </h2>
           </a>
         <label onClick={() => this.props.history.push('/register')} style={{color: '#7030a0', width: 80, marginTop: 21, 

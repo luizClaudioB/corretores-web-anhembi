@@ -84,7 +84,7 @@ export default class Dashboard extends Component {
         <a href="/"><img style={{width: 80, marginTop: 21, 
           cursor: 'pointer', marginLeft: '48%', position: 'fixed'}} src={Logo} alt={Logo} /></a>
         <a style={{textDecoration: 'none', width: 80, marginTop: 21, 
-          cursor: 'pointer', marginLeft: '35%', position: 'fixed'}} href="https://www.linkedin.com/in/lucas-bonfim-romero/"><h2>Administração
+          cursor: 'pointer', marginLeft: '35%', position: 'fixed'}} href="https://admin-soseguros.000webhostapp.com/index.php"><h2>Administração
             </h2>
           </a>
         <a href="register"><label style={{width: 80, marginTop: 21, 
