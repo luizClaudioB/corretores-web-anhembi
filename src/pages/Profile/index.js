@@ -1,31 +1,11 @@
 import './styles.css';
 import 'react-calendar/dist/Calendar.css';
-import React, {Component, ReactText} from 'react';
-import { HomeOutlined as HomeIcon, WechatOutlined as ChatIcon, 
-    UserOutlined as UserIcon, StarOutlined as StarIcon}  from '@ant-design/icons';
-import Dialog from '@material-ui/core/Dialog'
-import ReactModalLogin from 'react-modal-login';
-import { useHistory } from "react-router-dom";
-import PropTypes from "prop-types"
-import { Input, PageHeader, Rate } from 'antd';
-import { SearchInput, IconButton, Button, Popover, Menu, Avatar, Combobox, Text, Textarea, TagInput, Icon,
-    Pane, SideSheet, Heading, Paragraph, Tablist, Tab, Card, Table, TabNavigation, Badge, Label, toaster} from 'evergreen-ui';
-import ReactStarsRating from 'react-awesome-stars-rating';
-import Calendar from 'react-calendar'
+import React, { Component} from 'react';
+import { Button, Heading } from 'evergreen-ui';
 import Logo from './../../img/logo_web_svc.png';
+import Header from "./../../components/header-component/header.js";
+import { SearchInput, IconButton, Popover, Menu, Tab, TabNavigation } from 'evergreen-ui';
 
-const facebook = {
-  appId: "YOUR FB APP ID GOES HERE",
-  cookie: true,
-  xfbml: true,
-  version: "v3.2",
-  scope: "email"
-};
-
-const google = {
-  client_id: "YOUR_CLIENT_ID.apps.googleusercontent.com",
-  scope: "profile email"
-};
 export default class Profile extends Component {
     constructor(props){
     super(props);
@@ -44,109 +24,6 @@ export default class Profile extends Component {
       defaultState: true,
     };
     }
-    
-    onLogin() {
-      console.log('__onLogin__');
-      console.log('email: ' + document.querySelector('#email').value);
-      console.log('password: ' + document.querySelector('#password').value);
-  
-      const email = document.querySelector('#email').value;
-      const password = document.querySelector('#password').value;
-  
-      if (!email || !password) {
-        this.setState({
-          error: true
-        })
-      } else {
-        this.onLoginSuccess('form');
-      }
-    }
-  
-    onRegister() {
-      this.props.history.push('/register');
-    }
-  
-    onRecoverPassword() {
-      console.log('__onFotgottenPassword__');
-      console.log('email: ' + document.querySelector('#email').value);
-  
-      const email = document.querySelector('#email').value;
-  
-  
-      if (!email) {
-        this.setState({
-          error: true,
-          recoverPasswordSuccess: false
-        })
-      } else {
-        this.setState({
-          error: null,
-          recoverPasswordSuccess: true
-        });
-      }
-    }
-  
-    openModal(initialTab) {
-      this.setState({
-        initialTab: initialTab
-      }, () => {
-        this.setState({
-          showModal: true,
-        })
-      });
-    }
-  
-    onLoginSuccess(method, response) {
-  
-      this.closeModal();
-      this.setState({
-        loggedIn: method,
-        loading: false
-      })
-    }
-  
-    onLoginFail(method, response) {
-  
-      this.setState({
-        loading: false,
-        error: response
-      })
-    }
-  
-    startLoading() {
-      this.setState({
-        loading: true
-      })
-    }
-  
-    finishLoading() {
-      this.setState({
-        loading: false
-      })
-    }
-  
-    afterTabsChange() {
-      this.setState({
-        error: null,
-        recoverPasswordSuccess: false,
-      });
-      if(this.state.showSocialMedia){
-        this.setState({
-          showSocialMedia: false
-        })
-      }else{
-        this.setState({
-          showSocialMedia: true
-        })
-      }
-    }
-  
-    closeModal() {
-      this.setState({
-        showModal: false,
-        error: null
-      });
-    }
 
     clearAll(){
         this.setState({
@@ -158,17 +35,6 @@ export default class Profile extends Component {
     }
     
     render(){
-    const loggedIn = this.state.loggedIn
-    const isLoading = this.state.loading;
-    const onChange = (value) => {
-        console.log(`React Stars Rating value is ${value}`);
-      };
-    const FilterRating = ({ value }) => {
-        return <ReactStarsRating onChange={onChange} value={value} />;
-    };
-    const VendorRating = ({ value }) => {
-        return <ReactStarsRating value={5} isEdit={false} />;
-      };
 
     return(
     <div className="div1"> 
@@ -178,12 +44,9 @@ export default class Profile extends Component {
           content={
             <Menu>
               <Menu.Group>
-                <Menu.Item onClick={() => this.props.history.push('/search') } icon="search">Busque Corretores</Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/history') } icon="history">
-                  Historico
-                </Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculos da Equipe</Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/enterprise') } icon="info-sign">Sobre Nos</Menu.Item>
+                <a href="search"> <Menu.Item icon="search">Busque Corretores</Menu.Item></a>
+                <a href="profile"> <Menu.Item icon="star-empty">Curriculo da Equipe</Menu.Item></a>
+                <a href="enterprise"><Menu.Item icon="info-sign">Sobre Nos</Menu.Item></a>
               </Menu.Group>
               <Menu.Divider />
             </Menu>
@@ -193,124 +56,29 @@ export default class Profile extends Component {
         </Popover>
         <br />
         <br />
-        <img onClick={() => this.props.history.push('/') } style={{width: 80, marginTop: 21, 
-          cursor: 'pointer', marginLeft: 195, position: 'fixed'}} src={Logo} alt={Logo} />
-        <SearchInput top={20} marginLeft={360} width={700} height={40} position="fixed" placeholder="Procure um seguro" />
-        {!!loggedIn ? 
-        <Avatar
-          style={{marginLeft: 1320, marginTop: 15, position: 'fixed'}}
-          src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
-          name="Alan Turing"
-          size={40}
-        />
-        : 
-        <Button
-          style={{marginLeft: 1210, marginTop: 15, position: 'fixed'}}
-          className="RML-btn"
-          onClick={() => this.openModal('login')}
-          appearance="minimal"
-        >
-        Entre ou cadastre-se
-        </Button>
-        }
-        <ReactModalLogin
-          visible={this.state.showModal}
-          onCloseModal={this.closeModal.bind(this)}
-          loading={isLoading}
-          initialTab={this.state.initialTab}
-          error={this.state.error}
-          tabs={{
-            afterChange: this.afterTabsChange.bind(this)
-          }}
-          startLoading={this.startLoading.bind(this)}
-          finishLoading={this.finishLoading.bind(this)}
-          form={{
-            onLogin: this.onLogin.bind(this),
-            onRegister: this.onRegister.bind(this),
-            onRecoverPassword: this.onRecoverPassword.bind(this),
+        <a href="/"><img style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '48%', position: 'fixed'}} src={Logo} alt={Logo} /></a>
+        <a style={{textDecoration: 'none', width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '35%', position: 'fixed'}} href="https://admin-soseguros.000webhostapp.com/index.php"><h2>Administração
+            </h2>
+          </a>
+        <a href="register"><label style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '85%', position: 'fixed'}}> Cadastre-se! </label></a>
+        <a href="search" style={{textDecoration: 'none', width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '58%', position: 'fixed'}}> <h2>Busca</h2> </a>
 
-            recoverPasswordSuccessLabel: this.state.recoverPasswordSuccess
-              ? {
-                  label: "Uma nova senha foi enviada para seu e-mail!"
-                }
-              : null,
-            recoverPasswordAnchor: {
-              label: "Esqueceu sua senha?"
-            },
-            loginBtn: {
-              label: "Entre"
-            },
-            registerBtn: {
-              label: "Cadastre-se"
-            },
-            recoverPasswordBtn: {
-              label: "Envie uma nova senha"
-            },
-            loginInputs: [
-              {
-                containerClass: 'RML-form-group',
-                label: 'Email',
-                type: 'email',
-                inputClass: 'RML-form-control',
-                id: 'email',
-                name: 'email',
-                placeholder: 'Email',
-              },
-              {
-                containerClass: 'RML-form-group',
-                label: 'Password',
-                type: 'password',
-                inputClass: 'RML-form-control',
-                id: 'password',
-                name: 'password',
-                placeholder: 'Password',
-              }
-            ],
-            recoverPasswordInputs: [
-              {
-                containerClass: 'RML-form-group',
-                label: 'Email',
-                type: 'email',
-                inputClass: 'RML-form-control',
-                id: 'email',
-                name: 'email',
-                placeholder: 'Email',
-              },
-            ],
-          }}
-          separator={{
-            label: this.state.showSocialMedia ? "ou" : "Para se cadastrar, clique no botao abaixo: "
-          }}
-          providers={{
-            facebook: this.state.showSocialMedia ? {
-              config: facebook,
-              onLoginSuccess: this.onLoginSuccess.bind(this),
-              onLoginFail: this.onLoginFail.bind(this),
-              inactive: isLoading,
-              label: "Entre com Facebook"
-            } : null,
-            google: this.state.showSocialMedia ? {
-              config: google,
-              onLoginSuccess: this.onLoginSuccess.bind(this),
-              onLoginFail: this.onLoginFail.bind(this),
-              inactive: isLoading,
-              label: "Entre com Google"
-            } : null
-          }}
-        />
-        {loggedIn}
+        </div>
+      </header>
+      <div>
+          <TabNavigation position='fixed' backgroundColor='#7030a0' width={1500} marginLeft={-10} marginBottom={10}>
+          {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
+              <Tab color='#FFFFFF' marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
+              onSelect={() => this.props.history.push('/search')}>
+              {tab}
+              </Tab>
+          ))}
+          </TabNavigation>
       </div>
-    </header>
-    <div>
-        <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10}>
-        {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
-            <Tab color='#FFFFFF' marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
-            onSelect={() => this.props.history.push('/search')}>
-            {tab}
-            </Tab>
-        ))}
-        </TabNavigation>
-    </div>
     <div>
     <body>
     <div>

@@ -11,7 +11,8 @@
     display: flex;
     align-items: initial;
     justify-content: center; 
-    background-color:#E3DEDE ;
+    border-color: #7030a0;
+    background-color:#E6A800;
     position: relative;
     
 }
@@ -47,14 +48,12 @@
     font-size: 25px;
 }
 
-
-
-
-
 .register-container-initial{
     width: 600px;
     height: 230px;
-    background-color: #a996ad;
+    background-color: #E6A800;
+    border-bottom: #7030a0;
+    border: 1px solid #7030a0;
     align-items: center;
     justify-content: left ;
     display: flex;
@@ -76,10 +75,10 @@
 .register-container-initial .right-form{
     float: right;
     margin-left: 50px;
-    margin-top: -10px;
+    margin-top: -20px;
 }
 .register-container-initial .right-form .inputs{
-    margin-top: 0px;
+    margin-top: 20px;
     margin-bottom: 26px;
 }
 
@@ -96,7 +95,8 @@
     margin-top: 30px;
     width: 600px;
     height: 320px;
-    background-color: #c4c4c4;
+    background-color: #E6A800;
+    border: 1px solid #7030a0;
     align-items: center;
     justify-content: left ;
     display: flex;
@@ -121,12 +121,17 @@
     float: left;
     margin-left: 15px;
 }
+.right-form-address{
+    float: right;
+    margin-left: 15px;
+}
 
 .register-container-seller{
     margin-top: 30px;
     width: 600px;
     height: 340px;
-    background-color: #c4c4c4;
+    background-color: #E6A800;
+    border: 1px solid #7030a0;
     align-items: center;
     justify-content: left ;
     display: flex;
@@ -137,14 +142,18 @@
 }
 
 .register-container-seller .form-seller{
-    float: left;
-    margin-left: 75px;
-    margin-top: -15px;
+    margin-left: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 
 .buttonRegister{
-    position: relative;
-    left: 20px;
-    top: 200px;
+    position: fixed;
+    left: 260px;
+    top: 20px;
+    width: 100px;
+    background-color: #7030a0;
 }

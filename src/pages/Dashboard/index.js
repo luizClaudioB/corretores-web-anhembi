@@ -1,46 +1,19 @@
 import './styles.css';
-import React, {Component, ReactText} from 'react';
-import { HomeOutlined as HomeIcon, WechatOutlined as ChatIcon, 
-    UserOutlined as UserIcon, StarOutlined as StarIcon}  from '@ant-design/icons';
-import Dialog from '@material-ui/core/Dialog'
-import ReactModalLogin from 'react-modal-login';
-import { useHistory } from "react-router-dom";
-import PropTypes from "prop-types"
-//import { Input } from 'antd';
-import { SearchInput, IconButton, Popover, Menu, Button, Avatar, Tab, TabNavigation } from 'evergreen-ui';
+import React, { Component } from 'react';
 import {Slide} from 'react-slideshow-image';
-import Logo from './../../img/logo_web_svc.png';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import ButtonUI from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import {Input} from '@material-ui/core'
-import fire from './../../config/Fire';
-
-const facebook = {
-  appId: "YOUR FB APP ID GOES HERE",
-  cookie: true,
-  xfbml: true,
-  version: "v3.2",
-  scope: "email"
-};
-
-const google = {
-  client_id: "YOUR_CLIENT_ID.apps.googleusercontent.com",
-  scope: "profile email"
-};
+import Header from "./../../components/header-component/header.js";
+import { SearchInput, IconButton, Popover, Menu, Tab, TabNavigation } from 'evergreen-ui';
+import Logo from './../../img/logo_web_svc.png';
 
 export default class Dashboard extends Component {
     constructor(props){
     super(props);
-    this.login = this.login.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.logout = this.logout.bind(this);
-    this.signup = this.signup.bind(this);
     this.state = {
       showModal: false,
       loggedIn: false,
@@ -54,176 +27,9 @@ export default class Dashboard extends Component {
       password: "",
       isPressed:false
     };
-    this.authListener = this.authListener.bind(this);
     }
-
-    handlePressed = () => {
-      this.setState({isPressed: true})
-
-      if(!this.state.isPressed){
-        this.setState({isPressed: true});
-        }else{
-        this.setState({isPressed: false});
-        }
-    }
-
-
-    signup(e){
-      e.preventDefault();
-      fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-      }).then((u)=>{console.log(u)})
-      .catch((error) => {
-          console.log(error);
-        })
-    }
-
-    handleChange(e){
-      this.setState({ [e.target.name ]: e.target.value });
-    }
-
-    
-
-    logout(){
-      fire.auth().signOut();
-    }
-
-    componentDidMount(){
-      this.authListener();
-    }
-
-    authListener(){
-      fire.auth().onAuthStateChanged((logged) => {
-        console.log(logged);
-        if(logged) console.log("logged");
-        if(logged){
-          this.setState({ logged });
-          localStorage.setItem('logged', logged.uid);
-        } else {
-          this.setState({ logged: null });
-          localStorage.removeItem('logged');
-        }
-      });
-    }
-    login(e) {
-      e.preventDefault();
-      fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-      }).catch((error) => {
-          console.log(error);
-          alert("erro: revise seus dados e tente novamente")
-        });
-    }
-
-    handleRegister = () => {
-      this.props.history.push('/register');
-  }
-
-    onLogin() {
-      console.log('__onLogin__');
-      console.log('email: ' + document.querySelector('#email').value);
-      console.log('password: ' + document.querySelector('#password').value);
-  
-      const email = document.querySelector('#email').value;
-      const password = document.querySelector('#password').value;
-  
-      if (!email || !password) {
-        this.setState({
-          error: true
-        })
-      } else {
-        this.onLoginSuccess('form');
-      }
-    }
-  
-    onRegister() {
-      this.props.history.push('/register');
-    }
-  
-    onRecoverPassword() {
-      console.log('__onFotgottenPassword__');
-      console.log('email: ' + document.querySelector('#email').value);
-  
-      const email = document.querySelector('#email').value;
-  
-  
-      if (!email) {
-        this.setState({
-          error: true,
-          recoverPasswordSuccess: false
-        })
-      } else {
-        this.setState({
-          error: null,
-          recoverPasswordSuccess: true
-        });
-      }
-    }
-  
-    openModal(initialTab) {
-      this.setState({
-        initialTab: initialTab
-      }, () => {
-        this.setState({
-          showModal: true,
-        })
-      });
-    }
-  
-    onLoginSuccess(method, response) {
-  
-      this.closeModal();
-      this.setState({
-        loggedIn: method,
-        loading: false
-      })
-    }
-  
-    onLoginFail(method, response) {
-  
-      this.setState({
-        loading: false,
-        error: response
-      })
-    }
-  
-    startLoading() {
-      this.setState({
-        loading: true
-      })
-    }
-  
-    finishLoading() {
-      this.setState({
-        loading: false
-      })
-    }
-  
-    afterTabsChange() {
-      this.setState({
-        error: null,
-        recoverPasswordSuccess: false,
-      });
-      if(this.state.showSocialMedia){
-        this.setState({
-          showSocialMedia: false
-        })
-      }else{
-        this.setState({
-          showSocialMedia: true
-        })
-      }
-    }
-  
-    closeModal() {
-      this.setState({
-        showModal: false,
-        error: null
-      });
-    }
-    
+     
     render(){
-    const loggedIn = this.state.loggedIn
-    const isLoading = this.state.loading;
-    const logged = this.state.logged;
     
     const properties = {
       duration: 5000,
@@ -254,12 +60,9 @@ export default class Dashboard extends Component {
           content={
             <Menu>
               <Menu.Group>
-                <Menu.Item onClick={() => this.props.history.push('/search') } icon="search">Busque Corretores</Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/history') } icon="history">
-                  Historico
-                </Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculo da Equipe</Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/enterprise') } icon="info-sign">Sobre Nos</Menu.Item>
+                <a href="search"> <Menu.Item icon="search">Busque Corretores</Menu.Item></a>
+                <a href="profile"> <Menu.Item icon="star-empty">Curriculo da Equipe</Menu.Item></a>
+                <a href="enterprise"><Menu.Item icon="info-sign">Sobre Nos</Menu.Item></a>
               </Menu.Group>
               <Menu.Divider />
             </Menu>
@@ -269,77 +72,21 @@ export default class Dashboard extends Component {
         </Popover>
         <br />
         <br />
-        <img onClick={() => this.props.history.push('/') } style={{width: 80, marginTop: 21, 
-          cursor: 'pointer', marginLeft: 195, position: 'fixed'}} src={Logo} alt={Logo} />
-        <SearchInput top={20} marginLeft={360} width={700} height={40} position="fixed" placeholder="Procure um seguro" />
-        {!!logged ? 
-        <Popover
-          content={
-            <Menu>
-              <Menu.Group>
-                <Menu.Item icon="person">Meu Perfil</Menu.Item>
-                <Menu.Item icon="cog">Configuracoes</Menu.Item>
+        <a href="/"><img style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '48%', position: 'fixed'}} src={Logo} alt={Logo} /></a>
+        <a style={{textDecoration: 'none', width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '35%', position: 'fixed'}} href="https://admin-soseguros.000webhostapp.com/index.php"><h2>Administração
+            </h2>
+          </a>
+        <a href="register"><label style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '85%', position: 'fixed'}}> Cadastre-se! </label></a>
+        <a href="search" style={{textDecoration: 'none', width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '58%', position: 'fixed'}}> <h2>Busca</h2> </a>
 
-
-                <Menu.Item icon="log-out" color="danger-." onClick={this.logout}>Logout</Menu.Item>
-              </Menu.Group>
-              <Menu.Divider />
-            </Menu>
-          }
-        >
-        <Avatar
-          style={{marginLeft: 1320, marginTop: 15, position: 'fixed'}}
-          src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
-          name="Alan Turing"
-          size={40}
-        />
-        </Popover>
-        : !this.state.isPressed ?
-        <div>
-        <Button
-          style={{marginLeft: 1190, marginTop: 15, position: 'fixed'}}
-          className="RML-btn"
-          //onClick={() => this.openModal('login')}
-          onClick={this.handlePressed}
-          appearance="minimal"
-        >
-        Entre ou
-        </Button>
-        <Button
-        style={{marginLeft: 1240, marginTop: 15, position: 'fixed'}}
-        className="RML-btn"
-        //onClick={() => this.openModal('login')}
-        onClick={this.handleRegister}
-        appearance="minimal"
-      >
-      Cadastre-se
-      </Button>
-      </div>
-        :<div>
-          <div style={{marginTop: 15, position: 'fixed'}}className="btnVoltar">
-          <Button  onClick={this.handlePressed}> voltar </Button>
-            </div>
-        <div className="divLogin">
-          <icon icon="arrow-left"/>
-          <div>
-          <icon />
-          <Input marginTop={15} width={50} value={this.state.email} onChange={this.handleChange} name="email" placeholder="Email" color="primary"/>
-          </div>
-          <div>
-          <Input color="primary"value={this.state.password} onChange={this.handleChange} type="password" name="password" placeholder="Password" />
-          <div className="btLogin">
-          <Button onClick={this.login} type="submit">Entrar</Button>
-          </div>
-          </div>
-
-                 
-        </div>
-        </div>
-        }
         </div>
       </header>
       <div>
-          <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10} marginBottom={10}>
+          <TabNavigation position='fixed' backgroundColor='#7030a0' width={1500} marginLeft={-10} marginBottom={10}>
           {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
               <Tab color='#FFFFFF' marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
               onSelect={() => this.props.history.push('/search')}>
@@ -348,7 +95,6 @@ export default class Dashboard extends Component {
           ))}
           </TabNavigation>
       </div>
-
       <div style={{marginTop: 28, position: 'fixed'}}>
         <div className='dashboard-banner-1'>
 
@@ -372,7 +118,7 @@ export default class Dashboard extends Component {
             </Slide>
           </div>
         </div>
-        
+
       <div style = {{display: 'inline'}}>
         <div style={{display: 'inline-block', marginLeft: 45, marginTop: 50, top: 20, width: '22%', float: 'left'}}>
           <Card>

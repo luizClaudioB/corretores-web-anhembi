@@ -1,0 +1,11 @@
+thead {color:black;}
+tbody {color:black;}
+tfoot {color:black;}
+
+table, th, td {
+  border: 1px solid black;
+  margin-left: 15%;
+}
+td, th{
+  padding: 5px;
+}
