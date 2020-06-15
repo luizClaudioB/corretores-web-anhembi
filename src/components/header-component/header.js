@@ -16,9 +16,6 @@ export default class Header extends React.Component{
             <Menu>
               <Menu.Group>
                 <a href="search"> <Menu.Item icon="search">Busque Corretores</Menu.Item></a>
-                <a href="history"><Menu.Item icon="history">
-                  Historico
-                </Menu.Item></a>
                 <a href="profile"> <Menu.Item icon="star-empty">Curriculo da Equipe</Menu.Item></a>
                 <a href="enterprise"><Menu.Item icon="info-sign">Sobre Nos</Menu.Item></a>
               </Menu.Group>
@@ -30,15 +27,15 @@ export default class Header extends React.Component{
         </Popover>
         <br />
         <br />
-        <img onClick={() => this.props.history.push('/') } style={{width: 80, marginTop: 21, 
-          cursor: 'pointer', marginLeft: '48%', position: 'fixed'}} src={Logo} alt={Logo} />
-        <a style={{width: 80, marginTop: 21, 
+        <a href="/"><img style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '48%', position: 'fixed'}} src={Logo} alt={Logo} /></a>
+        <a style={{textDecoration: 'none', width: 80, marginTop: 21, 
           cursor: 'pointer', marginLeft: '35%', position: 'fixed'}} href="https://www.linkedin.com/in/lucas-bonfim-romero/"><h2>Administração
             </h2>
           </a>
         <a href="register"><label style={{width: 80, marginTop: 21, 
           cursor: 'pointer', marginLeft: '85%', position: 'fixed'}}> Cadastre-se! </label></a>
-        <a href="search" style={{width: 80, marginTop: 21, 
+        <a href="search" style={{textDecoration: 'none', width: 80, marginTop: 21, 
           cursor: 'pointer', marginLeft: '58%', position: 'fixed'}}> <h2>Busca</h2> </a>
 
         </div>

@@ -102,9 +102,6 @@ export default class SearchPage extends Component {
             <Menu>
               <Menu.Group>
                 <Menu.Item onClick={() => this.props.history.push('/search') } icon="search">Busque Corretores</Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/history') } icon="history">
-                  Historico
-                </Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculo da Equipe</Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/enterprise') } icon="info-sign">Sobre Nos</Menu.Item>
               </Menu.Group>
@@ -118,14 +115,14 @@ export default class SearchPage extends Component {
         <br />
         <img onClick={() => this.props.history.push('/') } style={{width: 80, marginTop: 21, 
           cursor: 'pointer', marginLeft: '48%', position: 'fixed'}} src={Logo} alt={Logo} />
-        <a style={{width: 80, marginTop: 21, 
+        <a style={{textDecoration: 'none', width: 80, marginTop: 21, 
           cursor: 'pointer', marginLeft: '35%', position: 'fixed'}} href="https://www.linkedin.com/in/lucas-bonfim-romero/"><h2>Administração
             </h2>
           </a>
         <label onClick={() => this.props.history.push('/register')} style={{width: 80, marginTop: 21, 
           cursor: 'pointer', marginLeft: '85%', position: 'fixed'}}> Cadastre-se! </label>
-        <a style={{width: 80, marginTop: 21, 
-          cursor: 'pointer', marginLeft: '58%', position: 'fixed'}}> Busca </a>
+        <a href="search" style={{textDecoration: 'none', width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '58%', position: 'fixed'}}> <h2>Busca</h2> </a>
 
         </div>
       </header>

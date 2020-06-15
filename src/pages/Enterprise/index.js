@@ -170,10 +170,7 @@ export default class Enterprise extends Component {
             <Menu>
               <Menu.Group>
                 <Menu.Item onClick={() => this.props.history.push('/search') } icon="search">Busque Corretores</Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/history') } icon="history">
-                  Historico
-                </Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculos da Equipe</Menu.Item>
+                <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculo da Equipe</Menu.Item>
                 <Menu.Item onClick={() => this.props.history.push('/enterprise') } icon="info-sign">Sobre Nos</Menu.Item>
               </Menu.Group>
               <Menu.Divider />
@@ -185,113 +182,18 @@ export default class Enterprise extends Component {
         <br />
         <br />
         <img onClick={() => this.props.history.push('/') } style={{width: 80, marginTop: 21, 
-          cursor: 'pointer', marginLeft: 195, position: 'fixed'}} src={Logo} alt={Logo} />
-        <SearchInput top={20} marginLeft={360} width={700} height={40} position="fixed" placeholder="Procure um seguro" />
-        {!!loggedIn ? 
-        <Avatar
-          style={{marginLeft: 1320, marginTop: 15, position: 'fixed'}}
-          src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
-          name="Alan Turing"
-          size={40}
-        />
-        : 
-        <Button
-          style={{marginLeft: 1210, marginTop: 15, position: 'fixed'}}
-          className="RML-btn"
-          onClick={() => this.openModal('login')}
-          appearance="minimal"
-        >
-        Entre ou cadastre-se
-        </Button>
-        }
-        <ReactModalLogin
-          visible={this.state.showModal}
-          onCloseModal={this.closeModal.bind(this)}
-          loading={isLoading}
-          initialTab={this.state.initialTab}
-          error={this.state.error}
-          tabs={{
-            afterChange: this.afterTabsChange.bind(this)
-          }}
-          startLoading={this.startLoading.bind(this)}
-          finishLoading={this.finishLoading.bind(this)}
-          form={{
-            onLogin: this.onLogin.bind(this),
-            onRegister: this.onRegister.bind(this),
-            onRecoverPassword: this.onRecoverPassword.bind(this),
+          cursor: 'pointer', marginLeft: '48%', position: 'fixed'}} src={Logo} alt={Logo} />
+        <a style={{textDecoration: 'none', width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '35%', position: 'fixed'}} href="https://www.linkedin.com/in/lucas-bonfim-romero/"><h2>Administração
+            </h2>
+          </a>
+        <label onClick={() => this.props.history.push('/register')} style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '85%', position: 'fixed'}}> Cadastre-se! </label>
+        <a href="search" style={{textDecoration: 'none', width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '58%', position: 'fixed'}}> <h2>Busca</h2> </a>
 
-            recoverPasswordSuccessLabel: this.state.recoverPasswordSuccess
-              ? {
-                  label: "Uma nova senha foi enviada para seu e-mail!"
-                }
-              : null,
-            recoverPasswordAnchor: {
-              label: "Esqueceu sua senha?"
-            },
-            loginBtn: {
-              label: "Entre"
-            },
-            registerBtn: {
-              label: "Cadastre-se"
-            },
-            recoverPasswordBtn: {
-              label: "Envie uma nova senha"
-            },
-            loginInputs: [
-              {
-                containerClass: 'RML-form-group',
-                label: 'Email',
-                type: 'email',
-                inputClass: 'RML-form-control',
-                id: 'email',
-                name: 'email',
-                placeholder: 'Email',
-              },
-              {
-                containerClass: 'RML-form-group',
-                label: 'Password',
-                type: 'password',
-                inputClass: 'RML-form-control',
-                id: 'password',
-                name: 'password',
-                placeholder: 'Password',
-              }
-            ],
-            recoverPasswordInputs: [
-              {
-                containerClass: 'RML-form-group',
-                label: 'Email',
-                type: 'email',
-                inputClass: 'RML-form-control',
-                id: 'email',
-                name: 'email',
-                placeholder: 'Email',
-              },
-            ],
-          }}
-          separator={{
-            label: this.state.showSocialMedia ? "ou" : "Para se cadastrar, clique no botao abaixo: "
-          }}
-          providers={{
-            facebook: this.state.showSocialMedia ? {
-              config: facebook,
-              onLoginSuccess: this.onLoginSuccess.bind(this),
-              onLoginFail: this.onLoginFail.bind(this),
-              inactive: isLoading,
-              label: "Entre com Facebook"
-            } : null,
-            google: this.state.showSocialMedia ? {
-              config: google,
-              onLoginSuccess: this.onLoginSuccess.bind(this),
-              onLoginFail: this.onLoginFail.bind(this),
-              inactive: isLoading,
-              label: "Entre com Google"
-            } : null
-          }}
-        />
-        {loggedIn}
-      </div>
-    </header>
+        </div>
+      </header>
     <div>
         <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10}>
         {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
