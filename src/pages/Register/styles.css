@@ -11,7 +11,8 @@
     display: flex;
     align-items: initial;
     justify-content: center; 
-    background-color:#E3DEDE ;
+    border-color: #7030a0;
+    background-color:#E6A800;
     position: relative;
     
 }
@@ -47,14 +48,12 @@
     font-size: 25px;
 }
 
-
-
-
-
 .register-container-initial{
     width: 600px;
     height: 230px;
-    background-color: #a996ad;
+    background-color: #E6A800;
+    border-bottom: #7030a0;
+    border: 1px solid #7030a0;
     align-items: center;
     justify-content: left ;
     display: flex;
@@ -96,7 +95,8 @@
     margin-top: 30px;
     width: 600px;
     height: 320px;
-    background-color: #c4c4c4;
+    background-color: #E6A800;
+    border: 1px solid #7030a0;
     align-items: center;
     justify-content: left ;
     display: flex;
@@ -130,7 +130,8 @@
     margin-top: 30px;
     width: 600px;
     height: 340px;
-    background-color: #c4c4c4;
+    background-color: #E6A800;
+    border: 1px solid #7030a0;
     align-items: center;
     justify-content: left ;
     display: flex;
@@ -151,7 +152,8 @@
 
 .buttonRegister{
     position: fixed;
-    left: -300px;
-    top: 200px;
-    width: 50px;
+    left: 260px;
+    top: 20px;
+    width: 100px;
+    background-color: #7030a0;
 }

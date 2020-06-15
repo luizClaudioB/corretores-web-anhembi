@@ -259,17 +259,17 @@ export default class Register extends Component {
                                     <Button onClick={() => this.handleChangeEmpresa('Zurich Seguros')}>Zurich</Button>
                                     </ButtonGroup>
                                     </div>
-
+                                    
                                 </div>
 
                             </div>
-                            <Button variant="contained" 
+                        </div>
+                        <Button variant="contained" 
                             onClick={() => {this.enviarCorr(this.state.nome, this.state.tipo, this.state.estado, this.state.empresa, this.state.celular, this.state.email);
                                 toaster.success('Cadastro realizado com sucesso!', {duration: 4})}} 
                             className="buttonRegister">
                                 Cadastrar
                             </Button>
-                        </div>
                         </form>
                     </div>
                     </div>
