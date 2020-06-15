@@ -4,8 +4,10 @@ import { render } from '@testing-library/react';
 import ApiCep from '../../services/ApiCep';
 import InputMask from 'react-input-mask';
 import fire from './../../config/Fire';
-import {TextField, Input, Checkbox, Button, ButtonGroup} from '@material-ui/core'
+import {TextField, Input, Checkbox, Button, ButtonGroup, Modal} from '@material-ui/core'
 import sendCorretores from '../../services/sendCorretores';
+import sendUsers from '../../services/sendUsers';
+import { toaster } from 'evergreen-ui';
 
 export default class Register extends Component {
     constructor(props) {
@@ -28,7 +30,8 @@ export default class Register extends Component {
             tipo: "",
             estado: "",
             nome: "",
-            celular: ""
+            celular: "",
+            showModal: false,
         };
     }
 
@@ -165,6 +168,12 @@ export default class Register extends Component {
     
     enviarCorr(nome, tipo, estado, empresa, numero, email){
         sendCorretores.EnviarCorretores(nome, tipo, estado, empresa, numero, email);
+        setTimeout(this.handleRegister, 2500);
+    }
+
+    enviarUser(name, email, password){
+        sendUsers.EnviarUsers(name, email, password);
+        setTimeout(this.handleRegister, 2500);
     }
 
     render() {
@@ -172,6 +181,11 @@ export default class Register extends Component {
         return (
             
             <div>
+                {this.state.showModal === true ? 
+                <div> 
+                
+                </div>
+                : null}
                 <div className="register-container">
                     <div className="content">
                     
@@ -179,8 +193,7 @@ export default class Register extends Component {
                             <Button onClick={() => this.props.history.push('/') }>Retornar a tela inicial</Button>
                             <h1>Cadastro</h1>
                             <p>
-                                Faça seu cadastro para poder conversar com corretores e adquirir seus serviços!
-                            
+                                Olá, corretor! Realize seu cadastro e apareça em nossa plataforma!
                             </p>
                         </div>
                     <div className="register-forms">
@@ -203,87 +216,22 @@ export default class Register extends Component {
 
                                 <div className="right-form">
 
-                                    <div><Input placeholder = "número celular" value={this.state.numero} onChange={this.handleChange} type="numero" name="numero"/>
+                                    <div>
+                                    <Input  value={this.state.celular} onChange={this.handleChange} placeholder = "Número celular" type="celular" name="celular"/>
                                     </div>
                                     
-                                    <div className="checkBoxes">
-                                        <div>
-                                            <Checkbox disabled={this.state.isdisableB} onClick={this.handleCheckBuyer} />
-                                            <label>Quero comprar</label>
-                                        </div>
-                                        <div>
-                                            <Checkbox disabled={this.state.isdisableS} onClick={this.handleCheckSeller}/>
-                                            <label> Quero vender</label>
-                                        </div>
-                                    </div>
                                 </div>
 
                             </div>
                         </form>
-
-                        {!!this.state.ischeckedB ?   
-
-                           <form>
-                            <div id="form2" className="register-container-buyer">
-                                <div className="form-buyer">
-                                    <div>
-                                        <Input id="idCPFB" placeholder="CPF"  value={this.state.value} onBlur={this.handleCPFB} />
-                                    </div>
-
-                                    <div>
-                                        
-                                        {/* <InputMask mask="99999-999"  type="text" onBlur={this.handleCEP.bind(this)} required={true}/> */}
-                                        <Input placeholder="CEP" type="text" onBlur={this.handleCEP.bind(this)} />
-
-                                    
-                                    </div>
-
-                                    <div>
-                                        <Input placeholder="Logradouro" style={{ width: '375px' }} value={this.state.rua} disabled/>
-                                    </div>
-
-                                    
-                                <div>
-                                <div className="left-form-adress">
-
-                                    <div>
-                                        <Input placeholder="Cidade" value={this.state.localidade} disabled />
-                                    </div>
-                                    <div>
-                                        <Input placeholder="Número" required={true} />
-                                    </div>
-                                </div>
-                                    <div className="right-form-adress">
-                                    <div>
-                                        <Input placeholder="Ex:Bairro" value={this.state.bairro} disabled />
-                                    </div>
-
-                                    <div>
-                                        <Input placeholder="UF" style={{ width: '50px' }} value={this.state.estado} disabled  />
-                                    </div>
-                                    </div>
-                                </div>
-                                <div>
-                                        <Input placeholder="Complemento" style={{ width: '375px' }} />
-                                    </div>
-                                </div>
-                                <Button variant="contained"  onClick={this.handleRegister} className="buttonRegister">
-                            Cadastrar
-                        </Button>
-                            </div>
-
-                        </form>
-                        :null}
-
-                        {!!this.state.ischeckedS ? 
                         <form>
 
                         <div id="form2" className="register-container-seller">
                             <div className="form-seller">
                                 <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center',
                                     alignItems: 'center'}}>
-                                    <div >
                                     <label>Estado selecionado: {this.state.estado}</label>
+                                    <div style={{marginBottom: 20}}>
                                     <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
                                     <Button onClick={() => this.handleChangeEstado('SP')}>SP</Button>
                                     <Button onClick={() => this.handleChangeEstado('RJ')}>RJ</Button>
@@ -292,8 +240,8 @@ export default class Register extends Component {
                                     </ButtonGroup>
                                     </div>
 
-                                    <div >
-                                    <label>Empresa selecionado: {this.state.empresa}</label>
+                                    <label>Empresa selecionada: {this.state.empresa}</label>
+                                    <div style={{marginBottom: 20}}>
                                     <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
                                     <Button onClick={() => this.handleChangeEmpresa('Allianz')}>Allianz</Button>
                                     <Button onClick={() => this.handleChangeEmpresa('Porto Seguro')}>Porto</Button>
@@ -301,28 +249,29 @@ export default class Register extends Component {
                                     <Button onClick={() => this.handleChangeEmpresa('Zurich Seguros')}>Zurich</Button>
                                     </ButtonGroup>
                                     </div>
-                                    <div>
+
                                     <label>Tipo selecionado: {this.state.tipo}</label>
+                                    <div style={{marginBottom: 20}}>
                                     <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
                                     <Button onClick={() => this.handleChangeTipo('Automoveis')}>Automoveis</Button>
                                     <Button onClick={() => this.handleChangeTipo('Vida')}>Vida</Button>
                                     <Button onClick={() => this.handleChangeTipo('Residencia')}>Residencia</Button>
                                     <Button onClick={() => this.handleChangeTipo('Viagens')}>Viagens</Button>
+                                    <Button onClick={() => this.handleChangeTipo('Equipamentos Eletronicos')}>Eletrônicos</Button>
+                                    <Button onClick={() => this.handleChangeTipo('Empresarial')}>Empresarial</Button>
                                     </ButtonGroup>
                                 </div>
                                 </div>
 
                             </div>
                             <Button variant="contained" 
-                            onClick={() => this.enviarCorr(this.state.nome, this.state.tipo, this.state.estado, this.state.empresa, this.state.celular, this.state.email)} 
+                            onClick={() => {this.enviarCorr(this.state.nome, this.state.tipo, this.state.estado, this.state.empresa, this.state.celular, this.state.email);
+                                toaster.success('Cadastro realizado com sucesso!', {duration: 4})}} 
                             className="buttonRegister">
-                                Cadastrar corretor
+                                Cadastrar
                             </Button>
                         </div>
-
-                        
                         </form>
-                        :null}
                     </div>
                     </div>
                     

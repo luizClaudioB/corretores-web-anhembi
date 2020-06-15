@@ -141,14 +141,17 @@
 }
 
 .register-container-seller .form-seller{
-    float: left;
-    margin-left: 75px;
-    margin-top: -15px;
+    margin-left: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 
 .buttonRegister{
-    position: relative;
-    left: 20px;
+    position: fixed;
+    left: -22px;
     top: 200px;
+    width: 50px;
 }

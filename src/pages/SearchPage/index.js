@@ -1,7 +1,8 @@
 import './styles.css';
 import React, { Component } from 'react';
 import {  IconButton, Button, Popover, Menu, Avatar, Combobox, Text, Textarea, TagInput,
-    Pane, SideSheet, Heading, Paragraph, Tablist, Tab, Card, TabNavigation, Badge, Label, toaster} from 'evergreen-ui';
+    Pane, SideSheet, Heading, Paragraph, Tablist, Tab, Card, TabNavigation, Badge, Label, toaster,
+    } from 'evergreen-ui';
 import Logo from './../../img/logo_web_svc.png';
 import Header from "./../../components/header-component/header.js";
 import getCorretores from '../../services/corretoresService';
@@ -49,14 +50,6 @@ export default class SearchPage extends Component {
       }
       
       getCorretorByEstado(estado){
-        /*getCorretores.SearchCorretores().then((res) =>{
-          let corretores = res.data.body.filter(corretores => corretores.estado === estado);
-          console.log('teste', corretores);
-          this.setState({
-            corretores: corretores,
-            showTable: true,
-          })
-        })*/
         this.setState({
           corretores: this.state.corretores.filter(corretores => corretores.estado === estado),
           showTable: true,
@@ -64,14 +57,6 @@ export default class SearchPage extends Component {
       }
 
       getCorretorByEmpresa(empresa){
-        /*getCorretores.SearchCorretores().then((res) =>{
-          let corretores = res.data.body.filter(corretores => corretores.empresa === empresa);
-          console.log('teste', corretores);
-          this.setState({
-            corretores: corretores,
-            showTable: true,
-          })
-        })*/
         this.setState({
           corretores: this.state.corretores.filter(corretores => corretores.empresa === empresa),
           showTable: true,
@@ -79,14 +64,6 @@ export default class SearchPage extends Component {
       }
 
       getCorretorByTipo(tipo_seg){
-        /*getCorretores.SearchCorretores().then((res) => {
-          let corretores = res.data.body.filter(corretores => corretores.tipo_seg === tipo_seg);
-          console.log('teste', corretores);
-          this.setState({
-            corretores: corretores,
-            showTable: true,
-          })
-        })*/
           this.setState({
             corretores: this.state.corretores.filter(corretores => corretores.tipo_seg === tipo_seg),
             showTable: true,
@@ -117,7 +94,52 @@ export default class SearchPage extends Component {
     render(){
     return(
     <div className="div1"> 
-    <Header></Header>
+    <div>
+    <header className="dashboard-header">
+        <div>
+        <Popover
+          content={
+            <Menu>
+              <Menu.Group>
+                <Menu.Item onClick={() => this.props.history.push('/search') } icon="search">Busque Corretores</Menu.Item>
+                <Menu.Item onClick={() => this.props.history.push('/history') } icon="history">
+                  Historico
+                </Menu.Item>
+                <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculo da Equipe</Menu.Item>
+                <Menu.Item onClick={() => this.props.history.push('/enterprise') } icon="info-sign">Sobre Nos</Menu.Item>
+              </Menu.Group>
+              <Menu.Divider />
+            </Menu>
+          }
+        >
+          <IconButton style={{position: 'fixed'}} className="menu-button" appearance="minimal" icon="menu" iconSize={50} />
+        </Popover>
+        <br />
+        <br />
+        <img onClick={() => this.props.history.push('/') } style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '48%', position: 'fixed'}} src={Logo} alt={Logo} />
+        <a style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '35%', position: 'fixed'}} href="https://www.linkedin.com/in/lucas-bonfim-romero/"><h2>Administração
+            </h2>
+          </a>
+        <label onClick={() => this.props.history.push('/register')} style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '85%', position: 'fixed'}}> Cadastre-se! </label>
+        <a style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '58%', position: 'fixed'}}> Busca </a>
+
+        </div>
+      </header>
+      <div>
+          <TabNavigation position='fixed' backgroundColor='#E26B15' width={1500} marginLeft={-10} marginBottom={10}>
+          {['Veiculos', 'Viagens', 'Empresarial', 'Residencia', 'Vida', 'Equipamentos eletronicos'].map((tab, index) => (
+              <Tab color='#FFFFFF' marginLeft={130} key={tab} is="h" href="#" id={tab} isSelected={index === null}
+              onSelect={() => this.props.history.push('/search')}>
+              {tab}
+              </Tab>
+          ))}
+          </TabNavigation>
+      </div>
+    </div>
     <div>
       <body style={{marginTop: 100, position: 'fixed'}}>
       <div>

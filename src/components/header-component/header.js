@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import { SearchInput, IconButton, Popover, Menu, Tab, TabNavigation } from 'evergreen-ui';
 import Logo from './../../img/logo_web_svc.png';
 
-function Header(props) {
-
+export default class Header extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  render(){
   return (
     <div>
     <header className="dashboard-header">
@@ -12,12 +15,12 @@ function Header(props) {
           content={
             <Menu>
               <Menu.Group>
-                <Menu.Item onClick={() => this.props.history.push('/search') } icon="search">Busque Corretores</Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/history') } icon="history">
+                <a href="search"> <Menu.Item icon="search">Busque Corretores</Menu.Item></a>
+                <a href="history"><Menu.Item icon="history">
                   Historico
-                </Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/profile') } icon="star-empty">Curriculo da Equipe</Menu.Item>
-                <Menu.Item onClick={() => this.props.history.push('/enterprise') } icon="info-sign">Sobre Nos</Menu.Item>
+                </Menu.Item></a>
+                <a href="profile"> <Menu.Item icon="star-empty">Curriculo da Equipe</Menu.Item></a>
+                <a href="enterprise"><Menu.Item icon="info-sign">Sobre Nos</Menu.Item></a>
               </Menu.Group>
               <Menu.Divider />
             </Menu>
@@ -28,8 +31,16 @@ function Header(props) {
         <br />
         <br />
         <img onClick={() => this.props.history.push('/') } style={{width: 80, marginTop: 21, 
-          cursor: 'pointer', marginLeft: 195, position: 'fixed'}} src={Logo} alt={Logo} />
-        <SearchInput top={20} marginLeft={360} width={700} height={40} position="fixed" placeholder="Procure um seguro" />
+          cursor: 'pointer', marginLeft: '48%', position: 'fixed'}} src={Logo} alt={Logo} />
+        <a style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '35%', position: 'fixed'}} href="https://www.linkedin.com/in/lucas-bonfim-romero/"><h2>Administração
+            </h2>
+          </a>
+        <a href="register"><label style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '85%', position: 'fixed'}}> Cadastre-se! </label></a>
+        <a href="search" style={{width: 80, marginTop: 21, 
+          cursor: 'pointer', marginLeft: '58%', position: 'fixed'}}> <h2>Busca</h2> </a>
+
         </div>
       </header>
       <div>
@@ -43,6 +54,5 @@ function Header(props) {
           </TabNavigation>
       </div>
     </div>
-  );
+  );}
 }
-export default Header;
